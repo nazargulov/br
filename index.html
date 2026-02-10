@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extensões Chrome em Português | Brasil</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .brazil-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #22c55e;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #1e293b;
+            margin-bottom: 15px;
+        }
+        .subtitle {
+            color: #64748b;
+            font-size: 1.2rem;
+        }
+        .extensions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .extension-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .extension-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+        .extension-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        .extension-card h2 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #1e293b;
+        }
+        .extension-card p {
+            color: #64748b;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+        .extension-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+        .tag {
+            background: #f1f5f9;
+            padding: 4px 10px;
+            border-radius: 12px;
+        }
+        .tag.free {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+        .tag.pix {
+            background: #32bcad;
+            color: white;
+        }
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="brazil-badge">
+                🇧🇷 100% em Português
+            </div>
+            <h1>Extensões Chrome para Brasileiros</h1>
+            <p class="subtitle">Ferramentas simples, em português, com pagamento via PIX</p>
+        </header>
+
+        <div class="extensions-grid">
+            <a href="envio-email-em-massa/" class="extension-card">
+                <div class="extension-icon">📧</div>
+                <h2>EmailMassa</h2>
+                <p>Envie emails em massa pelo Gmail. Personalização, tracking e integração com Google Sheets.</p>
+                <div class="extension-meta">
+                    <span class="tag free">Grátis</span>
+                    <span class="tag pix">PIX</span>
+                    <span class="tag">Gmail</span>
+                </div>
+            </a>
+
+            <!-- Placeholder for future extensions -->
+            <div class="extension-card" style="opacity: 0.5; cursor: default;">
+                <div class="extension-icon">🔜</div>
+                <h2>Em Breve</h2>
+                <p>Novas extensões estão sendo desenvolvidas. Fique ligado!</p>
+                <div class="extension-meta">
+                    <span class="tag">Em desenvolvimento</span>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Feito com ❤️ no Brasil</p>
+            <p style="margin-top: 10px;">
+                <a href="mailto:contato@emailmassa.com.br">Contato</a> ·
+                <a href="envio-email-em-massa/privacidade.html">Privacidade</a> ·
+                <a href="envio-email-em-massa/termos.html">Termos</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
