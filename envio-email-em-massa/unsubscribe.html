@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancelar Inscrição | EmailMassa</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f1f5f9 0%, #ffffff 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 16px;
+            padding: 50px;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #1e293b;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        p {
+            color: #64748b;
+            font-size: 1rem;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        .email-display {
+            background: #f8fafc;
+            padding: 15px 25px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-family: monospace;
+            font-size: 1rem;
+            color: #475569;
+            word-break: break-all;
+        }
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+        .btn-primary {
+            background: #ef4444;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #dc2626;
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background: #f1f5f9;
+            color: #475569;
+            margin-left: 10px;
+        }
+        .btn-secondary:hover {
+            background: #e2e8f0;
+        }
+        .buttons {
+            margin-top: 30px;
+        }
+        .success-message {
+            display: none;
+            color: #10b981;
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+        .success-message.show {
+            display: block;
+        }
+        .info {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+        .info a {
+            color: #04ae45;
+            text-decoration: none;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="confirmSection">
+            <div class="icon">📧</div>
+            <h1>Cancelar Inscrição</h1>
+            <p>Você está prestes a cancelar o recebimento de emails do seguinte endereço:</p>
+
+            <div class="email-display" id="emailDisplay">-</div>
+
+            <p>Após confirmar, você não receberá mais emails de campanhas enviadas por este remetente.</p>
+
+            <div class="buttons">
+                <button class="btn btn-primary" onclick="confirmUnsubscribe()">
+                    Confirmar Cancelamento
+                </button>
+                <a href="javascript:window.close()" class="btn btn-secondary">
+                    Voltar
+                </a>
+            </div>
+        </div>
+
+        <div id="successSection" class="hidden">
+            <div class="icon">✅</div>
+            <h1>Inscrição Cancelada</h1>
+            <p>Seu email foi removido da lista com sucesso. Você não receberá mais emails desta campanha.</p>
+            <p style="margin-top: 20px; color: #94a3b8; font-size: 0.9rem;">
+                Você pode fechar esta janela.
+            </p>
+        </div>
+
+        <div class="info">
+            <p>Esta página é parte do serviço <a href="https://nazargulov.github.io/br/envio-email-em-massa/" target="_blank">EmailMassa</a>.</p>
+            <p style="margin-top: 5px;">Dúvidas? <a href="https://wa.me/48504337326" target="_blank">WhatsApp: +48 504 337 326</a> · <a href="https://wa.me/48504337326" target="_blank">wa.me/48504337326</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Get parameters from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const email = urlParams.get('email');
+        const status = urlParams.get('status');
+
+        // If redirected from tracking server with success status, show success immediately
+        if (status === 'success') {
+            document.getElementById('confirmSection').classList.add('hidden');
+            document.getElementById('successSection').classList.remove('hidden');
+        } else {
+            if (email) {
+                document.getElementById('emailDisplay').textContent = decodeURIComponent(email);
+            } else {
+                document.getElementById('emailDisplay').textContent = 'Email não especificado';
+            }
+        }
+
+        function confirmUnsubscribe() {
+            document.getElementById('confirmSection').classList.add('hidden');
+            document.getElementById('successSection').classList.remove('hidden');
+
+            // Store unsubscribe in localStorage as backup
+            if (email) {
+                const unsubscribed = JSON.parse(localStorage.getItem('emailmassa_unsubscribed') || '[]');
+                if (!unsubscribed.includes(email)) {
+                    unsubscribed.push(email);
+                    localStorage.setItem('emailmassa_unsubscribed', JSON.stringify(unsubscribed));
+                }
+            }
+        }
+    </script>
+</body>
+</html>

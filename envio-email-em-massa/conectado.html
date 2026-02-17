@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conectado com Sucesso! | EmailMassa</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+            max-width: 500px;
+            width: 100%;
+            overflow: hidden;
+            animation: slideUp 0.5s ease;
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .header {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            padding: 50px 40px;
+            text-align: center;
+            color: white;
+        }
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            animation: scaleIn 0.5s ease 0.2s both;
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+        .success-icon svg {
+            width: 50px;
+            height: 50px;
+        }
+        .checkmark {
+            stroke: #10b981;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+            animation: draw 0.5s ease 0.5s both;
+        }
+        @keyframes draw {
+            from { stroke-dasharray: 100; stroke-dashoffset: 100; }
+            to { stroke-dasharray: 100; stroke-dashoffset: 0; }
+        }
+        .header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        .header p {
+            opacity: 0.9;
+            font-size: 1.05rem;
+        }
+        .email-display {
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-top: 15px;
+            font-weight: 500;
+        }
+        .content {
+            padding: 40px;
+        }
+        .notification-section {
+            background: #fef3c7;
+            border: 1px solid #fcd34d;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        .notification-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        .notification-text h3 {
+            color: #92400e;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+        .notification-text p {
+            color: #a16207;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+        }
+        .btn-notification {
+            background: #f59e0b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .btn-notification:hover {
+            background: #d97706;
+        }
+        .next-steps {
+            margin-bottom: 30px;
+        }
+        .next-steps h2 {
+            color: #1e293b;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 10px;
+            transition: all 0.2s;
+        }
+        .step-item:hover {
+            background: #f1f5f9;
+        }
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: #2563eb;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .step-content h4 {
+            color: #1e293b;
+            font-size: 1rem;
+            margin-bottom: 3px;
+        }
+        .step-content p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        .actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            flex: 1;
+            min-width: 180px;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+        }
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background: white;
+            color: #2563eb;
+            border: 2px solid #2563eb;
+        }
+        .btn-secondary:hover {
+            background: #dbeafe;
+        }
+        .steps-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        .step-dot {
+            width: 40px;
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 3px;
+        }
+        .step-dot.active {
+            background: #10b981;
+        }
+        .step-dot.completed {
+            background: #10b981;
+        }
+        .footer {
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        .confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1000;
+        }
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ffd700;
+            animation: confetti-fall 3s ease-out forwards;
+        }
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="confetti" id="confetti"></div>
+
+    <div class="card">
+        <div class="header">
+            <div class="success-icon">
+                <svg viewBox="0 0 24 24">
+                    <polyline class="checkmark" points="20 6 9 17 4 12"></polyline>
+                </svg>
+            </div>
+            <h1>Conectado com Sucesso!</h1>
+            <p>Você conectou o EmailMassa à sua conta Gmail.</p>
+            <div class="email-display" id="userEmail">carregando...</div>
+        </div>
+
+        <div class="content">
+            <div class="notification-section">
+                <div class="notification-icon">🔔</div>
+                <div class="notification-text">
+                    <h3>Ative as notificações</h3>
+                    <p>Receba alertas quando seus emails forem abertos ou clicados.</p>
+                    <button class="btn-notification" id="enableNotifications">
+                        Ativar Notificações
+                    </button>
+                </div>
+            </div>
+
+            <div class="next-steps">
+                <h2>🚀 Próximos passos</h2>
+
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Abra o Gmail</h4>
+                        <p>O EmailMassa já está integrado ao seu Gmail.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Escreva um email</h4>
+                        <p>Clique em "Escrever" para criar uma nova mensagem.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Use o botão "Massa"</h4>
+                        <p>Encontre o botão azul ao lado do "Enviar" para enviar em massa.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="actions">
+                <a href="https://mail.google.com" class="btn btn-primary" id="openGmail">
+                    📧 Abrir Gmail
+                </a>
+                <button class="btn btn-secondary" id="startTour">
+                    🎓 Ver Tour Rápido
+                </button>
+            </div>
+
+            <div class="steps-indicator">
+                <div class="step-dot completed"></div>
+                <div class="step-dot active"></div>
+                <div class="step-dot"></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            Precisa de ajuda? <a href="https://wa.me/48504337326" style="color: #2563eb;">WhatsApp: +48 504 337 326</a> ·
+            <a href="https://wa.me/48504337326" style="color: #2563eb;">wa.me/48504337326</a>
+        </div>
+    </div>
+
+    <script>
+        // Create confetti effect
+        function createConfetti() {
+            const confettiContainer = document.getElementById('confetti');
+            const colors = ['#ffd700', '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ff69b4'];
+
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti-piece';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                confetti.style.width = Math.random() * 10 + 5 + 'px';
+                confetti.style.height = Math.random() * 10 + 5 + 'px';
+                confettiContainer.appendChild(confetti);
+            }
+
+            // Remove confetti after animation
+            setTimeout(() => {
+                confettiContainer.innerHTML = '';
+            }, 5000);
+        }
+
+        createConfetti();
+
+        // Get user email from URL or extension
+        const urlParams = new URLSearchParams(window.location.search);
+        const email = urlParams.get('email');
+        if (email) {
+            document.getElementById('userEmail').textContent = email;
+        } else {
+            document.getElementById('userEmail').style.display = 'none';
+        }
+
+        // Enable notifications
+        document.getElementById('enableNotifications').addEventListener('click', async () => {
+            const btn = document.getElementById('enableNotifications');
+
+            if ('Notification' in window) {
+                const permission = await Notification.requestPermission();
+
+                if (permission === 'granted') {
+                    btn.textContent = '✓ Ativadas!';
+                    btn.style.background = '#10b981';
+                    btn.disabled = true;
+
+                    // Show test notification
+                    new Notification('EmailMassa', {
+                        body: 'Notificações ativadas com sucesso!',
+                        icon: 'assets/images/icon-preview.png'
+                    });
+                } else {
+                    btn.textContent = 'Permissão negada';
+                    btn.style.background = '#ef4444';
+                }
+            } else {
+                btn.textContent = 'Não suportado';
+                btn.style.background = '#6b7280';
+            }
+        });
+
+        // Start tour - save flag and open Gmail
+        document.getElementById('startTour').addEventListener('click', () => {
+            // Try to communicate with extension to enable tour
+            try {
+                localStorage.setItem('emailmassa_show_tour', 'true');
+            } catch (e) {}
+
+            window.location.href = 'https://mail.google.com?emailmassa_tour=true';
+        });
+
+        // Open Gmail
+        document.getElementById('openGmail').addEventListener('click', (e) => {
+            // Extension will detect first use and show tour anyway
+        });
+
+        // Close window if opened by extension
+        if (urlParams.get('autoclose') === 'true') {
+            setTimeout(() => {
+                window.close();
+            }, 10000);
+        }
+    </script>
+</body>
+</html>

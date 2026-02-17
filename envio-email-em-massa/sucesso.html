@@ -80,6 +80,19 @@
             color: #2563eb;
             text-decoration: none;
         }
+        .activation-status {
+            margin-top: 16px;
+            font-size: 0.95rem;
+            color: #475569;
+        }
+        .activation-status.ok {
+            color: #059669;
+            font-weight: 600;
+        }
+        .activation-status.error {
+            color: #dc2626;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -96,6 +109,7 @@
                 <li>Seu status Premium já estará ativo</li>
                 <li>Comece a enviar emails em massa!</li>
             </ol>
+            <p id="activationStatus" class="activation-status">Validando pagamento...</p>
         </div>
 
         <a href="https://mail.google.com" class="btn" target="_blank">
@@ -103,8 +117,97 @@
         </a>
 
         <p class="support">
-            Precisa de ajuda? <a href="https://wa.me/5511999999999" target="_blank">Fale conosco no WhatsApp</a>
+            Precisa de ajuda? <a href="https://wa.me/48504337326" target="_blank">WhatsApp: +48 504 337 326</a> ·
+            <a href="https://wa.me/48504337326" target="_blank">wa.me/48504337326</a>
         </p>
     </div>
+    <script>
+        const BILLING_SERVER = 'https://emailmassa-billing.u9603656505.workers.dev';
+
+        function setActivationStatus(message, type = '') {
+            const el = document.getElementById('activationStatus');
+            el.textContent = message;
+            el.classList.remove('ok', 'error');
+            if (type) el.classList.add(type);
+        }
+
+        function delay(ms) {
+            return new Promise((resolve) => setTimeout(resolve, ms));
+        }
+
+        async function fetchSessionLicense(sessionId) {
+            const response = await fetch(`${BILLING_SERVER}/api/license/by-session?session_id=${encodeURIComponent(sessionId)}`);
+            if (!response.ok) {
+                const payload = await response.json().catch(() => ({}));
+                throw new Error(payload.error || `Erro ${response.status} ao validar sessão`);
+            }
+            return response.json();
+        }
+
+        async function activateInExtension(extId, email, licenseKey) {
+            if (!extId || !window.chrome?.runtime?.sendMessage) {
+                setActivationStatus('Pagamento confirmado. Abra o popup do EmailMassa para sincronizar o Premium.', 'ok');
+                return;
+            }
+
+            await new Promise((resolve, reject) => {
+                chrome.runtime.sendMessage(
+                    extId,
+                    { action: 'activateLicense', email, licenseKey },
+                    (response) => {
+                        if (chrome.runtime.lastError) {
+                            reject(new Error(chrome.runtime.lastError.message));
+                            return;
+                        }
+                        if (!response?.success) {
+                            reject(new Error(response?.error || 'Falha ao ativar no extension'));
+                            return;
+                        }
+                        resolve();
+                    }
+                );
+            });
+            setActivationStatus('Premium ativado com sucesso no seu EmailMassa.', 'ok');
+        }
+
+        async function initActivationFlow() {
+            const params = new URLSearchParams(window.location.search);
+            const sessionId = params.get('session_id');
+            const extId = params.get('ext_id');
+
+            if (!sessionId) {
+                setActivationStatus('Pagamento concluído. Abra o popup do EmailMassa para sincronizar seu Premium.', 'ok');
+                return;
+            }
+
+            // PIX may confirm asynchronously; poll a few times.
+            for (let attempt = 1; attempt <= 6; attempt++) {
+                try {
+                    const result = await fetchSessionLicense(sessionId);
+                    if (result.status === 'pending') {
+                        setActivationStatus('Aguardando confirmação do PIX... Isso pode levar alguns minutos.');
+                        await delay(4000);
+                        continue;
+                    }
+                    if (result.status !== 'paid') {
+                        throw new Error(result.error || 'Pagamento ainda não confirmado');
+                    }
+                    await activateInExtension(extId, result.email, result.licenseKey);
+                    return;
+                } catch (error) {
+                    if (attempt === 6) {
+                        setActivationStatus(
+                            `Pagamento recebido, mas ativação automática falhou. Abra o popup para sincronizar. (${error.message})`,
+                            'error'
+                        );
+                        return;
+                    }
+                    await delay(3000);
+                }
+            }
+        }
+
+        initActivationFlow();
+    </script>
 </body>
 </html>

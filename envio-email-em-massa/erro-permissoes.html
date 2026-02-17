@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erro de Permissões | EmailMassa</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+            max-width: 550px;
+            width: 100%;
+            overflow: hidden;
+            animation: slideUp 0.5s ease;
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .header {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            padding: 40px;
+            text-align: center;
+            color: white;
+        }
+        .error-icon {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2.5rem;
+        }
+        .header h1 {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+        .header p {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+        .content {
+            padding: 40px;
+        }
+        .error-message {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .error-message h3 {
+            color: #dc2626;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .error-message p {
+            color: #7f1d1d;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .error-details {
+            background: #1e293b;
+            color: #94a3b8;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            margin-top: 15px;
+            overflow-x: auto;
+        }
+        .why-section {
+            margin-bottom: 30px;
+        }
+        .why-section h2 {
+            color: #1e293b;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .permission-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px;
+            background: #f8fafc;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .permission-icon {
+            width: 24px;
+            height: 24px;
+            background: #dbeafe;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .permission-text strong {
+            color: #1e293b;
+            font-size: 0.95rem;
+            display: block;
+            margin-bottom: 2px;
+        }
+        .permission-text span {
+            color: #64748b;
+            font-size: 0.85rem;
+        }
+        .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .btn {
+            width: 100%;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background: white;
+            color: #64748b;
+            border: 2px solid #e2e8f0;
+        }
+        .btn-secondary:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+        .help-text {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+        .help-text p {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        .help-text a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        .help-text a:hover {
+            text-decoration: underline;
+        }
+        .steps-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 25px;
+        }
+        .step-dot {
+            width: 40px;
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 3px;
+        }
+        .step-dot.error {
+            background: #ef4444;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <div class="error-icon">⚠️</div>
+            <h1>Erro de Permissões</h1>
+            <p>Você não concedeu as permissões necessárias para o EmailMassa funcionar.</p>
+        </div>
+
+        <div class="content">
+            <div class="error-message">
+                <h3>🔴 O que aconteceu?</h3>
+                <p>Na tela anterior, você precisa marcar <strong>todas as permissões</strong> solicitadas para que o EmailMassa funcione corretamente. Sem essas permissões, não conseguimos enviar emails em seu nome.</p>
+                <div class="error-details" id="errorDetails">
+                    Erro: Request had insufficient authentication scopes.<br>
+                    Solução: Marque todas as permissões e tente novamente.
+                </div>
+            </div>
+
+            <div class="why-section">
+                <h2>🔐 Por que precisamos dessas permissões?</h2>
+
+                <div class="permission-item">
+                    <div class="permission-icon">📤</div>
+                    <div class="permission-text">
+                        <strong>Enviar emails</strong>
+                        <span>Para enviar suas campanhas em massa pelo Gmail</span>
+                    </div>
+                </div>
+
+                <div class="permission-item">
+                    <div class="permission-icon">📊</div>
+                    <div class="permission-text">
+                        <strong>Google Sheets</strong>
+                        <span>Para importar sua lista de contatos de planilhas</span>
+                    </div>
+                </div>
+
+                <div class="permission-item">
+                    <div class="permission-icon">👤</div>
+                    <div class="permission-text">
+                        <strong>Identificação</strong>
+                        <span>Para saber qual conta está usando o EmailMassa</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="actions">
+                <a href="bem-vindo.html" class="btn btn-primary" id="retryBtn">
+                    🔄 Tentar Novamente
+                </a>
+                <a href="por-que-pedimos-permissoes.html" class="btn btn-secondary">
+                    📖 Saiba mais sobre nossas permissões
+                </a>
+            </div>
+
+            <div class="help-text">
+                <p>Ainda com problemas?</p>
+                <a href="https://wa.me/48504337326">💬 WhatsApp: +48 504 337 326 · wa.me/48504337326</a>
+            </div>
+
+            <div class="steps-indicator">
+                <div class="step-dot"></div>
+                <div class="step-dot error"></div>
+                <div class="step-dot"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get error details from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const errorMsg = urlParams.get('error');
+        const errorCode = urlParams.get('code');
+
+        if (errorMsg || errorCode) {
+            const detailsEl = document.getElementById('errorDetails');
+            let details = '';
+
+            if (errorCode) details += `Código: ${errorCode}\n`;
+            if (errorMsg) details += `Detalhes: ${errorMsg}`;
+
+            if (details) {
+                detailsEl.textContent = details;
+            }
+        }
+
+        // Retry button - clear any cached denials and try again
+        document.getElementById('retryBtn').addEventListener('click', (e) => {
+            // Could add logic to clear extension storage of failed attempts
+        });
+    </script>
+</body>
+</html>

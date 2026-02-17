@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | EmailMassa</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
+            color: #0f172a;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .card {
+            width: 100%;
+            max-width: 520px;
+            background: #fff;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 10px 30px rgba(2, 6, 23, 0.12);
+        }
+        h1 { margin: 0 0 8px; font-size: 1.5rem; }
+        p { margin: 0 0 18px; color: #475569; }
+        label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #334155;
+        }
+        input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 1rem;
+            margin-bottom: 14px;
+        }
+        button {
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+            background: linear-gradient(135deg, #32bcad 0%, #208e82 100%);
+            cursor: pointer;
+        }
+        button:disabled { opacity: 0.7; cursor: wait; }
+        .status { margin-top: 12px; font-size: 0.92rem; color: #475569; }
+        .status.error { color: #dc2626; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Finalizar assinatura Premium</h1>
+        <p>Digite o email da sua conta Gmail para liberar o Premium corretamente no extension.</p>
+        <label for="email">Seu email</label>
+        <input id="email" type="email" placeholder="voce@empresa.com.br" autocomplete="email">
+        <button id="payBtn" type="button">Continuar para pagamento (PIX)</button>
+        <div id="status" class="status"></div>
+    </div>
+
+    <script>
+        const BILLING_SERVER = 'https://emailmassa-billing.u9603656505.workers.dev';
+
+        function setStatus(message, isError = false) {
+            const el = document.getElementById('status');
+            el.textContent = message;
+            el.classList.toggle('error', isError);
+        }
+
+        document.getElementById('payBtn').addEventListener('click', async () => {
+            const email = (document.getElementById('email').value || '').trim().toLowerCase();
+            if (!email || !email.includes('@')) {
+                setStatus('Informe um email válido.', true);
+                return;
+            }
+
+            const btn = document.getElementById('payBtn');
+            btn.disabled = true;
+            setStatus('Criando checkout...');
+            try {
+                const params = new URLSearchParams(window.location.search);
+                const plan = params.get('plan') || 'premium_monthly';
+                const response = await fetch(`${BILLING_SERVER}/api/checkout-session`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, plan })
+                });
+                const payload = await response.json().catch(() => ({}));
+                if (!response.ok || !payload.url) {
+                    throw new Error(payload.error || 'Falha ao criar checkout');
+                }
+                window.location.href = payload.url;
+            } catch (error) {
+                setStatus(error.message || 'Erro ao abrir checkout.', true);
+                btn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

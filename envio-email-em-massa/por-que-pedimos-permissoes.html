@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Por que Pedimos Permissões | EmailMassa</title>
+    <meta name="description" content="Entenda quais dados o EmailMassa armazena e por que precisamos de certas permissões para funcionar no seu Gmail.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.8;
+            color: #1e293b;
+            background: #f8fafc;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #2563eb;
+            text-decoration: none;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #2563eb;
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+        .subtitle {
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+        .date {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+        .content {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .highlight {
+            background: #dbeafe;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #2563eb;
+        }
+        .highlight strong {
+            color: #1e40af;
+        }
+        h2 {
+            color: #1e293b;
+            margin: 35px 0 15px;
+            font-size: 1.4rem;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #dbeafe;
+        }
+        h2:first-of-type {
+            margin-top: 0;
+        }
+        h3 {
+            color: #334155;
+            margin: 25px 0 12px;
+            font-size: 1.15rem;
+        }
+        p, ul {
+            color: #475569;
+            margin-bottom: 15px;
+        }
+        ul {
+            padding-left: 25px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        a {
+            color: #2563eb;
+        }
+        .permission-box {
+            background: #f1f5f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .permission-box h4 {
+            color: #1e293b;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .permission-box p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+        .icon {
+            font-size: 1.3rem;
+        }
+        .security-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #dcfce7;
+            color: #166534;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin: 10px 5px 10px 0;
+        }
+        .warning-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .warning-box strong {
+            color: #92400e;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        th {
+            background: #f1f5f9;
+            font-weight: 600;
+            color: #334155;
+        }
+        .check {
+            color: #10b981;
+            font-weight: bold;
+        }
+        .cross {
+            color: #ef4444;
+            font-weight: bold;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 30px;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .contact-box {
+            background: #eff6ff;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        .contact-box h3 {
+            margin-top: 0;
+            color: #1e40af;
+        }
+        .contact-box a {
+            display: inline-block;
+            margin: 5px 10px;
+        }
+        @media (max-width: 600px) {
+            .content {
+                padding: 25px;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="logo">
+                <span>📧</span>
+                EmailMassa
+            </a>
+            <h1>Por que Pedimos Permissões?</h1>
+            <p class="subtitle">Entenda como o EmailMassa funciona e protege seus dados</p>
+            <p class="date">Última atualização: Fevereiro de 2025</p>
+        </header>
+
+        <div class="content">
+            <div class="highlight">
+                <strong>Resumo:</strong> O EmailMassa precisa de certas permissões do Google para funcionar, mas <strong>nunca lemos seus emails pessoais</strong>, <strong>nunca armazenamos suas senhas</strong> e <strong>nunca vendemos seus dados</strong>. Sua privacidade é nossa prioridade.
+            </div>
+
+            <h2>Como o EmailMassa Funciona</h2>
+            <p>O EmailMassa é uma extensão para Chrome que adiciona funcionalidades de envio em massa diretamente no seu Gmail. Para fazer isso, precisamos nos conectar à sua conta Google através do sistema seguro OAuth2 - o mesmo usado por milhares de aplicativos confiáveis.</p>
+
+            <p>A maior parte da comunicação entre o EmailMassa e o Gmail ocorre através de identificadores numéricos específicos da API do Gmail. Quando precisamos transferir informações (como endereços de email), isso é feito de forma segura via SSL/HTTPS. <strong>O Google não permite integrações de terceiros sem uso de SSL.</strong></p>
+
+            <div class="security-badge">🔒 Conexão SSL/HTTPS</div>
+            <div class="security-badge">🛡️ OAuth2 do Google</div>
+            <div class="security-badge">✓ Sem armazenamento de senhas</div>
+
+            <h2>Permissões que Solicitamos</h2>
+            <p>Quando você instala o EmailMassa, o Google pede que você autorize certas permissões. Aqui está o que cada uma significa:</p>
+
+            <div class="permission-box">
+                <h4><span class="icon">📤</span> gmail.send - Enviar emails</h4>
+                <p><strong>Por que precisamos:</strong> Para enviar suas campanhas de email em massa através do seu Gmail. Sem essa permissão, não conseguimos enviar emails em seu nome.</p>
+            </div>
+
+            <div class="permission-box">
+                <h4><span class="icon">📊</span> Google Sheets - Planilhas</h4>
+                <p><strong>Por que precisamos:</strong> Para importar sua lista de contatos diretamente de uma planilha do Google Sheets. Isso facilita o envio personalizado com campos como {{nome}}, {{empresa}}, etc.</p>
+            </div>
+
+            <div class="permission-box">
+                <h4><span class="icon">👤</span> identity - Identidade</h4>
+                <p><strong>Por que precisamos:</strong> Para identificar sua conta Google e verificar seu status de assinatura (gratuito ou premium).</p>
+            </div>
+
+            <h2>Quais Dados Armazenamos?</h2>
+
+            <h3>Dados que NÃO armazenamos:</h3>
+            <table>
+                <tr>
+                    <td>Conteúdo dos seus emails pessoais</td>
+                    <td class="cross">✗ Nunca</td>
+                </tr>
+                <tr>
+                    <td>Sua senha do Gmail</td>
+                    <td class="cross">✗ Nunca</td>
+                </tr>
+                <tr>
+                    <td>Contatos da sua agenda pessoal</td>
+                    <td class="cross">✗ Nunca</td>
+                </tr>
+                <tr>
+                    <td>Conteúdo das suas campanhas</td>
+                    <td class="cross">✗ Não armazenamos*</td>
+                </tr>
+            </table>
+
+            <div class="warning-box">
+                <strong>*Nota sobre conteúdo de campanhas:</strong> O conteúdo do seu email passa temporariamente (microssegundos) pelo nosso servidor apenas para adicionar os mecanismos de tracking de abertura e cliques. Após isso, o conteúdo não permanece em nossos servidores.
+            </div>
+
+            <h3>Dados que armazenamos:</h3>
+            <table>
+                <tr>
+                    <td>Seu email de login</td>
+                    <td class="check">✓ Para identificar sua conta</td>
+                </tr>
+                <tr>
+                    <td>Emails dos destinatários</td>
+                    <td class="check">✓ Para tracking e unsubscribe</td>
+                </tr>
+                <tr>
+                    <td>Estatísticas (aberturas/cliques)</td>
+                    <td class="check">✓ Para seu dashboard</td>
+                </tr>
+                <tr>
+                    <td>Status de assinatura</td>
+                    <td class="check">✓ Gratuito/Premium</td>
+                </tr>
+            </table>
+
+            <p>Os endereços de email dos destinatários são armazenados para fornecer funcionalidades essenciais como:</p>
+            <ul>
+                <li><strong>Tracking de aberturas e cliques</strong> - para você saber quem interagiu com seus emails</li>
+                <li><strong>Link de unsubscribe</strong> - para permitir que destinatários cancelem a inscrição</li>
+                <li><strong>Histórico de campanhas</strong> - para você consultar resultados anteriores</li>
+            </ul>
+
+            <p>Esses dados são armazenados em servidores seguros, protegidos por múltiplas camadas de firewall, e <strong>nunca são compartilhados ou vendidos para terceiros</strong>.</p>
+
+            <h2>Compartilhamos Dados com Terceiros?</h2>
+            <p><strong>NÃO vendemos seus dados.</strong> Compartilhamos informações apenas com:</p>
+            <ul>
+                <li><strong>Stripe:</strong> Processamento de pagamentos (eles não recebem dados dos seus emails)</li>
+                <li><strong>Google:</strong> Autenticação via OAuth (conexão direta, não intermediamos)</li>
+                <li><strong>Autoridades:</strong> Apenas quando exigido por lei</li>
+            </ul>
+
+            <h2>Segurança dos Dados</h2>
+            <p>Protegemos seus dados com:</p>
+            <ul>
+                <li><strong>Criptografia HTTPS</strong> em todas as comunicações</li>
+                <li><strong>OAuth2 do Google</strong> - nunca vemos sua senha</li>
+                <li><strong>Servidores seguros</strong> com múltiplas camadas de firewall</li>
+                <li><strong>Acesso restrito</strong> - apenas pessoal autorizado</li>
+            </ul>
+
+            <h2>Seus Direitos (LGPD)</h2>
+            <p>Conforme a Lei Geral de Proteção de Dados, você tem direito a:</p>
+            <ul>
+                <li><strong>Acesso:</strong> Solicitar cópia dos seus dados</li>
+                <li><strong>Correção:</strong> Corrigir dados incorretos</li>
+                <li><strong>Exclusão:</strong> Solicitar remoção completa dos seus dados</li>
+                <li><strong>Portabilidade:</strong> Receber seus dados em formato estruturado</li>
+                <li><strong>Revogação:</strong> Retirar as permissões a qualquer momento</li>
+            </ul>
+
+            <h2>Como Revogar Permissões</h2>
+            <p>Você pode remover o acesso do EmailMassa à sua conta Google a qualquer momento:</p>
+            <ol>
+                <li>Acesse <a href="https://myaccount.google.com/permissions" target="_blank">myaccount.google.com/permissions</a></li>
+                <li>Encontre "EmailMassa" na lista</li>
+                <li>Clique em "Remover acesso"</li>
+            </ol>
+            <p>Após revogar, você pode solicitar a exclusão completa dos seus dados entrando em contato conosco.</p>
+
+            <h2>Solicitação de Exclusão de Dados</h2>
+            <p>Em conformidade com a LGPD e GDPR, qualquer usuário pode solicitar que seus dados sejam deletados dos nossos servidores. Para fazer essa solicitação, envie um email para <strong>privacidade@emailmassa.com.br</strong> a partir da conta Gmail conectada ao EmailMassa.</p>
+
+            <div class="contact-box">
+                <h3>Ainda tem dúvidas?</h3>
+                <p>Estamos aqui para ajudar. Entre em contato:</p>
+                <a href="mailto:privacidade@emailmassa.com.br">📧 privacidade@emailmassa.com.br</a>
+                <a href="https://wa.me/48504337326" target="_blank">💬 WhatsApp: +48 504 337 326</a>
+                <a href="https://wa.me/48504337326" target="_blank">wa.me/48504337326</a>
+            </div>
+
+            <a href="index.html" class="back-link">← Voltar para o site</a>
+        </div>
+    </div>
+</body>
+</html>
