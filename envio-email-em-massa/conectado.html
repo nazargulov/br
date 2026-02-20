@@ -10,7 +10,7 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             min-height: 100vh;
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            background: linear-gradient(135deg, #04ae45 0%, #038c37 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -30,7 +30,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
         .header {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            background: linear-gradient(135deg, #04ae45 0%, #038c37 100%);
             padding: 50px 40px;
             text-align: center;
             color: white;
@@ -55,7 +55,7 @@
             height: 50px;
         }
         .checkmark {
-            stroke: #10b981;
+            stroke: #04ae45;
             stroke-width: 3;
             stroke-linecap: round;
             stroke-linejoin: round;
@@ -150,7 +150,7 @@
         .step-number {
             width: 32px;
             height: 32px;
-            background: #2563eb;
+            background: #04ae45;
             color: white;
             border-radius: 50%;
             display: flex;
@@ -187,21 +187,21 @@
             border: none;
         }
         .btn-primary {
-            background: #2563eb;
+            background: #04ae45;
             color: white;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 4px 15px rgba(4, 174, 69, 0.3);
         }
         .btn-primary:hover {
-            background: #1d4ed8;
+            background: #038c37;
             transform: translateY(-2px);
         }
         .btn-secondary {
             background: white;
-            color: #2563eb;
-            border: 2px solid #2563eb;
+            color: #04ae45;
+            border: 2px solid #04ae45;
         }
         .btn-secondary:hover {
-            background: #dbeafe;
+            background: rgba(4, 174, 69, 0.1);
         }
         .steps-indicator {
             display: flex;
@@ -216,10 +216,10 @@
             border-radius: 3px;
         }
         .step-dot.active {
-            background: #10b981;
+            background: #04ae45;
         }
         .step-dot.completed {
-            background: #10b981;
+            background: #04ae45;
         }
         .footer {
             padding: 20px;
@@ -301,7 +301,7 @@
                     <div class="step-number">3</div>
                     <div class="step-content">
                         <h4>Use o botão "Massa"</h4>
-                        <p>Encontre o botão azul ao lado do "Enviar" para enviar em massa.</p>
+                        <p>Encontre o botão verde ao lado do "Enviar" para enviar em massa.</p>
                     </div>
                 </div>
             </div>
@@ -323,8 +323,8 @@
         </div>
 
         <div class="footer">
-            Precisa de ajuda? <a href="https://wa.me/48504337326" style="color: #2563eb;">WhatsApp: +48 504 337 326</a> ·
-            <a href="https://wa.me/48504337326" style="color: #2563eb;">wa.me/48504337326</a>
+            Precisa de ajuda? <a href="https://wa.me/48504337326" style="color: #04ae45;">WhatsApp: +48 504 337 326</a> ·
+            <a href="https://wa.me/48504337326" style="color: #04ae45;">wa.me/48504337326</a>
         </div>
     </div>
 
@@ -371,7 +371,7 @@
 
                 if (permission === 'granted') {
                     btn.textContent = '✓ Ativadas!';
-                    btn.style.background = '#10b981';
+                    btn.style.background = '#04ae45';
                     btn.disabled = true;
 
                     // Show test notification
