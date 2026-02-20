@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Envio de Email em Massa para Gmail | Extensão Chrome</title>
-    <meta name="description" content="Envie emails em massa pelo Gmail de forma simples e rápida. Extensão Chrome 100% em português. Gratuito para começar.">
+    <meta name="description" content="Envie emails em massa pelo Gmail. Adicione WhatsApp no email com mensagem pronta. Tracking, agendamento, templates. 100% em português. Grátis!">
     <meta name="keywords" content="envio de email em massa, enviar email em massa gmail, mail merge gmail, email marketing gmail">
     <link rel="canonical" href="https://nazargulov.github.io/br/envio-email-em-massa/">
 
@@ -285,6 +285,39 @@
         .feature-card p {
             color: var(--gray);
             font-size: 0.95rem;
+        }
+
+        .feature-card-highlight {
+            background: linear-gradient(135deg, #dcf8e8 0%, #d4f5e0 100%);
+            border: 2px solid #25d366;
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            grid-template-rows: auto auto auto;
+            gap: 0 20px;
+        }
+        .feature-card-highlight .feature-icon {
+            grid-row: 1 / 3;
+            align-self: center;
+        }
+        .feature-card-highlight h3 {
+            margin-bottom: 4px;
+        }
+        .feature-card-highlight .feature-preview-wa {
+            grid-column: 1 / -1;
+            margin-top: 12px;
+        }
+        .wa-preview-block {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            background: #dcf8c6;
+            border-radius: 10px;
+            border-left: 4px solid #25d366;
+            font-size: 14px;
+            font-weight: 600;
+            color: #075e54;
         }
 
         /* How it works */
@@ -725,7 +758,7 @@
     <section class="hero">
         <div class="container">
             <h1>O jeito mais <span>fácil</span> de enviar emails em massa pelo Gmail</h1>
-            <p>Envie campanhas de email personalizadas diretamente do seu Gmail. Simples, rápido e 100% em português.</p>
+            <p>Envie campanhas de email personalizadas diretamente do seu Gmail. Adicione seu WhatsApp em cada email com um clique. Simples, rápido e 100% em português.</p>
 
             <div class="hero-buttons">
                 <a href="#" class="btn btn-primary btn-large">
@@ -794,6 +827,18 @@
                     <div class="feature-icon">📜</div>
                     <h3>Histórico Permanente</h3>
                     <p>Suas estatísticas ficam salvas para sempre. Não perdemos seus dados após 10 dias.</p>
+                </div>
+
+                <div class="feature-card feature-card-highlight">
+                    <div class="feature-icon">💬</div>
+                    <h3>WhatsApp no Email</h3>
+                    <p>Adicione um botão de WhatsApp no final de cada email. Seu cliente clica e já abre uma conversa com mensagem pronta — direto no seu número.</p>
+                    <div class="feature-preview-wa">
+                        <div class="wa-preview-block">
+                            <span class="wa-preview-icon">📱</span>
+                            <span class="wa-preview-text">Fale conosco no WhatsApp →</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -949,6 +994,11 @@
                         <td>Histórico de dados</td>
                         <td class="check">✓ Permanente</td>
                         <td>10 dias</td>
+                    </tr>
+                    <tr>
+                        <td>WhatsApp no email</td>
+                        <td class="check">✓ Botão com mensagem pronta</td>
+                        <td class="cross">✗ Não tem</td>
                     </tr>
                 </tbody>
             </table>
