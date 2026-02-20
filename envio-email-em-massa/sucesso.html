@@ -181,12 +181,12 @@
                 return;
             }
 
-            // PIX may confirm asynchronously; poll a few times.
+            // Payment may confirm asynchronously; poll a few times.
             for (let attempt = 1; attempt <= 6; attempt++) {
                 try {
                     const result = await fetchSessionLicense(sessionId);
                     if (result.status === 'pending') {
-                        setActivationStatus('Aguardando confirmação do PIX... Isso pode levar alguns minutos.');
+                        setActivationStatus('Aguardando confirmação do pagamento...');
                         await delay(4000);
                         continue;
                     }

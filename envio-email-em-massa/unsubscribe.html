@@ -158,18 +158,24 @@
             }
         }
 
-        function confirmUnsubscribe() {
-            document.getElementById('confirmSection').classList.add('hidden');
-            document.getElementById('successSection').classList.remove('hidden');
+        async function confirmUnsubscribe() {
+            const BILLING_SERVER = 'https://emailmassa-billing.u9603656505.workers.dev';
 
-            // Store unsubscribe in localStorage as backup
+            // Try server-side unsubscribe first
             if (email) {
-                const unsubscribed = JSON.parse(localStorage.getItem('emailmassa_unsubscribed') || '[]');
-                if (!unsubscribed.includes(email)) {
-                    unsubscribed.push(email);
-                    localStorage.setItem('emailmassa_unsubscribed', JSON.stringify(unsubscribed));
+                try {
+                    await fetch(`${BILLING_SERVER}/api/unsubscribe`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email: decodeURIComponent(email) })
+                    });
+                } catch (e) {
+                    // Server endpoint may not exist yet; continue with client-side
                 }
             }
+
+            document.getElementById('confirmSection').classList.add('hidden');
+            document.getElementById('successSection').classList.remove('hidden');
         }
     </script>
 </body>

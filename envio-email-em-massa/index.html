@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Envio de Email em Massa para Gmail | Extensão Chrome</title>
-    <meta name="description" content="Envie emails em massa pelo Gmail de forma simples e rápida. Extensão Chrome 100% em português com pagamento via PIX. Gratuito para começar.">
+    <meta name="description" content="Envie emails em massa pelo Gmail de forma simples e rápida. Extensão Chrome 100% em português. Gratuito para começar.">
     <meta name="keywords" content="envio de email em massa, enviar email em massa gmail, mail merge gmail, email marketing gmail">
-    <link rel="canonical" href="https://[username].github.io/br/envio-email-em-massa/">
+    <link rel="canonical" href="https://nazargulov.github.io/br/envio-email-em-massa/">
 
     <!-- Open Graph -->
     <meta property="og:title" content="Envio de Email em Massa para Gmail">
-    <meta property="og:description" content="O jeito mais fácil de enviar emails em massa pelo Gmail. 100% em português, pague com PIX.">
+    <meta property="og:description" content="O jeito mais fácil de enviar emails em massa pelo Gmail. 100% em português.">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pt_BR">
 
@@ -436,10 +436,6 @@
             color: var(--dark);
         }
 
-        .pix-logo {
-            background: #32bcad;
-            color: var(--white);
-        }
 
         /* Comparison */
         .comparison {
@@ -724,7 +720,7 @@
     <section class="hero">
         <div class="container">
             <h1>O jeito mais <span>fácil</span> de enviar emails em massa pelo Gmail</h1>
-            <p>Envie campanhas de email personalizadas diretamente do seu Gmail. Simples, rápido e 100% em português. Pague com PIX.</p>
+            <p>Envie campanhas de email personalizadas diretamente do seu Gmail. Simples, rápido e 100% em português.</p>
 
             <div class="hero-buttons">
                 <a href="#" class="btn btn-primary btn-large">
@@ -830,9 +826,9 @@
     <section id="precos" class="pricing">
         <div class="container">
             <h2 class="section-title">Preços Simples e Transparentes</h2>
-            <p class="section-subtitle">Pague em reais com PIX, cartão ou boleto. Cancele quando quiser.</p>
+            <p class="section-subtitle">Pague em reais com cartão de crédito. Cancele quando quiser.</p>
 
-            <div class="pricing-grid">
+            <div class="pricing-grid" style="max-width: 1100px;">
                 <div class="pricing-card">
                     <h3>Gratuito</h3>
                     <div class="price">R$0</div>
@@ -847,9 +843,8 @@
                     <a href="#" class="btn btn-secondary" style="width: 100%;">Começar Grátis</a>
                 </div>
 
-                <div class="pricing-card popular">
-                    <div class="popular-badge">Mais Popular</div>
-                    <h3>Premium</h3>
+                <div class="pricing-card">
+                    <h3>Mensal</h3>
                     <div class="price">R$9,90</div>
                     <div class="price-period">por mês</div>
                     <ul class="pricing-features">
@@ -860,7 +855,23 @@
                         <li>Tracking de cliques</li>
                         <li>Suporte WhatsApp</li>
                     </ul>
-                    <a href="checkout.html?plan=premium_monthly" class="btn btn-primary" style="width: 100%;">Assinar com PIX</a>
+                    <a href="checkout.html?plan=premium_monthly" class="btn btn-primary" style="width: 100%;">Assinar Mensal</a>
+                </div>
+
+                <div class="pricing-card popular">
+                    <div class="popular-badge">Melhor Custo-Benefício</div>
+                    <h3>Anual</h3>
+                    <div class="price">R$99,90</div>
+                    <div class="price-period">por ano (R$8,33/mês)</div>
+                    <ul class="pricing-features">
+                        <li>500 emails por dia</li>
+                        <li>Tudo do plano Gratuito</li>
+                        <li>Templates profissionais</li>
+                        <li>Agendamento de envio</li>
+                        <li>Tracking de cliques</li>
+                        <li>Suporte WhatsApp</li>
+                    </ul>
+                    <a href="checkout.html?plan=premium_annual" class="btn btn-primary" style="width: 100%;">Assinar Anual</a>
                 </div>
 
                 <div class="pricing-card">
@@ -874,17 +885,16 @@
                         <li>Atualizações gratuitas</li>
                         <li>Suporte prioritário</li>
                     </ul>
-                    <a href="checkout.html?plan=premium_monthly" class="btn btn-primary" style="width: 100%;">Comprar Agora</a>
+                    <a href="checkout.html?plan=lifetime" class="btn btn-primary" style="width: 100%;">Comprar Vitalício</a>
                 </div>
             </div>
 
             <div class="payment-methods">
                 <p>Pagamentos seguros processados por Stripe</p>
                 <div class="payment-logos">
-                    <div class="payment-logo pix-logo">PIX</div>
                     <div class="payment-logo">Visa</div>
                     <div class="payment-logo">Mastercard</div>
-                    <div class="payment-logo">Boleto</div>
+                    <div class="payment-logo">Apple Pay</div>
                 </div>
             </div>
         </div>
@@ -911,9 +921,9 @@
                         <td class="cross">✗ Inglês</td>
                     </tr>
                     <tr>
-                        <td>Pagamento com PIX</td>
+                        <td>Pagamento em Reais (BRL)</td>
                         <td class="check">✓ Sim</td>
-                        <td class="cross">✗ Não</td>
+                        <td class="cross">✗ Só dólar</td>
                     </tr>
                     <tr>
                         <td>Preço Premium</td>
@@ -958,11 +968,11 @@
 
                 <div class="faq-item">
                     <div class="faq-question">
-                        Como funciona o pagamento com PIX?
+                        Como funciona o pagamento?
                         <span>+</span>
                     </div>
                     <div class="faq-answer">
-                        Ao escolher PIX, você receberá um QR Code ou código copia e cola. O pagamento é processado instantaneamente e seu acesso Premium é liberado na hora.
+                        O pagamento é processado via Stripe com cartão de crédito (Visa, Mastercard) ou Apple Pay. Os preços são em reais (BRL) e seu acesso Premium é liberado na hora.
                     </div>
                 </div>
 
@@ -1029,7 +1039,6 @@
                 <div class="footer-column">
                     <h4>Suporte</h4>
                     <a href="#faq">FAQ</a>
-                    <a href="#">Central de Ajuda</a>
                     <a href="https://wa.me/48504337326" target="_blank" rel="noopener noreferrer">WhatsApp (+48 504 337 326)</a>
                 </div>
 
