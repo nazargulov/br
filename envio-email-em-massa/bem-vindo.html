@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9ERQ0RV4GZ"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-9ERQ0RV4GZ');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -747,11 +750,14 @@
             }
         }
 
+        const stepNames = ['', 'fixar', 'painel', 'envio', 'comecar'];
         btnNext.addEventListener('click', () => {
             if (currentStep < totalSteps) {
                 currentStep++;
                 updateView();
+                gtag('event', 'tour_step', { step_name: stepNames[currentStep], step_number: currentStep });
             } else {
+                gtag('event', 'tour_complete');
                 window.location.href = 'https://mail.google.com';
             }
         });
