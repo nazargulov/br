@@ -279,20 +279,105 @@
         .popup-mock-item-icon { font-size: 1rem; flex-shrink: 0; }
         .popup-mock-item strong { color: #1e293b; }
 
-        .pin-tip {
+        /* Pin steps */
+        .pin-steps {
             display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .pin-step {
+            display: flex;
+            gap: 12px;
             align-items: flex-start;
-            gap: 8px;
-            background: rgba(4,174,69,0.08);
-            padding: 12px 14px;
-            border-radius: 8px;
-            margin-top: 16px;
-            font-size: 0.85rem;
+        }
+        .pin-step-num {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #04ae45, #038c37);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .pin-step-text {
+            font-size: 0.9rem;
             color: #475569;
             line-height: 1.5;
         }
-        .pin-tip svg { flex-shrink: 0; margin-top: 2px; }
-        .pin-tip strong { color: #1e293b; }
+        .pin-step-text strong { color: #1e293b; }
+
+        .chrome-ext-icon-mock {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #3c4043;
+            border-radius: 4px;
+            padding: 4px;
+            margin-top: 8px;
+        }
+        .chrome-ext-icon-mock svg path { fill: #e8eaed; }
+
+        .pin-demo {
+            background: #292b2e;
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-top: 10px;
+        }
+        .pin-demo-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .pin-demo-ext-icon {
+            width: 28px;
+            height: 28px;
+            background: #3c4043;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+        .pin-demo-name {
+            color: #e8eaed;
+            font-size: 0.8rem;
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .pin-demo-pin {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.08);
+            flex-shrink: 0;
+        }
+        .pin-demo-pin svg path { fill: #9aa0a6; }
+        .pin-demo-dots {
+            color: #9aa0a6;
+            font-size: 1rem;
+            flex-shrink: 0;
+            width: 20px;
+            text-align: center;
+        }
+        .pin-demo-arrow {
+            color: #04ae45;
+            font-size: 0.75rem;
+            text-align: right;
+            margin-top: 4px;
+            padding-right: 36px;
+        }
 
         /* Buttons */
         .actions {
@@ -396,9 +481,47 @@
 
         <!-- Step 1: Popup panel -->
         <div class="step-content visible" data-panel="1">
-            <h2>Seu painel de controle</h2>
-            <p>Clique no ícone do EmailMassa no canto superior direito do Chrome para abrir o painel:</p>
+            <h2>Onde encontrar o EmailMassa</h2>
+            <p>O painel de controle fica no ícone da extensão, no canto superior direito do Chrome.</p>
 
+            <!-- How to open -->
+            <div class="pin-steps">
+                <div class="pin-step">
+                    <div class="pin-step-num">1</div>
+                    <div class="pin-step-text">
+                        Clique no ícone de <strong>extensões</strong> na barra do Chrome (ao lado da barra de endereço):
+                        <div class="chrome-ext-icon-mock">
+                            <svg viewBox="0 0 24 24" width="20" height="20"><path fill="#5f6368" d="M20.5 11H19V7c0-1.1-.9-2-2-2h-4V3.5a2.5 2.5 0 0 0-5 0V5H4c-1.1 0-2 .9-2 2v3.8h1.5a2.5 2.5 0 0 1 0 5H2V20c0 1.1.9 2 2 2h3.8v-1.5a2.5 2.5 0 0 1 5 0V22H17c1.1 0 2-.9 2-2v-4h1.5a2.5 2.5 0 0 0 0-5z"/></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="pin-step">
+                    <div class="pin-step-num">2</div>
+                    <div class="pin-step-text">
+                        Encontre <strong>EmailMassa</strong> na lista e clique no ícone de <strong>fixar</strong> (📌) ao lado:
+                        <div class="pin-demo">
+                            <div class="pin-demo-row">
+                                <div class="pin-demo-ext-icon">📧</div>
+                                <span class="pin-demo-name">EmailMassa – Envio de E...</span>
+                                <div class="pin-demo-pin" title="Fixar">
+                                    <svg viewBox="0 0 24 24" width="16" height="16"><path fill="#5f6368" d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z"/></svg>
+                                </div>
+                                <div class="pin-demo-dots">⋮</div>
+                            </div>
+                            <div class="pin-demo-arrow">↑ clique aqui para fixar</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pin-step">
+                    <div class="pin-step-num">3</div>
+                    <div class="pin-step-text">
+                        Pronto! O ícone do EmailMassa aparecerá na barra. <strong>Clique nele</strong> para abrir o painel.
+                    </div>
+                </div>
+            </div>
+
+            <!-- What's inside -->
+            <p style="margin-top: 20px; margin-bottom: 12px; font-weight: 600; color: #1e293b;">No painel você encontra:</p>
             <div class="popup-mock">
                 <div class="popup-mock-header">
                     <div class="popup-mock-icon">📧</div>
@@ -421,11 +544,6 @@
                         <span><strong>Premium</strong> — upgrade para 500 emails/dia</span>
                     </div>
                 </div>
-            </div>
-
-            <div class="pin-tip">
-                <svg viewBox="0 0 24 24" width="16" height="16"><path fill="#04ae45" d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z"/></svg>
-                <span><strong>Dica:</strong> Fixe a extensão na barra do Chrome para acesso rápido. Clique no ícone de quebra-cabeça <strong>🧩</strong> → fixe o EmailMassa.</span>
             </div>
         </div>
 
