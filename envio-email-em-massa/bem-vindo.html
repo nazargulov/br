@@ -237,6 +237,63 @@
         }
         .mock-hint .arrow { color: #04ae45; font-size: 1.2rem; }
 
+        /* Popup mockup for step 3 */
+        .popup-mock {
+            background: #f8fafb;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        .popup-mock-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            background: linear-gradient(135deg, #04ae45, #038c37);
+            color: white;
+        }
+        .popup-mock-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+        .popup-mock-title { font-weight: 700; font-size: 0.95rem; }
+        .popup-mock-email { font-size: 0.75rem; opacity: 0.85; }
+        .popup-mock-items { padding: 6px 0; }
+        .popup-mock-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 16px;
+            font-size: 0.85rem;
+            color: #475569;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .popup-mock-item:last-child { border-bottom: none; }
+        .popup-mock-item-icon { font-size: 1rem; flex-shrink: 0; }
+        .popup-mock-item strong { color: #1e293b; }
+
+        .pin-tip {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            background: rgba(4,174,69,0.08);
+            padding: 12px 14px;
+            border-radius: 8px;
+            margin-top: 16px;
+            font-size: 0.85rem;
+            color: #475569;
+            line-height: 1.5;
+        }
+        .pin-tip svg { flex-shrink: 0; margin-top: 2px; }
+        .pin-tip strong { color: #1e293b; }
+
         /* Buttons */
         .actions {
             padding: 24px 40px;
@@ -311,23 +368,28 @@
                 <svg viewBox="0 0 24 24" width="28" height="28"><path fill="white" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
             </div>
             <h1>Bem-vindo ao EmailMassa!</h1>
-            <p>Vamos configurar tudo em 3 passos simples.</p>
+            <p>Vamos configurar tudo em 4 passos simples.</p>
         </div>
 
         <!-- Steps bar -->
         <div class="steps-bar">
             <div class="step-item active" data-step="1">
                 <div class="step-num">1</div>
-                <span>O que faz</span>
+                <span>Recursos</span>
             </div>
             <div class="step-line" data-line="1"></div>
             <div class="step-item" data-step="2">
                 <div class="step-num">2</div>
-                <span>Como usar</span>
+                <span>Envio</span>
             </div>
             <div class="step-line" data-line="2"></div>
             <div class="step-item" data-step="3">
                 <div class="step-num">3</div>
+                <span>Painel</span>
+            </div>
+            <div class="step-line" data-line="3"></div>
+            <div class="step-item" data-step="4">
+                <div class="step-num">4</div>
                 <span>Começar</span>
             </div>
         </div>
@@ -390,8 +452,43 @@
             </div>
         </div>
 
-        <!-- Step 3: Go -->
+        <!-- Step 3: Popup panel -->
         <div class="step-content" data-panel="3">
+            <h2>Seu painel de controle</h2>
+            <p>Clique no ícone do EmailMassa no canto superior direito do Chrome para abrir o painel:</p>
+
+            <div class="popup-mock">
+                <div class="popup-mock-header">
+                    <div class="popup-mock-icon">📧</div>
+                    <div>
+                        <div class="popup-mock-title">EmailMassa</div>
+                        <div class="popup-mock-email">seu@email.com</div>
+                    </div>
+                </div>
+                <div class="popup-mock-items">
+                    <div class="popup-mock-item">
+                        <span class="popup-mock-item-icon">👤</span>
+                        <span><strong>Login</strong> — conecte sua conta Google</span>
+                    </div>
+                    <div class="popup-mock-item">
+                        <span class="popup-mock-item-icon">📊</span>
+                        <span><strong>Estatísticas</strong> — aberturas, cliques, campanhas</span>
+                    </div>
+                    <div class="popup-mock-item">
+                        <span class="popup-mock-item-icon">⭐</span>
+                        <span><strong>Premium</strong> — upgrade para 500 emails/dia</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pin-tip">
+                <svg viewBox="0 0 24 24" width="16" height="16"><path fill="#04ae45" d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z"/></svg>
+                <span><strong>Dica:</strong> Fixe a extensão na barra do Chrome para acesso rápido. Clique no ícone de quebra-cabeça <strong>🧩</strong> → fixe o EmailMassa.</span>
+            </div>
+        </div>
+
+        <!-- Step 4: Go -->
+        <div class="step-content" data-panel="4">
             <h2>Tudo pronto!</h2>
             <p>Abra o Gmail para começar a usar o EmailMassa. O botão verde <strong>"Massa"</strong> vai aparecer ao lado do botão "Enviar" em cada email:</p>
 
@@ -431,7 +528,7 @@
 
     <script>
         let currentStep = 1;
-        const totalSteps = 3;
+        const totalSteps = 4;
         const btnNext = document.getElementById('btnNext');
         const btnBack = document.getElementById('btnBack');
 
