@@ -16,631 +16,632 @@
             justify-content: center;
             padding: 20px;
         }
-        .card {
+
+        /* Card — matches tour popup style */
+        .tour-card {
             background: white;
-            border-radius: 16px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-            max-width: 520px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            max-width: 420px;
             width: 100%;
             overflow: hidden;
-            animation: fadeIn 0.4s ease;
+            animation: popupIn 0.3s ease;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes popupIn {
+            from { opacity: 0; transform: translateY(10px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* Header */
-        .header {
+        /* Header — exact tour style */
+        .tour-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 16px;
             background: linear-gradient(135deg, #04ae45 0%, #038c37 100%);
-            padding: 32px 40px;
-            text-align: center;
             color: white;
         }
-        .header-icon {
-            width: 56px;
-            height: 56px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 14px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 16px;
-        }
-        .header h1 { font-size: 1.5rem; margin-bottom: 6px; }
-        .header p { opacity: 0.9; font-size: 0.95rem; }
-
-        /* Steps indicator */
-        .steps-bar {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 24px 40px;
-            gap: 0;
-            background: #f8fafb;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        .step-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.8rem;
-            color: #94a3b8;
-            white-space: nowrap;
-        }
-        .step-item.active { color: #04ae45; font-weight: 600; }
-        .step-item.done { color: #04ae45; }
-        .step-num {
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
+        .tour-logo {
             font-weight: 700;
-            border: 2px solid #e2e8f0;
-            color: #94a3b8;
-            flex-shrink: 0;
-        }
-        .step-item.active .step-num {
-            background: #04ae45;
-            border-color: #04ae45;
-            color: white;
-        }
-        .step-item.done .step-num {
-            background: #04ae45;
-            border-color: #04ae45;
-            color: white;
-        }
-        .step-line {
-            width: 32px;
-            height: 2px;
-            background: #e2e8f0;
-            margin: 0 8px;
-            flex-shrink: 0;
-        }
-        .step-line.done { background: #04ae45; }
-
-        /* Step content */
-        .step-content {
-            padding: 32px 40px;
-            display: none;
-        }
-        .step-content.visible { display: block; }
-
-        .step-content h2 {
-            font-size: 1.15rem;
-            color: #1e293b;
-            margin-bottom: 16px;
-        }
-        .step-content p {
-            color: #475569;
-            line-height: 1.6;
-            font-size: 0.95rem;
-            margin-bottom: 12px;
+            font-size: 13px;
         }
 
-        /* Feature list for step 1 */
-        .features {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            margin: 20px 0;
-        }
-        .feat {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 14px;
-            background: #f8fafb;
-            border-radius: 10px;
-            border: 1px solid #e2e8f0;
-        }
-        .feat-icon {
-            width: 36px;
-            height: 36px;
-            background: rgba(4,174,69,0.1);
-            border-radius: 8px;
+        /* Progress bar — exact tour style */
+        .tour-progress {
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-shrink: 0;
+            padding: 16px 12px;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+            gap: 4px;
         }
-        .feat-icon svg { width: 18px; height: 18px; }
-        .feat-text { font-size: 0.9rem; color: #1e293b; line-height: 1.4; }
-        .feat-text strong { color: #04ae45; }
-
-        /* How it works for step 2 */
-        .how-list {
+        .tour-step {
             display: flex;
             flex-direction: column;
-            gap: 16px;
-            margin: 20px 0;
+            align-items: center;
+            gap: 4px;
+            min-width: 60px;
         }
-        .how-item {
-            display: flex;
-            gap: 14px;
-            align-items: flex-start;
-        }
-        .how-num {
+        .tour-step-icon {
             width: 28px;
             height: 28px;
-            background: linear-gradient(135deg, #04ae45, #038c37);
-            color: white;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            font-weight: 700;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-        .how-text { font-size: 0.9rem; color: #475569; line-height: 1.5; }
-        .how-text strong { color: #1e293b; }
-
-        /* Gmail mockup for step 3 */
-        .gmail-mock {
-            background: #f8fafb;
-            border: 1px solid #e2e8f0;
-            border-radius: 10px;
-            padding: 16px;
-            margin: 20px 0;
-        }
-        .gmail-mock-bar {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 12px;
-        }
-        .mock-send-btn {
-            background: #1a73e8;
-            color: white;
-            border: none;
-            border-radius: 18px;
-            padding: 8px 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        .mock-massa-btn {
-            display: inline-flex;
-            align-items: center;
-            background: linear-gradient(135deg, #04ae45, #038c37);
-            color: white;
-            border: none;
-            border-radius: 18px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            overflow: hidden;
-        }
-        .mock-massa-main {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            padding: 8px 12px 8px 14px;
-        }
-        .mock-massa-arrow {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-left: 1px solid rgba(255,255,255,0.3);
-            padding: 8px 10px;
-            font-size: 0.6rem;
-        }
-        .mock-hint {
-            font-size: 0.8rem;
+            background: #e2e8f0;
             color: #64748b;
             display: flex;
             align-items: center;
-            gap: 6px;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            transition: all 0.3s;
         }
-        .mock-hint .arrow { color: #04ae45; font-size: 1.2rem; }
-
-        /* Popup mockup for step 3 */
-        .popup-mock {
-            background: #f8fafb;
-            border: 1px solid #e2e8f0;
-            border-radius: 10px;
-            overflow: hidden;
-            margin: 20px 0;
+        .tour-step.current .tour-step-icon {
+            background: #04ae45;
+            color: white;
+            box-shadow: 0 0 0 4px rgba(4, 174, 69, 0.2);
         }
-        .popup-mock-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 14px 16px;
-            background: linear-gradient(135deg, #04ae45, #038c37);
+        .tour-step.done .tour-step-icon {
+            background: #10b981;
             color: white;
         }
-        .popup-mock-icon {
-            width: 36px;
-            height: 36px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
+        .tour-step-label {
+            font-size: 10px;
+            color: #94a3b8;
+            text-align: center;
         }
-        .popup-mock-title { font-weight: 700; font-size: 0.95rem; }
-        .popup-mock-email { font-size: 0.75rem; opacity: 0.85; }
-        .popup-mock-items { padding: 6px 0; }
-        .popup-mock-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 16px;
-            font-size: 0.85rem;
-            color: #475569;
-            border-bottom: 1px solid #f1f5f9;
+        .tour-step.current .tour-step-label {
+            color: #04ae45;
+            font-weight: 600;
         }
-        .popup-mock-item:last-child { border-bottom: none; }
-        .popup-mock-item-icon { font-size: 1rem; flex-shrink: 0; }
-        .popup-mock-item strong { color: #1e293b; }
+        .tour-step.done .tour-step-label {
+            color: #10b981;
+        }
+        .tour-step-line {
+            width: 20px;
+            height: 2px;
+            background: #e2e8f0;
+            margin-bottom: 18px;
+        }
+        .tour-step-line.done { background: #10b981; }
 
-        /* Pin steps */
-        .pin-steps {
+        /* Content — exact tour style */
+        .tour-content {
+            padding: 20px 16px;
+            display: none;
+        }
+        .tour-content.visible { display: block; }
+        .tour-content h3 {
+            margin: 0 0 10px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+        .tour-content p {
+            margin: 0 0 12px;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #64748b;
+        }
+        .tour-content strong { color: #1e293b; }
+        .tour-content code {
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        /* Feature items */
+        .feat-list {
             display: flex;
             flex-direction: column;
-            gap: 16px;
-            margin: 20px 0;
+            gap: 10px;
+            margin: 14px 0;
         }
-        .pin-step {
-            display: flex;
-            gap: 12px;
-            align-items: flex-start;
-        }
-        .pin-step-num {
-            width: 24px;
-            height: 24px;
-            background: linear-gradient(135deg, #04ae45, #038c37);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            font-weight: 700;
-            flex-shrink: 0;
-            margin-top: 1px;
-        }
-        .pin-step-text {
-            font-size: 0.9rem;
-            color: #475569;
-            line-height: 1.5;
-        }
-        .pin-step-text strong { color: #1e293b; }
-
-        .chrome-ext-icon-mock {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: #3c4043;
-            border-radius: 4px;
-            padding: 4px;
-            margin-top: 8px;
-        }
-        .chrome-ext-icon-mock svg path { fill: #e8eaed; }
-
-        .pin-demo {
-            background: #292b2e;
-            border-radius: 8px;
-            padding: 10px 12px;
-            margin-top: 10px;
-        }
-        .pin-demo-row {
+        .feat-item {
             display: flex;
             align-items: center;
             gap: 10px;
+            padding: 10px 12px;
+            background: #f8fafc;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #475569;
         }
-        .pin-demo-ext-icon {
-            width: 28px;
-            height: 28px;
-            background: #3c4043;
+        .feat-item-icon {
+            width: 30px;
+            height: 30px;
+            background: rgba(4,174,69,0.1);
             border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.8rem;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        .feat-item strong { color: #04ae45; }
+
+        /* Pin instructions */
+        .pin-instructions {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin: 14px 0;
+        }
+        .pin-instr {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            font-size: 13px;
+            color: #64748b;
+            line-height: 1.5;
+        }
+        .pin-instr strong { color: #1e293b; }
+        .pin-instr-num {
+            width: 22px;
+            height: 22px;
+            background: #04ae45;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* Chrome UI mockup */
+        .chrome-mock {
+            background: #292b2e;
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin-top: 8px;
+        }
+        .chrome-mock-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .chrome-mock-icon {
+            width: 24px;
+            height: 24px;
+            background: #3c4043;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
             flex-shrink: 0;
         }
-        .pin-demo-name {
+        .chrome-mock-name {
             color: #e8eaed;
-            font-size: 0.8rem;
+            font-size: 12px;
             flex: 1;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        .pin-demo-pin {
-            width: 28px;
-            height: 28px;
+        .chrome-mock-pin {
+            width: 24px;
+            height: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 4px;
+            border-radius: 3px;
             background: rgba(255,255,255,0.08);
             flex-shrink: 0;
         }
-        .pin-demo-pin svg path { fill: #9aa0a6; }
-        .pin-demo-dots {
-            color: #9aa0a6;
-            font-size: 1rem;
-            flex-shrink: 0;
-            width: 20px;
-            text-align: center;
-        }
-        .pin-demo-arrow {
+        .chrome-mock-pin svg path { fill: #9aa0a6; }
+        .chrome-mock-dots { color: #9aa0a6; font-size: 14px; flex-shrink: 0; width: 16px; text-align: center; }
+        .chrome-mock-hint {
             color: #04ae45;
-            font-size: 0.75rem;
+            font-size: 11px;
             text-align: right;
-            margin-top: 4px;
-            padding-right: 36px;
+            margin-top: 3px;
+            padding-right: 30px;
         }
 
-        /* Buttons */
-        .actions {
-            padding: 24px 40px;
-            display: flex;
-            gap: 12px;
-            justify-content: space-between;
-            border-top: 1px solid #e2e8f0;
-            background: #f8fafb;
+        /* Extensions icon */
+        .ext-icon-inline {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #3c4043;
+            border-radius: 3px;
+            padding: 3px;
+            vertical-align: middle;
         }
-        .btn {
-            padding: 12px 24px;
-            border-radius: 10px;
-            font-size: 0.95rem;
-            font-weight: 600;
+        .ext-icon-inline svg path { fill: #e8eaed; }
+
+        /* Popup preview */
+        .popup-preview {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 12px 0;
+        }
+        .popup-preview-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            background: linear-gradient(135deg, #04ae45, #038c37);
+            color: white;
+            font-size: 12px;
+        }
+        .popup-preview-items { padding: 4px 0; }
+        .popup-preview-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 12px;
+            font-size: 12px;
+            color: #475569;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .popup-preview-item:last-child { border-bottom: none; }
+        .popup-preview-item strong { color: #1e293b; }
+
+        /* Gmail compose mockup */
+        .gmail-compose-mock {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 12px 0;
+        }
+        .gmail-compose-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .mock-btn-send {
+            background: #1a73e8;
+            color: white;
             border: none;
+            border-radius: 18px;
+            padding: 6px 16px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .mock-btn-massa {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #04ae45, #038c37);
+            color: white;
+            border: none;
+            border-radius: 18px;
+            font-size: 12px;
+            font-weight: 600;
+            overflow: hidden;
+        }
+        .mock-btn-massa-main {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 6px 10px 6px 12px;
+        }
+        .mock-btn-massa-arrow {
+            border-left: 1px solid rgba(255,255,255,0.3);
+            padding: 6px 8px;
+            font-size: 8px;
+        }
+        .mock-hint {
+            font-size: 11px;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .mock-hint .arr { color: #04ae45; font-size: 16px; }
+
+        /* Tour preview card */
+        .tour-preview {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+            overflow: hidden;
+            margin: 12px 0;
+            border: 1px solid #e2e8f0;
+        }
+        .tour-preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 12px;
+            background: linear-gradient(135deg, #04ae45 0%, #038c37 100%);
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .tour-preview-close {
+            opacity: 0.7;
+            font-size: 16px;
+        }
+        .tour-preview-steps {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 8px;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+            gap: 3px;
+        }
+        .tp-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+        .tp-step-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #e2e8f0;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            font-weight: 700;
+        }
+        .tp-step.active .tp-step-icon {
+            background: #04ae45;
+            color: white;
+        }
+        .tp-step-label { font-size: 8px; color: #94a3b8; }
+        .tp-step.active .tp-step-label { color: #04ae45; font-weight: 600; }
+        .tp-step-line { width: 12px; height: 2px; background: #e2e8f0; margin-bottom: 14px; }
+        .tour-preview-body {
+            padding: 12px;
+        }
+        .tour-preview-body h4 { font-size: 13px; color: #1e293b; margin-bottom: 4px; }
+        .tour-preview-body p { font-size: 11px; color: #64748b; margin: 0; line-height: 1.5; }
+        .tour-preview-footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 12px;
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+            font-size: 11px;
+        }
+        .tp-btn-hide { color: #64748b; }
+        .tp-btn-skip { color: #94a3b8; }
+
+        /* Footer — exact tour style */
+        .tour-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+        }
+        .tour-btn-primary {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
         }
-        .btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        .btn-next {
-            background: linear-gradient(135deg, #04ae45, #038c37);
-            color: white;
-            box-shadow: 0 4px 12px rgba(4,174,69,0.3);
-        }
-        .btn-next:hover:not(:disabled) {
+        .tour-btn-primary:hover {
+            background: #059669;
             transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(4,174,69,0.4);
         }
-        .btn-back {
-            background: white;
-            color: #475569;
+        .tour-btn-back {
+            background: none;
             border: 1px solid #e2e8f0;
+            color: #64748b;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s;
         }
-        .btn-back:hover { background: #f1f5f9; }
-        .btn-gmail {
-            background: linear-gradient(135deg, #04ae45, #038c37);
-            color: white;
-            box-shadow: 0 4px 12px rgba(4,174,69,0.3);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            width: 100%;
-            justify-content: center;
-        }
-        .btn-gmail:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(4,174,69,0.4);
-        }
+        .tour-btn-back:hover { background: #f1f5f9; }
 
-        /* Footer */
-        .footer {
-            padding: 16px 40px;
+        /* Links footer */
+        .links-footer {
+            padding: 10px 16px;
             text-align: center;
-            border-top: 1px solid #e2e8f0;
+            font-size: 11px;
         }
-        .footer a {
+        .links-footer a {
             color: #94a3b8;
             text-decoration: none;
-            font-size: 0.8rem;
         }
-        .footer a:hover { color: #04ae45; }
+        .links-footer a:hover { color: #04ae45; }
     </style>
 </head>
 <body>
-    <div class="card">
-        <!-- Header -->
-        <div class="header">
-            <div class="header-icon">
-                <svg viewBox="0 0 24 24" width="28" height="28"><path fill="white" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-            </div>
-            <h1>Bem-vindo ao EmailMassa!</h1>
-            <p>Vamos configurar tudo em 4 passos simples.</p>
+    <div class="tour-card">
+        <!-- Header — tour style -->
+        <div class="tour-header">
+            <div class="tour-logo">🇧🇷 EmailMassa</div>
         </div>
 
-        <!-- Steps bar -->
-        <div class="steps-bar">
-            <div class="step-item active" data-step="1">
-                <div class="step-num">1</div>
-                <span>Painel</span>
+        <!-- Progress bar -->
+        <div class="tour-progress">
+            <div class="tour-step current" data-step="1">
+                <div class="tour-step-icon">1</div>
+                <span class="tour-step-label">Fixar</span>
             </div>
-            <div class="step-line" data-line="1"></div>
-            <div class="step-item" data-step="2">
-                <div class="step-num">2</div>
-                <span>Recursos</span>
+            <div class="tour-step-line" data-line="1"></div>
+            <div class="tour-step" data-step="2">
+                <div class="tour-step-icon">2</div>
+                <span class="tour-step-label">Painel</span>
             </div>
-            <div class="step-line" data-line="2"></div>
-            <div class="step-item" data-step="3">
-                <div class="step-num">3</div>
-                <span>Envio</span>
+            <div class="tour-step-line" data-line="2"></div>
+            <div class="tour-step" data-step="3">
+                <div class="tour-step-icon">3</div>
+                <span class="tour-step-label">Envio</span>
             </div>
-            <div class="step-line" data-line="3"></div>
-            <div class="step-item" data-step="4">
-                <div class="step-num">4</div>
-                <span>Começar</span>
+            <div class="tour-step-line" data-line="3"></div>
+            <div class="tour-step" data-step="4">
+                <div class="tour-step-icon">4</div>
+                <span class="tour-step-label">Começar</span>
             </div>
         </div>
 
-        <!-- Step 1: Popup panel -->
-        <div class="step-content visible" data-panel="1">
-            <h2>Onde encontrar o EmailMassa</h2>
-            <p>O painel de controle fica no ícone da extensão, no canto superior direito do Chrome.</p>
+        <!-- Step 1: Pin extension -->
+        <div class="tour-content visible" data-panel="1">
+            <h3>Fixe o EmailMassa no Chrome</h3>
+            <p>Para acesso rápido, fixe a extensão na barra do navegador:</p>
 
-            <!-- How to open -->
-            <div class="pin-steps">
-                <div class="pin-step">
-                    <div class="pin-step-num">1</div>
-                    <div class="pin-step-text">
-                        Clique no ícone de <strong>extensões</strong> na barra do Chrome (ao lado da barra de endereço):
-                        <div class="chrome-ext-icon-mock">
-                            <svg viewBox="0 0 24 24" width="20" height="20"><path fill="#5f6368" d="M20.5 11H19V7c0-1.1-.9-2-2-2h-4V3.5a2.5 2.5 0 0 0-5 0V5H4c-1.1 0-2 .9-2 2v3.8h1.5a2.5 2.5 0 0 1 0 5H2V20c0 1.1.9 2 2 2h3.8v-1.5a2.5 2.5 0 0 1 5 0V22H17c1.1 0 2-.9 2-2v-4h1.5a2.5 2.5 0 0 0 0-5z"/></svg>
-                        </div>
-                    </div>
+            <div class="pin-instructions">
+                <div class="pin-instr">
+                    <div class="pin-instr-num">1</div>
+                    <div>Clique no ícone de extensões <span class="ext-icon-inline"><svg viewBox="0 0 24 24" width="14" height="14"><path fill="#5f6368" d="M20.5 11H19V7c0-1.1-.9-2-2-2h-4V3.5a2.5 2.5 0 0 0-5 0V5H4c-1.1 0-2 .9-2 2v3.8h1.5a2.5 2.5 0 0 1 0 5H2V20c0 1.1.9 2 2 2h3.8v-1.5a2.5 2.5 0 0 1 5 0V22H17c1.1 0 2-.9 2-2v-4h1.5a2.5 2.5 0 0 0 0-5z"/></svg></span> na barra do Chrome</div>
                 </div>
-                <div class="pin-step">
-                    <div class="pin-step-num">2</div>
-                    <div class="pin-step-text">
-                        Encontre <strong>EmailMassa</strong> na lista e clique no ícone de <strong>fixar</strong> (📌) ao lado:
-                        <div class="pin-demo">
-                            <div class="pin-demo-row">
-                                <div class="pin-demo-ext-icon">📧</div>
-                                <span class="pin-demo-name">EmailMassa – Envio de E...</span>
-                                <div class="pin-demo-pin" title="Fixar">
-                                    <svg viewBox="0 0 24 24" width="16" height="16"><path fill="#5f6368" d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z"/></svg>
-                                </div>
-                                <div class="pin-demo-dots">⋮</div>
-                            </div>
-                            <div class="pin-demo-arrow">↑ clique aqui para fixar</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="pin-step">
-                    <div class="pin-step-num">3</div>
-                    <div class="pin-step-text">
-                        Pronto! O ícone do EmailMassa aparecerá na barra. <strong>Clique nele</strong> para abrir o painel.
-                    </div>
-                </div>
-            </div>
-
-            <!-- What's inside -->
-            <p style="margin-top: 20px; margin-bottom: 12px; font-weight: 600; color: #1e293b;">No painel você encontra:</p>
-            <div class="popup-mock">
-                <div class="popup-mock-header">
-                    <div class="popup-mock-icon">📧</div>
+                <div class="pin-instr">
+                    <div class="pin-instr-num">2</div>
                     <div>
-                        <div class="popup-mock-title">EmailMassa</div>
-                        <div class="popup-mock-email">seu@email.com</div>
+                        Encontre <strong>EmailMassa</strong> e clique no ícone de fixar:
+                        <div class="chrome-mock">
+                            <div class="chrome-mock-row">
+                                <div class="chrome-mock-icon">📧</div>
+                                <span class="chrome-mock-name">EmailMassa – Envio de E...</span>
+                                <div class="chrome-mock-pin"><svg viewBox="0 0 24 24" width="14" height="14"><path fill="#5f6368" d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z"/></svg></div>
+                                <div class="chrome-mock-dots">⋮</div>
+                            </div>
+                            <div class="chrome-mock-hint">↑ clique aqui</div>
+                        </div>
                     </div>
                 </div>
-                <div class="popup-mock-items">
-                    <div class="popup-mock-item">
-                        <span class="popup-mock-item-icon">👤</span>
+                <div class="pin-instr">
+                    <div class="pin-instr-num">3</div>
+                    <div>Pronto! O ícone aparecerá na barra. <strong>Clique nele</strong> para abrir o painel.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: Popup panel -->
+        <div class="tour-content" data-panel="2">
+            <h3>Seu painel de controle</h3>
+            <p>Clique no ícone do EmailMassa na barra para abrir o painel. Aqui você gerencia tudo:</p>
+
+            <div class="popup-preview">
+                <div class="popup-preview-header">
+                    <span>🇧🇷 EmailMassa</span>
+                </div>
+                <div class="popup-preview-items">
+                    <div class="popup-preview-item">
+                        <span>👤</span>
                         <span><strong>Login</strong> — conecte sua conta Google</span>
                     </div>
-                    <div class="popup-mock-item">
-                        <span class="popup-mock-item-icon">📊</span>
+                    <div class="popup-preview-item">
+                        <span>📊</span>
                         <span><strong>Estatísticas</strong> — aberturas, cliques, campanhas</span>
                     </div>
-                    <div class="popup-mock-item">
-                        <span class="popup-mock-item-icon">⭐</span>
+                    <div class="popup-preview-item">
+                        <span>⭐</span>
                         <span><strong>Premium</strong> — upgrade para 500 emails/dia</span>
                     </div>
                 </div>
             </div>
+
+            <p><strong>Primeiro passo:</strong> abra o painel e conecte sua conta Google.</p>
         </div>
 
-        <!-- Step 2: What it does -->
-        <div class="step-content" data-panel="2">
-            <h2>O que o EmailMassa faz?</h2>
-            <p>Uma extensão que adiciona superpoderes ao seu Gmail:</p>
+        <!-- Step 3: How to send -->
+        <div class="tour-content" data-panel="3">
+            <h3>Como enviar emails em massa</h3>
+            <p>No Gmail, ao escrever um email, o botão <strong>Massa</strong> aparece ao lado do "Enviar":</p>
 
-            <div class="features">
-                <div class="feat">
-                    <div class="feat-icon">
-                        <svg viewBox="0 0 24 24"><path fill="#04ae45" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                    </div>
-                    <div class="feat-text"><strong>Envio em massa</strong> &mdash; envie campanhas personalizadas para centenas de pessoas</div>
-                </div>
-                <div class="feat">
-                    <div class="feat-icon">
-                        <svg viewBox="0 0 24 24"><path fill="#04ae45" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg>
-                    </div>
-                    <div class="feat-text"><strong>Rastreamento</strong> &mdash; saiba quem abriu e clicou em seus emails</div>
-                </div>
-                <div class="feat">
-                    <div class="feat-icon">
-                        <svg viewBox="0 0 24 24"><path fill="#04ae45" d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>
-                    </div>
-                    <div class="feat-text"><strong>Agendamento</strong> &mdash; programe envios para o melhor horário</div>
-                </div>
-                <div class="feat">
-                    <div class="feat-icon">
-                        <svg viewBox="0 0 24 24"><path fill="#04ae45" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2z"/></svg>
-                    </div>
-                    <div class="feat-text"><strong>Google Sheets</strong> &mdash; importe contatos direto das suas planilhas</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Step 3: How to use -->
-        <div class="step-content" data-panel="3">
-            <h2>Como funciona?</h2>
-            <p>Usar o EmailMassa é simples:</p>
-
-            <div class="how-list">
-                <div class="how-item">
-                    <div class="how-num">1</div>
-                    <div class="how-text"><strong>Abra o Gmail</strong> e clique em "Escrever" para criar um novo email normalmente.</div>
-                </div>
-                <div class="how-item">
-                    <div class="how-num">2</div>
-                    <div class="how-text"><strong>Adicione destinatários</strong> no campo "Para" ou importe do Google Sheets pela seta do botão Massa.</div>
-                </div>
-                <div class="how-item">
-                    <div class="how-num">3</div>
-                    <div class="how-text"><strong>Escreva seu email</strong> usando variáveis como <code>{{nome}}</code> para personalizar cada mensagem.</div>
-                </div>
-                <div class="how-item">
-                    <div class="how-num">4</div>
-                    <div class="how-text"><strong>Clique no botão verde "Massa"</strong> (não no "Enviar" azul!) para enviar com rastreamento.</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Step 4: Go -->
-        <div class="step-content" data-panel="4">
-            <h2>Tudo pronto!</h2>
-            <p>Abra o Gmail para começar a usar o EmailMassa. O botão verde <strong>"Massa"</strong> vai aparecer ao lado do botão "Enviar" em cada email:</p>
-
-            <div class="gmail-mock">
-                <div class="gmail-mock-bar">
-                    <div class="mock-send-btn">Enviar</div>
-                    <div class="mock-massa-btn">
-                        <span class="mock-massa-main">
-                            <svg viewBox="0 0 24 24" width="12" height="12"><path fill="white" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            <div class="gmail-compose-mock">
+                <div class="gmail-compose-bar">
+                    <div class="mock-btn-send">Enviar</div>
+                    <div class="mock-btn-massa">
+                        <span class="mock-btn-massa-main">
+                            <svg viewBox="0 0 24 24" width="10" height="10"><path fill="white" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                             Massa
                         </span>
-                        <span class="mock-massa-arrow">&#9660;</span>
+                        <span class="mock-btn-massa-arrow">▼</span>
                     </div>
                 </div>
                 <div class="mock-hint">
-                    <span class="arrow">&#8593;</span>
-                    Use este botão para enviar com rastreamento
+                    <span class="arr">↑</span> Use este botão (não o "Enviar"!)
                 </div>
             </div>
 
-            <p style="font-size: 0.85rem; color: #64748b; margin-top: 8px;">Plano gratuito: <strong>50 emails por dia</strong>. Upgrade disponível no ícone da extensão.</p>
+            <div class="feat-list">
+                <div class="feat-item">
+                    <div class="feat-item-icon">📊</div>
+                    <span>Importe contatos do <strong>Google Sheets</strong> pela seta ▼</span>
+                </div>
+                <div class="feat-item">
+                    <div class="feat-item-icon">✉️</div>
+                    <span>Personalize com variáveis: <code>{{nome}}</code>, <code>{{empresa}}</code></span>
+                </div>
+                <div class="feat-item">
+                    <div class="feat-item-icon">📈</div>
+                    <span>Rastreie <strong>aberturas</strong> e <strong>cliques</strong> automaticamente</span>
+                </div>
+            </div>
         </div>
 
-        <!-- Actions -->
-        <div class="actions">
-            <button class="btn btn-back" id="btnBack" style="visibility: hidden;">Voltar</button>
-            <button class="btn btn-next" id="btnNext">Próximo</button>
+        <!-- Step 4: Go! -->
+        <div class="tour-content" data-panel="4">
+            <h3>Tudo pronto! 🎉</h3>
+            <p>Ao abrir o Gmail, um <strong>tour interativo</strong> vai guiar você passo a passo na criação da sua primeira campanha:</p>
+
+            <div class="tour-preview">
+                <div class="tour-preview-header">
+                    <span>🇧🇷 EmailMassa Tour</span>
+                    <span class="tour-preview-close">×</span>
+                </div>
+                <div class="tour-preview-steps">
+                    <div class="tp-step active">
+                        <div class="tp-step-icon">1</div>
+                        <span class="tp-step-label">Escrever</span>
+                    </div>
+                    <div class="tp-step-line"></div>
+                    <div class="tp-step">
+                        <div class="tp-step-icon">2</div>
+                        <span class="tp-step-label">Destinatários</span>
+                    </div>
+                    <div class="tp-step-line"></div>
+                    <div class="tp-step">
+                        <div class="tp-step-icon">3</div>
+                        <span class="tp-step-label">Enviar</span>
+                    </div>
+                    <div class="tp-step-line"></div>
+                    <div class="tp-step">
+                        <div class="tp-step-icon">4</div>
+                        <span class="tp-step-label">Pronto!</span>
+                    </div>
+                </div>
+                <div class="tour-preview-body">
+                    <h4>Vamos criar sua primeira campanha!</h4>
+                    <p>Clique no botão "Escrever" para criar um novo email.</p>
+                </div>
+                <div class="tour-preview-footer">
+                    <span class="tp-btn-hide">Esconder</span>
+                    <span class="tp-btn-skip">Pular tour</span>
+                </div>
+            </div>
+
+            <p>O tour avança <strong>automaticamente</strong> conforme você faz cada ação. Basta seguir as instruções!</p>
+            <p style="margin-top: 4px;">Plano gratuito: <strong>50 emails/dia</strong>. Upgrade no painel.</p>
         </div>
 
-        <!-- Footer -->
-        <div class="footer">
-            <a href="privacidade.html">Privacidade</a> &middot;
-            <a href="termos.html">Termos</a> &middot;
-            <a href="por-que-pedimos-permissoes.html">Permissões</a>
+        <!-- Footer — tour style -->
+        <div class="tour-footer">
+            <button class="tour-btn-back" id="btnBack" style="visibility: hidden;">Voltar</button>
+            <button class="tour-btn-primary" id="btnNext">Próximo</button>
+        </div>
+
+        <!-- Links -->
+        <div class="links-footer">
+            <a href="privacidade.html">Privacidade</a> · <a href="termos.html">Termos</a> · <a href="por-que-pedimos-permissoes.html">Permissões</a>
         </div>
     </div>
 
@@ -651,35 +652,29 @@
         const btnBack = document.getElementById('btnBack');
 
         function updateView() {
-            // Update step indicators
-            document.querySelectorAll('.step-item').forEach(el => {
+            document.querySelectorAll('.tour-step').forEach(el => {
                 const s = parseInt(el.dataset.step);
-                el.className = 'step-item';
+                el.className = 'tour-step';
                 if (s < currentStep) el.classList.add('done');
-                else if (s === currentStep) el.classList.add('active');
+                else if (s === currentStep) el.classList.add('current');
             });
 
-            // Update step lines
-            document.querySelectorAll('.step-line').forEach(el => {
+            document.querySelectorAll('.tour-step-line').forEach(el => {
                 const l = parseInt(el.dataset.line);
-                el.className = 'step-line';
+                el.className = 'tour-step-line';
                 if (l < currentStep) el.classList.add('done');
             });
 
-            // Update panels
-            document.querySelectorAll('.step-content').forEach(el => {
+            document.querySelectorAll('.tour-content').forEach(el => {
                 el.classList.toggle('visible', parseInt(el.dataset.panel) === currentStep);
             });
 
-            // Update buttons
             btnBack.style.visibility = currentStep === 1 ? 'hidden' : 'visible';
 
             if (currentStep === totalSteps) {
-                btnNext.textContent = 'Abrir Gmail';
-                btnNext.className = 'btn btn-gmail';
+                btnNext.textContent = 'Abrir Gmail →';
             } else {
                 btnNext.textContent = 'Próximo';
-                btnNext.className = 'btn btn-next';
             }
         }
 
@@ -688,7 +683,6 @@
                 currentStep++;
                 updateView();
             } else {
-                // Final step: open Gmail
                 window.location.href = 'https://mail.google.com';
             }
         });
@@ -700,14 +694,9 @@
             }
         });
 
-        // Check URL params
         const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('connected') === 'true') {
-            window.location.href = 'conectado.html';
-        }
-        if (urlParams.get('error') === 'permissions') {
-            window.location.href = 'erro-permissoes.html';
-        }
+        if (urlParams.get('connected') === 'true') window.location.href = 'conectado.html';
+        if (urlParams.get('error') === 'permissions') window.location.href = 'erro-permissoes.html';
     </script>
 </body>
 </html>
