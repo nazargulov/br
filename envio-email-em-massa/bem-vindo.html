@@ -462,44 +462,30 @@
         }
         .tour-btn-back:hover { background: #f1f5f9; }
 
-        /* Feedback card */
-        .feedback-card {
-            max-width: 420px;
-            margin: 20px auto 0;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            padding: 24px 20px;
+        /* Feedback section — compact, inside card */
+        .feedback-section {
             text-align: center;
+            padding: 12px 16px;
+            border-top: 1px solid #e2e8f0;
+            background: #f8fafc;
         }
-        .feedback-icon {
-            font-size: 32px;
-            margin-bottom: 8px;
-        }
-        .feedback-card h3 {
-            margin: 0 0 8px;
-            font-size: 16px;
-            color: #1e293b;
-        }
-        .feedback-card p {
-            margin: 0;
-            font-size: 14px;
-            line-height: 1.6;
+        .feedback-section p {
+            margin: 0 0 10px;
+            font-size: 12px;
             color: #475569;
         }
         .feedback-buttons {
             display: flex;
-            gap: 10px;
-            margin-top: 16px;
+            gap: 8px;
             justify-content: center;
         }
         .feedback-btn {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 10px 18px;
-            border-radius: 8px;
-            font-size: 13px;
+            gap: 6px;
+            padding: 7px 14px;
+            border-radius: 6px;
+            font-size: 12px;
             font-weight: 600;
             text-decoration: none;
             transition: all 0.2s;
@@ -508,19 +494,13 @@
             background: #25d366;
             color: white;
         }
-        .feedback-btn-wa:hover {
-            background: #1fb855;
-            transform: translateY(-1px);
-        }
+        .feedback-btn-wa:hover { background: #1fb855; }
         .feedback-btn-form {
-            background: #f1f5f9;
+            background: white;
             color: #475569;
             border: 1px solid #e2e8f0;
         }
-        .feedback-btn-form:hover {
-            background: #e2e8f0;
-            transform: translateY(-1px);
-        }
+        .feedback-btn-form:hover { background: #e2e8f0; }
 
         /* Links footer */
         .links-footer {
@@ -713,27 +693,24 @@
             <button class="tour-btn-primary" id="btnNext">Próximo</button>
         </div>
 
+        <!-- Feedback — compact, inside card -->
+        <div class="feedback-section">
+            <p>💬 Tem ideia ou problema? <strong>Respondemos rápido!</strong></p>
+            <div class="feedback-buttons">
+                <a href="https://api.whatsapp.com/send/?phone=48504337326&text=Ol%C3%A1!%20Instalei%20o%20EmailMassa%20e%20queria%20compartilhar%20uma%20ideia%20%F0%9F%91%8B&type=phone_number&app_absent=0" target="_blank" rel="noopener" class="feedback-btn feedback-btn-wa">
+                    <svg viewBox="0 0 24 24" width="14" height="14"><path fill="white" d="M12.04 2C6.5 2 2 6.49 2 12.04c0 1.77.46 3.5 1.34 5.03L2 22l5.07-1.33a9.96 9.96 0 0 0 4.97 1.34C17.59 22.01 22 17.52 22 12.04 22 6.49 17.58 2 12.04 2zm5.82 14.12c-.24.68-1.41 1.3-1.95 1.38-.5.07-1.13.1-1.83-.11a16.7 16.7 0 0 1-1.66-.61c-2.93-1.27-4.84-4.23-4.99-4.42-.15-.2-1.2-1.6-1.2-3.05s.76-2.17 1.03-2.46c.27-.3.59-.37.79-.37h.57c.18 0 .43-.07.67.51.24.59.83 2.02.9 2.17.07.15.12.32.02.52-.1.2-.15.32-.3.49-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.3.77 1.27 1.65 2.06 1.14.99 2.09 1.3 2.39 1.44.3.15.47.13.65-.07.17-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.27.1 1.72.81 2.02.96.3.15.49.22.57.34.07.12.07.7-.17 1.38z"/></svg>
+                    WhatsApp
+                </a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfAWs2OZh5CwxU7sCm2HJZlz4fKSzxTWGqake-PiOIWgDZlRg/viewform" target="_blank" rel="noopener" class="feedback-btn feedback-btn-form">
+                    <svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                    Formulário
+                </a>
+            </div>
+        </div>
+
         <!-- Links -->
         <div class="links-footer">
             <a href="privacidade.html">Privacidade</a> · <a href="termos.html">Termos</a> · <a href="por-que-pedimos-permissoes.html">Permissões</a>
-        </div>
-    </div>
-
-    <!-- Feedback section -->
-    <div class="feedback-card">
-        <div class="feedback-icon">💬</div>
-        <h3>Sua opinião faz a diferença!</h3>
-        <p>Tem uma ideia, sugestão ou encontrou um problema?<br>Fale com a gente — <strong>respondemos rápido</strong> e implementamos o que você precisa o mais rápido possível!</p>
-        <p style="font-size:13px;color:#64748b;margin-top:4px;">Pode mandar um simples "Olá" — adoramos conversar 😊</p>
-        <div class="feedback-buttons">
-            <a href="https://api.whatsapp.com/send/?phone=48504337326&text=Ol%C3%A1!%20Instalei%20o%20EmailMassa%20e%20queria%20compartilhar%20uma%20ideia%20%F0%9F%91%8B&type=phone_number&app_absent=0" target="_blank" rel="noopener" class="feedback-btn feedback-btn-wa">
-                <svg viewBox="0 0 24 24" width="18" height="18"><path fill="white" d="M12.04 2C6.5 2 2 6.49 2 12.04c0 1.77.46 3.5 1.34 5.03L2 22l5.07-1.33a9.96 9.96 0 0 0 4.97 1.34C17.59 22.01 22 17.52 22 12.04 22 6.49 17.58 2 12.04 2zm5.82 14.12c-.24.68-1.41 1.3-1.95 1.38-.5.07-1.13.1-1.83-.11a16.7 16.7 0 0 1-1.66-.61c-2.93-1.27-4.84-4.23-4.99-4.42-.15-.2-1.2-1.6-1.2-3.05s.76-2.17 1.03-2.46c.27-.3.59-.37.79-.37h.57c.18 0 .43-.07.67.51.24.59.83 2.02.9 2.17.07.15.12.32.02.52-.1.2-.15.32-.3.49-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.3.77 1.27 1.65 2.06 1.14.99 2.09 1.3 2.39 1.44.3.15.47.13.65-.07.17-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.27.1 1.72.81 2.02.96.3.15.49.22.57.34.07.12.07.7-.17 1.38z"/></svg>
-                Falar no WhatsApp
-            </a>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfAWs2OZh5CwxU7sCm2HJZlz4fKSzxTWGqake-PiOIWgDZlRg/viewform" target="_blank" rel="noopener" class="feedback-btn feedback-btn-form">
-                <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-                Preencher formulário
-            </a>
         </div>
     </div>
 
