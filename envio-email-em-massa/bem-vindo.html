@@ -206,26 +206,27 @@
         .mock-massa-btn {
             display: inline-flex;
             align-items: center;
-            gap: 4px;
             background: linear-gradient(135deg, #04ae45, #038c37);
             color: white;
             border: none;
             border-radius: 18px;
-            padding: 8px 14px;
             font-size: 0.8rem;
             font-weight: 600;
+            overflow: hidden;
+        }
+        .mock-massa-main {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 12px 8px 14px;
         }
         .mock-massa-arrow {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #04ae45, #038c37);
-            color: white;
-            border: none;
             border-left: 1px solid rgba(255,255,255,0.3);
-            border-radius: 0 18px 18px 0;
-            padding: 8px 8px;
-            font-size: 0.65rem;
+            padding: 8px 10px;
+            font-size: 0.6rem;
         }
         .mock-hint {
             font-size: 0.8rem;
@@ -397,12 +398,12 @@
             <div class="gmail-mock">
                 <div class="gmail-mock-bar">
                     <div class="mock-send-btn">Enviar</div>
-                    <div style="display:inline-flex; align-items:center;">
-                        <div class="mock-massa-btn">
+                    <div class="mock-massa-btn">
+                        <span class="mock-massa-main">
                             <svg viewBox="0 0 24 24" width="12" height="12"><path fill="white" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                             Massa
-                        </div>
-                        <div class="mock-massa-arrow">&#9660;</div>
+                        </span>
+                        <span class="mock-massa-arrow">&#9660;</span>
                     </div>
                 </div>
                 <div class="mock-hint">
