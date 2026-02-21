@@ -1,0 +1,12 @@
+# OS
+.DS_Store
+
+# No secrets, keys, or extension source code in this public repo
+# This repo is for static GitHub Pages content ONLY
+*.env
+*.secret
+*.key
+*.zip
+node_modules/
+.wrangler/
+.claude/
