@@ -412,9 +412,34 @@
         }
         .gmail-compose-bar {
             display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .mock-btn-wrap {
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 8px;
-            margin-bottom: 8px;
+            gap: 6px;
+        }
+        .mock-badge {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+        }
+        .mock-badge-no {
+            background: #fef2f2;
+            color: #dc2626;
+            border: 1.5px solid #fecaca;
+        }
+        .mock-badge-yes {
+            background: #f0fdf4;
+            color: #16a34a;
+            border: 1.5px solid #bbf7d0;
         }
         .mock-btn-send {
             background: #1a73e8;
@@ -447,14 +472,6 @@
             padding: 6px 8px;
             font-size: 8px;
         }
-        .mock-hint {
-            font-size: 11px;
-            color: #64748b;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .mock-hint .arr { color: #04ae45; font-size: 16px; }
 
         /* Tour preview card */
         .tour-preview {
@@ -757,17 +774,20 @@
 
             <div class="gmail-compose-mock">
                 <div class="gmail-compose-bar">
-                    <div class="mock-btn-send">Enviar</div>
-                    <div class="mock-btn-massa">
-                        <span class="mock-btn-massa-main">
-                            <svg viewBox="0 0 24 24" width="10" height="10"><path fill="white" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                            Massa
-                        </span>
-                        <span class="mock-btn-massa-arrow">▼</span>
+                    <div class="mock-btn-wrap">
+                        <div class="mock-btn-send">Enviar</div>
+                        <div class="mock-badge mock-badge-no">✕</div>
                     </div>
-                </div>
-                <div class="mock-hint">
-                    <span class="arr">↑</span> Use este botão (não o "Enviar"!)
+                    <div class="mock-btn-wrap">
+                        <div class="mock-btn-massa">
+                            <span class="mock-btn-massa-main">
+                                <svg viewBox="0 0 24 24" width="10" height="10"><path fill="white" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                                Massa
+                            </span>
+                            <span class="mock-btn-massa-arrow">▼</span>
+                        </div>
+                        <div class="mock-badge mock-badge-yes">✓</div>
+                    </div>
                 </div>
             </div>
 
