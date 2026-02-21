@@ -250,7 +250,7 @@
             font-size: 11px;
             text-align: right;
             margin-top: 3px;
-            padding-right: 30px;
+            padding-right: 4px;
         }
 
         /* Extensions icon */
@@ -264,6 +264,105 @@
             vertical-align: middle;
         }
         .ext-icon-inline svg path { fill: #e8eaed; }
+
+        /* Popup login mockup */
+        .popup-mock {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 10px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .popup-mock-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 11px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+        .popup-mock-body {
+            padding: 20px 16px;
+            text-align: center;
+        }
+        .popup-mock-icon-wrap {
+            width: 44px;
+            height: 44px;
+            background: rgba(4,174,69,0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+        }
+        .popup-mock-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 14px;
+        }
+        .popup-mock-google-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #04ae45;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px -2px rgba(4,174,69,0.3);
+        }
+
+        /* Permissions note */
+        .perm-note {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 12px 0;
+        }
+        .perm-note-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+        .perm-note-lock {
+            font-size: 14px;
+        }
+        .perm-note-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-bottom: 8px;
+        }
+        .perm-note-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: #475569;
+        }
+        .perm-check {
+            color: #04ae45;
+            font-weight: 700;
+            font-size: 13px;
+        }
+        .perm-note-safe {
+            font-size: 10px;
+            color: #64748b;
+            line-height: 1.5;
+        }
+        .perm-note-safe a {
+            color: #04ae45;
+            text-decoration: none;
+        }
 
         /* Popup preview */
         .popup-preview {
@@ -534,7 +633,7 @@
             <div class="tour-step-line" data-line="1"></div>
             <div class="tour-step" data-step="2">
                 <div class="tour-step-icon">2</div>
-                <span class="tour-step-label">Painel</span>
+                <span class="tour-step-label">Conectar</span>
             </div>
             <div class="tour-step-line" data-line="2"></div>
             <div class="tour-step" data-step="3">
@@ -569,7 +668,7 @@
                                 <div class="chrome-mock-pin"><svg viewBox="0 0 24 24" width="14" height="14"><path fill="#5f6368" d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z"/></svg></div>
                                 <div class="chrome-mock-dots">⋮</div>
                             </div>
-                            <div class="chrome-mock-hint">↑ clique aqui</div>
+                            <div class="chrome-mock-hint">↑</div>
                         </div>
                     </div>
                 </div>
@@ -580,32 +679,74 @@
             </div>
         </div>
 
-        <!-- Step 2: Popup panel -->
+        <!-- Step 2: Connect Google + Panel -->
         <div class="tour-content" data-panel="2">
-            <h3>Seu painel de controle</h3>
-            <p>Clique no ícone do EmailMassa na barra para abrir o painel. Aqui você gerencia tudo:</p>
+            <h3>Conecte sua conta Google</h3>
+            <p>Clique no icone do EmailMassa na barra e depois em:</p>
 
-            <div class="popup-preview">
-                <div class="popup-preview-header">
-                    <img src="assets/images/icon48.png" alt=""> EmailMassa
+            <!-- Popup login mockup -->
+            <div class="popup-mock">
+                <div class="popup-mock-header">
+                    <img src="assets/images/icon48.png" alt="" width="16" height="16" style="border-radius:3px;">
+                    <span>EmailMassa</span>
                 </div>
-                <div class="popup-preview-items">
-                    <div class="popup-preview-item">
-                        <span>👤</span>
-                        <span><strong>Login</strong> — conecte sua conta Google</span>
+                <div class="popup-mock-body">
+                    <div class="popup-mock-icon-wrap">
+                        <svg viewBox="0 0 24 24" width="28" height="28"><path fill="#04ae45" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                     </div>
-                    <div class="popup-preview-item">
-                        <span>📊</span>
-                        <span><strong>Estatísticas</strong> — aberturas, cliques, campanhas</span>
-                    </div>
-                    <div class="popup-preview-item">
-                        <span>⭐</span>
-                        <span><strong>Premium</strong> — upgrade para 500 emails/dia</span>
+                    <div class="popup-mock-title">Bem-vindo ao EmailMassa!</div>
+                    <div class="popup-mock-google-btn">
+                        <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#fff" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#fff" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#fff" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#fff" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                        Entrar com Google
                     </div>
                 </div>
             </div>
 
-            <p><strong>Primeiro passo:</strong> abra o painel e conecte sua conta Google.</p>
+            <!-- Permissions note -->
+            <div class="perm-note">
+                <div class="perm-note-header">
+                    <span class="perm-note-lock">🔒</span>
+                    <strong>O Google vai pedir permissoes — aceite todas</strong>
+                </div>
+                <div class="perm-note-list">
+                    <div class="perm-note-item">
+                        <span class="perm-check">✓</span>
+                        <span><strong>Gmail</strong> — enviar seus emails em massa</span>
+                    </div>
+                    <div class="perm-note-item">
+                        <span class="perm-check">✓</span>
+                        <span><strong>Planilhas</strong> — importar contatos do Sheets</span>
+                    </div>
+                </div>
+                <div class="perm-note-safe">Necessario para funcionar. Seus dados ficam seguros conforme nossos <a href="termos.html">Termos</a> e <a href="privacidade.html">Privacidade</a>.</div>
+            </div>
+
+            <!-- After login: dashboard preview -->
+            <p style="margin-top:14px;">Apos conectar, seu painel fica assim:</p>
+            <div class="popup-preview">
+                <div class="popup-preview-header">
+                    <img src="assets/images/icon48.png" alt=""> EmailMassa
+                    <span style="margin-left:auto;font-size:10px;opacity:0.7;">👤</span>
+                </div>
+                <div class="popup-preview-items">
+                    <div class="popup-preview-item">
+                        <span>📊</span>
+                        <span><strong>Limite</strong> — 50/50 emails restantes</span>
+                    </div>
+                    <div class="popup-preview-item">
+                        <span>📈</span>
+                        <span><strong>Estatisticas</strong> — enviados, abertos, cliques</span>
+                    </div>
+                    <div class="popup-preview-item">
+                        <span>📋</span>
+                        <span><strong>Campanhas</strong> — agendadas e anteriores</span>
+                    </div>
+                    <div class="popup-preview-item">
+                        <span>⭐</span>
+                        <span><strong>Premium</strong> — 500 emails/dia por R$9,90</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Step 3: How to send -->
@@ -754,7 +895,7 @@
             }
         }
 
-        const stepNames = ['', 'fixar', 'painel', 'envio', 'comecar'];
+        const stepNames = ['', 'fixar', 'conectar', 'envio', 'comecar'];
         btnNext.addEventListener('click', () => {
             if (currentStep < totalSteps) {
                 currentStep++;
