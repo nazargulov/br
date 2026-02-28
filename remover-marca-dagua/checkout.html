@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9ERQ0RV4GZ"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-9ERQ0RV4GZ');</script>
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9782800108858107"
+         crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Tirar Marca d'Agua</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%);
+            color: #1e293b;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .card {
+            width: 100%;
+            max-width: 520px;
+            background: #fff;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 10px 30px rgba(2, 6, 23, 0.12);
+        }
+        h1 { margin: 0 0 8px; font-size: 1.5rem; }
+        p { margin: 0 0 18px; color: #475569; }
+        label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #334155;
+        }
+        input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 1rem;
+            margin-bottom: 14px;
+        }
+        button {
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+            cursor: pointer;
+        }
+        button:disabled { opacity: 0.7; cursor: wait; }
+        .status { margin-top: 12px; font-size: 0.92rem; color: #475569; }
+        .status.error { color: #dc2626; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Finalizar assinatura Premium</h1>
+        <p>Digite seu email para liberar o Premium na extensao Tirar Marca d'Agua.</p>
+        <label for="email">Seu email</label>
+        <input id="email" type="email" placeholder="voce@email.com.br" autocomplete="email">
+        <button id="payBtn" type="button">Continuar para pagamento</button>
+        <div id="status" class="status"></div>
+        <p style="margin-top: 16px; font-size: 0.8rem; color: #94a3b8; text-align: center;">
+            Ao continuar, voce concorda com os <a href="termos.html" style="color: #0ea5e9;">Termos de Uso</a> e a <a href="privacidade.html" style="color: #0ea5e9;">Politica de Privacidade</a>.
+        </p>
+    </div>
+
+    <script>
+        const BILLING_SERVER = 'https://remover-marca-dagua-billing.u9603656505.workers.dev';
+
+        function setStatus(message, isError = false) {
+            const el = document.getElementById('status');
+            el.textContent = message;
+            el.classList.toggle('error', isError);
+        }
+
+        document.getElementById('payBtn').addEventListener('click', async () => {
+            const email = (document.getElementById('email').value || '').trim().toLowerCase();
+            if (!email || !email.includes('@')) {
+                setStatus('Informe um email valido.', true);
+                return;
+            }
+
+            const btn = document.getElementById('payBtn');
+            btn.disabled = true;
+            setStatus('Criando checkout...');
+            try {
+                const params = new URLSearchParams(window.location.search);
+                const plan = params.get('plan') || 'premium_monthly';
+                const extId = params.get('ext_id') || '';
+                const response = await fetch(`${BILLING_SERVER}/api/checkout-session`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, plan, extId })
+                });
+                const payload = await response.json().catch(() => ({}));
+                if (!response.ok || !payload.url) {
+                    throw new Error(payload.error || 'Falha ao criar checkout');
+                }
+                window.location.href = payload.url;
+            } catch (error) {
+                setStatus(error.message || 'Erro ao abrir checkout.', true);
+                btn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

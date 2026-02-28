@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9ERQ0RV4GZ"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-9ERQ0RV4GZ');</script>
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9782800108858107"
+         crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento Confirmado! | Tirar Marca d'Agua</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.08) 0%, #ffffff 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 16px;
+            padding: 50px;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #0ea5e9;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        p {
+            color: #64748b;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .steps {
+            text-align: left;
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        .steps h3 {
+            color: #1e293b;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        .steps ol {
+            color: #64748b;
+            padding-left: 20px;
+        }
+        .steps li {
+            margin-bottom: 10px;
+        }
+        .support {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+        .support a {
+            color: #0ea5e9;
+            text-decoration: none;
+        }
+        .activation-status {
+            margin-top: 16px;
+            font-size: 0.95rem;
+            color: #475569;
+        }
+        .activation-status.ok {
+            color: #059669;
+            font-weight: 600;
+        }
+        .activation-status.error {
+            color: #dc2626;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">🎉</div>
+        <h1>Pagamento Confirmado!</h1>
+        <p>Obrigado por assinar o Tirar Marca d'Agua Premium. Seu acesso ja esta ativo!</p>
+
+        <div class="steps">
+            <h3>Proximos passos:</h3>
+            <ol>
+                <li>Abra o popup da extensao no Chrome</li>
+                <li>Seu status Premium ja estara ativo</li>
+                <li>Aproveite remocoes ilimitadas!</li>
+            </ol>
+            <p id="activationStatus" class="activation-status">Validando pagamento...</p>
+        </div>
+
+        <p class="support">
+            Precisa de ajuda? <a href="https://wa.me/48504337326" target="_blank">WhatsApp: +48 504 337 326</a>
+        </p>
+    </div>
+    <script>
+        const BILLING_SERVER = 'https://remover-marca-dagua-billing.u9603656505.workers.dev';
+
+        function setActivationStatus(message, type = '') {
+            const el = document.getElementById('activationStatus');
+            el.textContent = message;
+            el.classList.remove('ok', 'error');
+            if (type) el.classList.add(type);
+        }
+
+        function delay(ms) {
+            return new Promise((resolve) => setTimeout(resolve, ms));
+        }
+
+        async function fetchSessionLicense(sessionId) {
+            const response = await fetch(`${BILLING_SERVER}/api/license/by-session?session_id=${encodeURIComponent(sessionId)}`);
+            if (!response.ok) {
+                const payload = await response.json().catch(() => ({}));
+                throw new Error(payload.error || `Erro ${response.status} ao validar sessao`);
+            }
+            return response.json();
+        }
+
+        async function activateInExtension(extId, email, licenseKey) {
+            if (!extId || !window.chrome?.runtime?.sendMessage) {
+                setActivationStatus('Pagamento confirmado. Abra o popup da extensao para sincronizar o Premium.', 'ok');
+                return;
+            }
+
+            await new Promise((resolve, reject) => {
+                chrome.runtime.sendMessage(
+                    extId,
+                    { action: 'activateLicense', email, licenseKey },
+                    (response) => {
+                        if (chrome.runtime.lastError) {
+                            reject(new Error(chrome.runtime.lastError.message));
+                            return;
+                        }
+                        if (!response?.success) {
+                            reject(new Error(response?.error || 'Falha ao ativar na extensao'));
+                            return;
+                        }
+                        resolve();
+                    }
+                );
+            });
+            setActivationStatus('Premium ativado com sucesso na sua extensao!', 'ok');
+        }
+
+        async function initActivationFlow() {
+            const params = new URLSearchParams(window.location.search);
+            const sessionId = params.get('session_id');
+            const extId = params.get('ext_id');
+
+            if (!sessionId) {
+                setActivationStatus('Pagamento concluido. Abra o popup da extensao para sincronizar seu Premium.', 'ok');
+                return;
+            }
+
+            // Payment may confirm asynchronously; poll a few times.
+            for (let attempt = 1; attempt <= 6; attempt++) {
+                try {
+                    const result = await fetchSessionLicense(sessionId);
+                    if (result.status === 'pending') {
+                        setActivationStatus('Aguardando confirmacao do pagamento...');
+                        await delay(4000);
+                        continue;
+                    }
+                    if (result.status !== 'paid') {
+                        throw new Error(result.error || 'Pagamento ainda nao confirmado');
+                    }
+                    await activateInExtension(extId, result.email, result.licenseKey);
+                    return;
+                } catch (error) {
+                    if (attempt === 6) {
+                        setActivationStatus(
+                            `Pagamento recebido, mas ativacao automatica falhou. Abra o popup para sincronizar. (${error.message})`,
+                            'error'
+                        );
+                        return;
+                    }
+                    await delay(3000);
+                }
+            }
+        }
+
+        initActivationFlow();
+    </script>
+</body>
+</html>
