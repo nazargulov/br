@@ -49,6 +49,42 @@
             font-size: 1rem;
             margin-bottom: 14px;
         }
+        .method-grid {
+            display: grid;
+            gap: 10px;
+            margin: 0 0 14px;
+        }
+        .method-option {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 12px;
+            background: #fff;
+            color: #1e293b;
+            text-align: left;
+            cursor: pointer;
+        }
+        .method-option.selected {
+            border-color: #04ae45;
+            background: rgba(4, 174, 69, 0.07);
+        }
+        .method-name {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            font-weight: 800;
+        }
+        .method-hint {
+            display: block;
+            margin-top: 3px;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        .badge {
+            color: #038c37;
+            font-size: 0.78rem;
+            font-weight: 800;
+        }
         button {
             width: 100%;
             border: none;
@@ -68,9 +104,20 @@
 <body>
     <div class="card">
         <h1>Finalizar assinatura Premium</h1>
-        <p>Digite o email da sua conta Gmail para liberar o Premium corretamente na extensão.</p>
+        <p>Digite o email da sua conta Gmail para liberar o Premium corretamente na extensão. Pagamento com PIX, Boleto ou Cartão.</p>
         <label for="email">Seu email</label>
         <input id="email" type="email" placeholder="voce@empresa.com.br" autocomplete="email">
+        <label>Forma de pagamento</label>
+        <div class="method-grid">
+            <button class="method-option selected" type="button" data-provider="lemonsqueezy" data-monthly="R$12,90/mês" data-annual="R$107,90/ano">
+                <span class="method-name">PIX, Boleto ou Cartão <span class="badge">Recomendado no Brasil</span></span>
+                <span class="method-hint">Lemon Squeezy · Apple Pay, Google Pay e PayPal quando disponíveis</span>
+            </button>
+            <button class="method-option" type="button" data-provider="stripe" data-monthly="R$9,90/mês" data-annual="R$99,90/ano">
+                <span class="method-name">Cartão internacional</span>
+                <span class="method-hint">Stripe · Visa, Mastercard e Apple Pay</span>
+            </button>
+        </div>
         <button id="payBtn" type="button">Continuar para pagamento</button>
         <div id="status" class="status"></div>
         <p style="margin-top: 16px; font-size: 0.8rem; color: #94a3b8; text-align: center;">
@@ -80,12 +127,32 @@
 
     <script>
         const BILLING_SERVER = 'https://emailmassa-billing.u9603656505.workers.dev';
+        let selectedProvider = 'lemonsqueezy';
 
         function setStatus(message, isError = false) {
             const el = document.getElementById('status');
             el.textContent = message;
             el.classList.toggle('error', isError);
         }
+
+        function selectedPlan() {
+            return new URLSearchParams(window.location.search).get('plan') || 'premium_monthly';
+        }
+
+        function updatePayButton() {
+            const option = document.querySelector(`.method-option[data-provider="${selectedProvider}"]`);
+            const price = selectedPlan() === 'premium_annual' ? option.dataset.annual : option.dataset.monthly;
+            document.getElementById('payBtn').textContent = `Continuar — ${price}`;
+        }
+
+        document.querySelectorAll('.method-option').forEach((option) => {
+            option.addEventListener('click', () => {
+                document.querySelectorAll('.method-option').forEach((el) => el.classList.remove('selected'));
+                option.classList.add('selected');
+                selectedProvider = option.dataset.provider || 'lemonsqueezy';
+                updatePayButton();
+            });
+        });
 
         document.getElementById('payBtn').addEventListener('click', async () => {
             const email = (document.getElementById('email').value || '').trim().toLowerCase();
@@ -98,12 +165,12 @@
             btn.disabled = true;
             setStatus('Criando checkout...');
             try {
-                const params = new URLSearchParams(window.location.search);
-                const plan = params.get('plan') || 'premium_monthly';
+                const plan = selectedPlan();
+                const provider = selectedProvider;
                 const response = await fetch(`${BILLING_SERVER}/api/checkout-session`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, plan })
+                    body: JSON.stringify({ email, plan, provider })
                 });
                 const payload = await response.json().catch(() => ({}));
                 if (!response.ok || !payload.url) {
@@ -115,6 +182,13 @@
                 btn.disabled = false;
             }
         });
+
+        const initialProvider = new URLSearchParams(window.location.search).get('provider');
+        if (initialProvider === 'stripe' || initialProvider === 'lemonsqueezy') {
+            const option = document.querySelector(`.method-option[data-provider="${initialProvider}"]`);
+            if (option) option.click();
+        }
+        updatePayButton();
     </script>
 </body>
 </html>
