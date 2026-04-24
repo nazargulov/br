@@ -181,17 +181,6 @@
             const params = new URLSearchParams(window.location.search);
             const sessionId = params.get('session_id');
             const extId = params.get('ext_id');
-            const manualEmail = params.get('email');
-            const manualLicense = params.get('license');
-
-            if (manualEmail && manualLicense) {
-                try {
-                    await activateInExtension(extId, manualEmail, manualLicense);
-                } catch (error) {
-                    setActivationStatus(`Falha na ativação: ${error.message}`, 'error');
-                }
-                return;
-            }
 
             if (!sessionId) {
                 setActivationStatus('Pagamento concluído. Abra o popup do EmailMassa para sincronizar seu Premium.', 'ok');
