@@ -151,7 +151,7 @@
             return response.json();
         }
 
-        async function activateInExtension(extId, email, licenseKey) {
+        async function activateInExtension(extId, email, licenseKey, purchaseInfo) {
             if (!extId || !window.chrome?.runtime?.sendMessage) {
                 setActivationStatus('Pagamento confirmado. Abra o popup do EmailMassa para sincronizar o Premium.', 'ok');
                 return;
@@ -160,7 +160,7 @@
             await new Promise((resolve, reject) => {
                 chrome.runtime.sendMessage(
                     extId,
-                    { action: 'activateLicense', email, licenseKey },
+                    { action: 'activateLicense', email, licenseKey, purchase: purchaseInfo || null },
                     (response) => {
                         if (chrome.runtime.lastError) {
                             reject(new Error(chrome.runtime.lastError.message));
@@ -199,7 +199,11 @@
                     if (result.status !== 'paid') {
                         throw new Error(result.error || 'Pagamento ainda não confirmado');
                     }
-                    await activateInExtension(extId, result.email, result.licenseKey);
+                    await activateInExtension(extId, result.email, result.licenseKey, {
+                        amount: result.amount,
+                        currency: result.currency,
+                        plan: result.plan_label || 'premium',
+                    });
                     return;
                 } catch (error) {
                     if (attempt === 6) {
