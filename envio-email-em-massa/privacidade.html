@@ -102,14 +102,14 @@
 
             <p><strong>Dados que coletamos:</strong></p>
             <ul>
-                <li><strong>Email de login:</strong> Para identificar sua conta e status de assinatura</li>
+                <li><strong>Email de login:</strong> Para identificar sua conta e status de acesso Premium</li>
                 <li><strong>Estatísticas de uso:</strong> Número de emails enviados, aberturas e cliques (para exibir no dashboard)</li>
-                <li><strong>Dados de pagamento:</strong> Processados pela Lemon Squeezy ou Stripe, não armazenamos dados de cartão</li>
+                <li><strong>Dados de pagamento:</strong> Processados pela Stripe; não armazenamos dados de cartão</li>
             </ul>
 
             <h2>3. Como Usamos seus Dados</h2>
             <ul>
-                <li>Verificar seu status de assinatura (gratuito/premium)</li>
+                <li>Verificar seu status de acesso (gratuito/Premium)</li>
                 <li>Exibir estatísticas das suas campanhas</li>
                 <li>Enviar notificações sobre sua conta</li>
                 <li>Melhorar o Serviço com base em uso agregado</li>
@@ -120,7 +120,7 @@
             <ul>
                 <li><strong>gmail.send:</strong> Para enviar emails em seu nome quando você inicia uma campanha no EmailMassa</li>
                 <li><strong>gmail.labels:</strong> Para criar e gerenciar labels automáticas no Gmail, como "EmailMassa/Campanhas Enviadas"</li>
-                <li><strong>spreadsheets.readonly:</strong> Para importar contatos das suas planilhas do Google Sheets</li>
+                <li><strong>drive.file:</strong> Para acessar somente a planilha que você selecionar no Google Picker e importar os contatos</li>
                 <li><strong>identity:</strong> Para identificar sua conta Google</li>
             </ul>
             <p>Usamos estas permissões apenas para as funcionalidades descritas. Não lemos o conteúdo dos seus emails pessoais.</p>
@@ -128,7 +128,7 @@
             <div class="highlight">
                 <strong>Conformidade com a Política de Dados do Google:</strong> O uso de dados recebidos das APIs do Google pelo EmailMassa segue a <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer">Política de Dados do Usuário dos Serviços de API do Google</a>, incluindo os requisitos de Uso Limitado. Especificamente:
                 <ul style="margin-top: 10px; margin-bottom: 0;">
-                    <li>Não transferimos dados de usuário do Google para terceiros, exceto quando necessário para fornecer o serviço (Lemon Squeezy e Stripe para pagamentos) ou quando exigido por lei</li>
+                    <li>Não transferimos dados de usuário do Google para terceiros, exceto quando necessário para fornecer o serviço (Stripe para pagamentos) ou quando exigido por lei</li>
                     <li>Não utilizamos dados de usuário do Google para exibir, vender ou distribuir publicidade</li>
                     <li>Não utilizamos dados de usuário do Google para treinar modelos de inteligência artificial ou aprendizado de máquina</li>
                     <li>Um ser humano pode ler seus dados apenas com seu consentimento explícito, por motivos de segurança, para cumprir a lei, ou quando os dados forem agregados e anonimizados para operações internas</li>
@@ -142,8 +142,7 @@
             <h2>5. Compartilhamento de Dados</h2>
             <p>NÃO vendemos seus dados. Compartilhamos informações apenas com:</p>
             <ul>
-                <li><strong>Lemon Squeezy:</strong> Processamento de pagamentos com PIX, Boleto, Cartão, Apple Pay, Google Pay e PayPal</li>
-                <li><strong>Stripe:</strong> Processamento de pagamentos por cartão</li>
+                <li><strong>Stripe:</strong> Processamento de pagamentos únicos via PIX, cartão e carteiras digitais, conforme disponibilidade</li>
                 <li><strong>Google:</strong> Autenticação via OAuth</li>
                 <li><strong>Autoridades:</strong> Quando exigido por lei</li>
             </ul>
