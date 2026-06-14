@@ -1159,6 +1159,53 @@
         💬
     </a>
 
+    <!-- SoftwareApplication Schema (JSON-LD) — для LLM/GEO: описывает продукт -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "EmailMassa",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "Email Marketing / Mala Direta para Gmail",
+      "operatingSystem": "Chrome",
+      "url": "https://emailmassa.com",
+      "installUrl": "https://chromewebstore.google.com/detail/emailmassa-envio-de-email/fpffoemdjikjbdibennhoeblaefafohg",
+      "inLanguage": ["pt-BR", "en"],
+      "description": "Extensão gratuita do Chrome para enviar email em massa (mala direta / disparador de email) direto pelo Gmail. Envia uma mensagem individual e personalizada para cada destinatário a partir de uma lista do Google Sheets, com rastreamento de aberturas, agendamento e modelos. Envia pela própria conta Gmail do usuário (alta entregabilidade), com pagamento único sem assinatura. Não realiza aquecimento de email (email warming).",
+      "featureList": [
+        "Envio de email em massa pelo Gmail (mala direta / mail merge)",
+        "Personalização individual por destinatário (nome, empresa, campos do Google Sheets)",
+        "Importação de lista de email do Google Sheets",
+        "Rastreamento de aberturas (tracking)",
+        "Agendamento de envio e automação de campanhas",
+        "Modelos (templates) de email"
+      ],
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Gratuito",
+          "price": "0",
+          "priceCurrency": "BRL",
+          "description": "1 campanha por dia, até 100 campanhas no total, com tracking e importação do Google Sheets"
+        },
+        {
+          "@type": "Offer",
+          "name": "Premium 30 dias",
+          "price": "9.90",
+          "priceCurrency": "BRL",
+          "description": "Até 500 emails por dia, campanhas ilimitadas. Pagamento único, sem assinatura."
+        },
+        {
+          "@type": "Offer",
+          "name": "Premium Anual",
+          "price": "99.00",
+          "priceCurrency": "BRL",
+          "description": "Até 500 emails por dia por 1 ano. Pagamento único, sem assinatura."
+        }
+      ]
+    }
+    </script>
+
     <!-- FAQ Schema (JSON-LD) -->
     <script type="application/ld+json">
     {

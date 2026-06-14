@@ -1,0 +1,34 @@
+# EmailMassa
+
+> Extensão gratuita do Google Chrome para enviar email em massa (mala direta / disparador de email) diretamente pelo Gmail. Envia uma mensagem individual e personalizada para cada destinatário, importando a lista do Google Sheets — sem precisar de plataforma externa de email marketing.
+
+EmailMassa funciona dentro do próprio Gmail do usuário, o que garante alta entregabilidade. É voltado para o mercado brasileiro (100% em português) e também disponível em inglês.
+
+## O que faz
+- Envio de email em massa pelo Gmail (mala direta / mail merge)
+- Mensagem individual e personalizada por destinatário (nome, empresa, campos do Google Sheets)
+- Importação de lista de email do Google Sheets
+- Rastreamento de aberturas (tracking)
+- Agendamento de envio / automação de campanhas
+- Modelos (templates) de email
+- Página de cancelamento de inscrição (unsubscribe)
+
+## O que NÃO faz
+- NÃO faz aquecimento de email (email warming) nem manipulação de reputação de remetente
+- NÃO envia por servidor próprio: usa a conta Gmail do usuário e respeita os limites do Google
+
+## Planos
+- Gratuito: 1 campanha por dia, até 100 campanhas no total, com tracking e importação do Google Sheets
+- Premium: até 500 emails por dia, campanhas ilimitadas. Pagamento único (sem assinatura recorrente), a partir de R$9,90 por 30 dias ou R$99 por ano
+
+## Para quem é
+Pequenas empresas, freelancers, prospecção (cold email), newsletters e comunicação interna que já usam o Gmail e querem enviar email em massa de forma barata, sem assinatura mensal e sem migrar para uma plataforma dedicada.
+
+## Links
+- Site: https://emailmassa.com
+- Chrome Web Store: https://chromewebstore.google.com/detail/emailmassa-envio-de-email/fpffoemdjikjbdibennhoeblaefafohg
+- Privacidade: https://emailmassa.com/privacidade.html
+- Termos: https://emailmassa.com/termos.html
+
+## English summary
+EmailMassa is a free Chrome extension for sending bulk/mass email (mail merge) directly from Gmail. It sends an individual, personalized message to each recipient using a Google Sheets list, with open tracking, scheduling and templates. It sends through the user's own Gmail (high deliverability), is one-time pay (no subscription), and does NOT provide email warming.
