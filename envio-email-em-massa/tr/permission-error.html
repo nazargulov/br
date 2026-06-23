@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Google İzni Gerekli - EmailMassa</title>
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav shell"><a class="brand" href="index.html"><span class="brand-mark">M</span>EmailMassa</a></nav>
+  </header>
+  <main class="page-main shell">
+    <section class="page-card">
+      <div class="eyebrow">Bağlantı tamamlanmadı</div>
+      <h1>EmailMassa, istenen Google izinlerine ihtiyaç duyuyor.</h1>
+      <p class="lead">Bağlantı tamamlanamadı. Uzantıya dönüp tekrar deneyin ve istenen izinlerin kabul edildiğinden emin olun.</p>
+      <div id="errorDetails" class="status-box error">Google yetkilendirmesi tamamlanmadı.</div>
+      <ol class="steps-list">
+        <li>Chrome'da EmailMassa açılır penceresini açın.</li>
+        <li>Google bağlantı düğmesine tekrar tıklayın.</li>
+        <li>Göndermek istediğiniz Gmail hesabını seçin.</li>
+        <li>Listelenen izinleri kabul edin.</li>
+      </ol>
+      <div class="hero-actions">
+        <a class="button" href="https://mail.google.com" target="_blank" rel="noopener">Gmail'i aç</a>
+        <a class="button secondary" href="permissions.html">Bu izinler neden gerekli?</a>
+      </div>
+    </section>
+  </main>
+  <script>
+    const error = new URLSearchParams(window.location.search).get('error');
+    if (error) document.getElementById('errorDetails').textContent = error;
+  </script>
+</body>
+</html>

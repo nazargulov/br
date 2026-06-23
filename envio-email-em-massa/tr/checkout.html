@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Premium Erişim Satın Al - EmailMassa</title>
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav shell">
+      <a class="brand" href="index.html"><span class="brand-mark">M</span>EmailMassa</a>
+      <a class="language-link" href="https://nazargulov.github.io/en/emailmassa/checkout.html">EN</a>
+    </nav>
+  </header>
+  <main class="page-main shell">
+    <section class="page-card">
+      <div class="eyebrow">Güvenli Stripe ödemesi</div>
+      <h1>Premium erişim satın alın.</h1>
+      <p class="lead">Seçilen erişim süresi için tek bir ödeme. Abonelik ve otomatik yenileme yok.</p>
+
+      <div class="form-grid">
+        <div>
+          <label for="email">EmailMassa ile kullanılan Gmail hesabı</label>
+          <input id="email" type="email" inputmode="email" autocomplete="email" placeholder="siz@sirket.com">
+        </div>
+        <div>
+          <label>Erişim süresi</label>
+          <div class="plan-selector">
+            <button class="plan-option selected" type="button" data-plan="premium_30d" data-price="$2.99">
+              <strong>30 gün</strong>
+              <span>$2.99 tek seferlik</span>
+            </button>
+            <button class="plan-option" type="button" data-plan="premium_365d" data-price="$29.00">
+              <strong>365 gün</strong>
+              <span>$29.00 tek seferlik · %19 tasarruf</span>
+            </button>
+          </div>
+        </div>
+        <div>
+          <label>Ödeme işlemcisi</label>
+          <div class="payment-provider">
+            <strong>Stripe</strong>
+            <span>Kart ve desteklenen dijital cüzdanlar. Ödeme bilgileri Stripe tarafından işlenir.</span>
+          </div>
+        </div>
+        <button class="button full" id="payButton" type="button">Devam et - $2.99 tek seferlik</button>
+      </div>
+      <div id="checkoutStatus" class="status-box" hidden></div>
+      <p class="fine-print">Devam ederek <a href="terms.html">Şartlar</a>, <a href="privacy.html">Gizlilik Politikası</a> ve <a href="refund.html">İade Politikası</a>'nı kabul etmiş olursunuz.</p>
+    </section>
+  </main>
+  <script>
+    const BILLING_SERVER = 'https://emailmassa-billing.u9603656505.workers.dev';
+    const options = [...document.querySelectorAll('.plan-option')];
+    const payButton = document.getElementById('payButton');
+    const statusBox = document.getElementById('checkoutStatus');
+
+    function selectedOption() {
+      return document.querySelector('.plan-option.selected');
+    }
+
+    function selectPlan(plan) {
+      const normalized = plan === 'premium_365d' ? plan : 'premium_30d';
+      options.forEach((option) => option.classList.toggle('selected', option.dataset.plan === normalized));
+      const option = selectedOption();
+      payButton.textContent = `Devam et - ${option.dataset.price} tek seferlik`;
+    }
+
+    function showStatus(message, isError = false) {
+      statusBox.hidden = false;
+      statusBox.textContent = message;
+      statusBox.classList.toggle('error', isError);
+    }
+
+    options.forEach((option) => option.addEventListener('click', () => selectPlan(option.dataset.plan)));
+    selectPlan(new URLSearchParams(window.location.search).get('plan'));
+
+    payButton.addEventListener('click', async () => {
+      const email = document.getElementById('email').value.trim().toLowerCase();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showStatus('Geçerli bir e-posta adresi girin.', true);
+        return;
+      }
+
+      payButton.disabled = true;
+      showStatus('Güvenli tek seferlik ödemeniz oluşturuluyor...');
+      try {
+        const response = await fetch(`${BILLING_SERVER}/api/checkout-session`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email,
+            plan: selectedOption().dataset.plan,
+            provider: 'stripe',
+            market: 'tr',
+            locale: 'tr-TR'
+          })
+        });
+        const payload = await response.json().catch(() => ({}));
+        if (!response.ok || !payload.url) {
+          throw new Error(payload.error || 'Ödeme oluşturulamadı.');
+        }
+        window.location.assign(payload.url);
+      } catch (error) {
+        showStatus(error.message || 'Stripe ödemesi açılamadı.', true);
+        payButton.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Ödeme Onaylandı - EmailMassa</title>
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav shell">
+      <a class="brand" href="index.html"><span class="brand-mark">M</span>EmailMassa</a>
+    </nav>
+  </header>
+  <main class="page-main shell">
+    <section class="page-card">
+      <div class="eyebrow">Ödeme onaylandı</div>
+      <h1>Premium erişiminiz etkinleştiriliyor.</h1>
+      <p class="lead">Bu, tek seferlik bir ödemeydi. Abonelik veya otomatik yenileme yoktur.</p>
+      <ol class="steps-list">
+        <li>EmailMassa Stripe ödemesini doğrularken bu sayfayı açık tutun.</li>
+        <li>Gmail'i açın ve EmailMassa uzantı simgesine tıklayın.</li>
+        <li>Premium durumunuz, bağlı e-posta adresinden de otomatik olarak eşitlenecektir.</li>
+      </ol>
+      <div id="activationStatus" class="status-box">Ödeme doğrulanıyor...</div>
+      <a class="button full" href="https://mail.google.com" target="_blank" rel="noopener">Gmail'i aç</a>
+    </section>
+  </main>
+  <script>
+    const BILLING_SERVER = 'https://emailmassa-billing.u9603656505.workers.dev';
+    const statusBox = document.getElementById('activationStatus');
+
+    function setStatus(message, type = '') {
+      statusBox.textContent = message;
+      statusBox.classList.remove('error', 'success');
+      if (type) statusBox.classList.add(type);
+    }
+
+    function delay(ms) {
+      return new Promise((resolve) => setTimeout(resolve, ms));
+    }
+
+    async function getLicense(sessionId) {
+      const response = await fetch(`${BILLING_SERVER}/api/license/by-session?session_id=${encodeURIComponent(sessionId)}`);
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(payload.error || `Doğrulama başarısız (${response.status})`);
+      return payload;
+    }
+
+    async function activateExtension(extId, purchase) {
+      if (!extId || !window.chrome?.runtime?.sendMessage) {
+        setStatus('Ödeme onaylandı. Premium\'u eşitlemek için EmailMassa açılır penceresini açın.', 'success');
+        return;
+      }
+      await new Promise((resolve, reject) => {
+        chrome.runtime.sendMessage(extId, {
+          action: 'activateLicense',
+          email: purchase.email,
+          licenseKey: purchase.licenseKey,
+          purchase: {
+            amount: purchase.amount,
+            currency: purchase.currency,
+            plan: purchase.plan_label || 'premium'
+          }
+        }, (response) => {
+          if (chrome.runtime.lastError) {
+            reject(new Error(chrome.runtime.lastError.message));
+            return;
+          }
+          if (!response?.success) {
+            reject(new Error(response?.error || 'Uzantı etkinleştirme başarısız'));
+            return;
+          }
+          resolve();
+        });
+      });
+      setStatus('Premium, EmailMassa\'da etkinleştirildi.', 'success');
+    }
+
+    async function initialize() {
+      const params = new URLSearchParams(window.location.search);
+      const sessionId = params.get('session_id');
+      const extId = params.get('ext_id');
+      if (!sessionId) {
+        setStatus('Ödeme tamamlandı. Premium\'u eşitlemek için EmailMassa açılır penceresini açın.', 'success');
+        return;
+      }
+
+      for (let attempt = 1; attempt <= 6; attempt += 1) {
+        try {
+          const result = await getLicense(sessionId);
+          if (result.status === 'pending') {
+            setStatus('Stripe\'ın ödemeyi onaylaması bekleniyor...');
+            await delay(4000);
+            continue;
+          }
+          if (result.status !== 'paid') throw new Error('Ödeme henüz onaylanmadı');
+          await activateExtension(extId, result);
+          return;
+        } catch (error) {
+          if (attempt === 6) {
+            setStatus(`Ödeme alındı ancak otomatik etkinleştirme tamamlanmadı. Eşitlemek için uzantı açılır penceresini açın. (${error.message})`, 'error');
+            return;
+          }
+          await delay(3000);
+        }
+      }
+    }
+
+    initialize();
+  </script>
+</body>
+</html>
