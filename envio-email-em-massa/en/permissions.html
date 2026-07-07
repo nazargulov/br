@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Google Permissions - EmailMassa</title>
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="canonical" href="https://nazargulov.github.io/en/emailmassa/permissions.html">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav shell">
+      <a class="brand" href="index.html"><span class="brand-mark">M</span>EmailMassa</a>
+      <a class="language-link" href="https://nazargulov.github.io/br/envio-email-em-massa/por-que-pedimos-permissoes.html">PT-BR</a>
+    </nav>
+  </header>
+  <main class="page-main shell">
+    <article class="page-card wide">
+      <div class="eyebrow">Google OAuth explained</div>
+      <h1>Why EmailMassa asks for these permissions.</h1>
+      <p class="lead">Each permission supports a visible feature. EmailMassa does not request inbox-reading access and never receives your Google password.</p>
+
+      <h2>Send email</h2>
+      <p><strong>gmail.send</strong> lets EmailMassa submit messages through the Gmail API after you explicitly start a campaign. It does not grant inbox-reading access.</p>
+
+      <h2>Create labels</h2>
+      <p><strong>gmail.labels</strong> lets the extension create its own organizational labels in Gmail. EmailMassa does not request the broader permission required to read or modify your existing messages.</p>
+
+      <h2>Use a selected Google Sheet</h2>
+      <p><strong>drive.file</strong> lets EmailMassa access only files that you select or create for the app. The hosted Google Picker is used to choose a Sheet without granting access to all Drive files.</p>
+
+      <h2>Identify the connected account</h2>
+      <p><strong>userinfo.email</strong> and <strong>userinfo.profile</strong> provide the email address, display name, and profile image used in the extension. The email address also links a confirmed Premium purchase to the correct account.</p>
+
+      <h2>Revoke access</h2>
+      <p>You can revoke EmailMassa at any time from your Google Account security settings. After revocation, sending and Sheet import will stop until you reconnect.</p>
+
+      <div class="notice">EmailMassa uses Google user data only to provide the user-facing features described here and follows Google's Limited Use requirements.</div>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-grid shell"><span>EmailMassa</span><div class="footer-links"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="index.html">Home</a></div></div>
+  </footer>
+</body>
+</html>

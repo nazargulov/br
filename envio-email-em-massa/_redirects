@@ -2,3 +2,10 @@
 /sucesso.html          https://nazargulov.github.io/br/envio-email-em-massa/sucesso.html          302
 /cancelado.html        https://nazargulov.github.io/br/envio-email-em-massa/cancelado.html        302
 /conectado.html        https://nazargulov.github.io/br/envio-email-em-massa/conectado.html        302
+
+# EN billing/dynamic pages → github.io (preserve worker CORS + Stripe URLs, mirror BR)
+/en/checkout.html          https://nazargulov.github.io/en/emailmassa/checkout.html          302
+/en/success.html           https://nazargulov.github.io/en/emailmassa/success.html           302
+/en/canceled.html          https://nazargulov.github.io/en/emailmassa/canceled.html          302
+/en/connected.html         https://nazargulov.github.io/en/emailmassa/connected.html         302
+/en/permission-error.html  https://nazargulov.github.io/en/emailmassa/permission-error.html  302

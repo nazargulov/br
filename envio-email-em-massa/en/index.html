@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Send personalized bulk email campaigns from Gmail with Google Sheets, scheduling, follow-ups, and open and click tracking.">
+  <title>EmailMassa - Mail Merge and Bulk Email for Gmail</title>
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="canonical" href="https://emailmassa.com/en/">
+  <link rel="alternate" hreflang="pt-BR" href="https://emailmassa.com/">
+  <link rel="alternate" hreflang="en" href="https://emailmassa.com/en/">
+  <link rel="alternate" hreflang="tr" href="https://emailmassa.com/tr/">
+  <link rel="alternate" hreflang="x-default" href="https://emailmassa.com/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="EmailMassa - Mail Merge & Mass Email Sender for Gmail">
+  <meta property="og:description" content="Send personalized bulk email campaigns from Gmail. Import from Google Sheets, schedule, follow-ups, open and click tracking. Free to start.">
+  <meta property="og:url" content="https://emailmassa.com/en/">
+  <meta property="og:image" content="https://emailmassa.com/assets/images/icon128.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+
+  <link rel="stylesheet" href="styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "EmailMassa",
+    "applicationCategory": "BusinessApplication",
+    "applicationSubCategory": "Mail Merge / Mass Email Sender for Gmail",
+    "operatingSystem": "Chrome",
+    "url": "https://emailmassa.com/en/",
+    "installUrl": "https://chromewebstore.google.com/detail/fpffoemdjikjbdibennhoeblaefafohg",
+    "inLanguage": "en",
+    "description": "Free Chrome extension to send mass email (mail merge) straight from Gmail. Sends an individual, personalized message to each recipient from a Google Sheets list, with open tracking, scheduling and templates. Sends through the user's own Gmail account (high deliverability), with one-time payment and no subscription.",
+    "featureList": [
+      "Send mass email from Gmail (mail merge)",
+      "Per-recipient personalization (name, company, Google Sheets fields)",
+      "Import email list from Google Sheets",
+      "Open tracking",
+      "Send scheduling and campaign automation",
+      "Email templates"
+    ],
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "description": "Free plan: 1 campaign per day, with tracking and Google Sheets import."
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I send mass email from Gmail?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Add the EmailMassa extension to Chrome. Import your list from Google Sheets, personalize your message, and send. Each recipient gets a separate, personal email sent from your own Gmail account."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is mail merge for Gmail?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Mail merge is sending a personalized email to many recipients at once. With EmailMassa you import your list from Google Sheets and each person receives a message personalized with their name, company and other fields — all directly from Gmail."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many emails can I send per day?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "On the free plan you can send 1 campaign per day. On Premium you can send up to 500 emails per day. These limits follow Gmail policies to protect the deliverability of your emails."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Will my emails go to spam?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Emails are sent through your own Gmail account, which means high deliverability. We also provide best-practice tips to maximize deliverability."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Main navigation">
+      <a class="brand" href="index.html"><span class="brand-mark">M</span>EmailMassa</a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a class="language-link" href="https://emailmassa.com/">PT-BR</a>
+        <a class="button" data-cws-link target="_blank" rel="noopener">Add to Chrome</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero shell">
+      <div>
+        <div class="eyebrow">Built directly into Gmail</div>
+        <h1>Send personal email at <span>list scale.</span></h1>
+        <p class="lead">Import recipients from Google Sheets or CSV, personalize every message, schedule campaigns, and track engagement without leaving Gmail.</p>
+        <div class="hero-actions">
+          <a class="button" data-cws-link target="_blank" rel="noopener">Install free</a>
+          <a class="button secondary" href="welcome.html">See how it works</a>
+        </div>
+        <div class="trust-row">
+          <span>Sends through your Gmail</span>
+          <span>No password storage</span>
+          <span>One-time Premium payments</span>
+        </div>
+      </div>
+
+      <div class="product-card" aria-label="EmailMassa campaign preview">
+        <div class="mock-toolbar">
+          <span class="mock-dots">● ● ●</span>
+          <span class="mock-badge">EmailMassa ready</span>
+        </div>
+        <div class="mock-compose">
+          <div class="mock-row"><span>Recipients</span><strong>Google Sheet · 184 rows</strong></div>
+          <div class="mock-row"><span>Subject</span><strong>A quick idea for {{company}}</strong></div>
+          <div class="mock-message">
+            Hi <strong>{{first_name}}</strong>,<br><br>
+            I put together a short proposal for <strong>{{company}}</strong>. Would Tuesday work for a quick call?
+          </div>
+          <div class="mock-send">
+            <span>Open + click tracking on</span>
+            <span class="button">Send campaign</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="features">
+      <div class="shell">
+        <div class="section-heading">
+          <div class="eyebrow">The useful parts, close at hand</div>
+          <h2>A campaign workspace inside the inbox you already use.</h2>
+          <p>EmailMassa adds a focused sending layer to Gmail instead of forcing your team into another marketing platform.</p>
+        </div>
+        <div class="grid-3">
+          <article class="feature">
+            <div class="feature-icon">01</div>
+            <h3>Flexible imports</h3>
+            <p>Bring recipients in from Google Sheets, CSV files, or a pasted list. Extra columns become personalization fields.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon">02</div>
+            <h3>Useful personalization</h3>
+            <p>Use fields such as {{first_name}}, {{company}}, {{email}}, and {{phone}} in subjects and message bodies.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon">03</div>
+            <h3>Campaign controls</h3>
+            <p>Preview the first recipient, send a test, choose a send pace, schedule delivery, and add a follow-up.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon">04</div>
+            <h3>Engagement tracking</h3>
+            <p>See campaign-level opens and clicks, plus recipient event details when tracking is enabled.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon">05</div>
+            <h3>Unsubscribe support</h3>
+            <p>EmailMassa adds Gmail-compatible one-click unsubscribe headers and checks suppression before sending.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon">06</div>
+            <h3>Your Gmail identity</h3>
+            <p>Messages are sent through the Gmail API from the Google account you connect. EmailMassa never stores your password.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-heading">
+          <div class="eyebrow">Three steps</div>
+          <h2>From spreadsheet to sent campaign.</h2>
+        </div>
+        <div class="grid-3">
+          <article class="step">
+            <div class="step-number">1</div>
+            <h3>Connect Gmail</h3>
+            <p>Install the extension and grant only the Google permissions required for sending and selected Sheet access.</p>
+          </article>
+          <article class="step">
+            <div class="step-number">2</div>
+            <h3>Add your recipients</h3>
+            <p>Select a Google Sheet, import a CSV, or paste email addresses into the campaign panel.</p>
+          </article>
+          <article class="step">
+            <div class="step-number">3</div>
+            <h3>Preview and send</h3>
+            <p>Check personalization, send yourself a test, then start now or schedule the campaign.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="pricing">
+      <div class="shell">
+        <div class="section-heading">
+          <div class="eyebrow">Simple access</div>
+          <h2>Pay once. Use Premium for the period you choose.</h2>
+          <p>No subscription, no automatic renewal, and no recurring charge. You decide if and when to buy another access period.</p>
+        </div>
+        <div class="pricing-grid">
+          <article class="price-card">
+            <h3>Free</h3>
+            <div class="price">$0</div>
+            <div class="price-note">No payment required</div>
+            <ul class="feature-list">
+              <li>1 campaign per day</li>
+              <li>100 campaigns total</li>
+              <li>Google Sheets and CSV import</li>
+              <li>Open tracking</li>
+            </ul>
+            <a class="button secondary full" data-cws-link target="_blank" rel="noopener">Install free</a>
+          </article>
+          <article class="price-card">
+            <h3>30-day access</h3>
+            <div class="price">$2.99</div>
+            <div class="price-note">One-time payment for 30 days</div>
+            <ul class="feature-list">
+              <li>Up to 500 emails per day</li>
+              <li>Unlimited campaigns during access</li>
+              <li>Scheduling and follow-ups</li>
+              <li>Open and click tracking</li>
+            </ul>
+            <a class="button full" href="checkout.html?plan=premium_30d">Buy 30 days</a>
+          </article>
+          <article class="price-card featured">
+            <h3>365-day access</h3>
+            <div class="price">$29</div>
+            <div class="price-note">One-time payment for 365 days · save 19%</div>
+            <ul class="feature-list">
+              <li>Up to 500 emails per day</li>
+              <li>Unlimited campaigns during access</li>
+              <li>Scheduling and follow-ups</li>
+              <li>Open and click tracking</li>
+            </ul>
+            <a class="button full" href="checkout.html?plan=premium_365d">Buy 365 days</a>
+          </article>
+        </div>
+        <div class="notice">Stripe processes the payment securely. This is a one-time purchase, not a subscription.</div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="shell">
+        <div class="section-heading">
+          <div class="eyebrow">Questions</div>
+          <h2>Clear before you send.</h2>
+        </div>
+        <div class="faq-list">
+          <details class="faq" open>
+            <summary>Does EmailMassa send from my Gmail account?</summary>
+            <p>Yes. Campaigns are sent through the Gmail API from the connected Google account. Gmail sending limits and policies still apply.</p>
+          </details>
+          <details class="faq">
+            <summary>Is Premium a subscription?</summary>
+            <p>No. The 30-day and 365-day options are one-time payments. There is no recurring charge or automatic renewal.</p>
+          </details>
+          <details class="faq">
+            <summary>Does EmailMassa read my inbox?</summary>
+            <p>No. The extension requests permission to send messages, create EmailMassa labels, and access only the Google Drive files you select.</p>
+          </details>
+          <details class="faq">
+            <summary>Can I send unsolicited email?</summary>
+            <p>No. You are responsible for consent, applicable anti-spam laws, Gmail policies, and maintaining an accurate suppression list.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid shell">
+      <a class="brand" href="index.html"><span class="brand-mark">M</span>EmailMassa</a>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="refund.html">Refunds</a>
+        <a href="permissions.html">Google permissions</a>
+        <a href="https://emailmassa.com/">Português</a>
+      </div>
+    </div>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>
