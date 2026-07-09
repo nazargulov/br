@@ -105,6 +105,7 @@
     <div class="card">
         <h1>Comprar acesso Premium</h1>
         <p>Digite o email da sua conta Gmail. A cobrança é feita uma única vez, sem assinatura ou renovação automática.</p>
+        <p id="planVolume" style="font-size: 0.85rem; color: #04ae45; font-weight: 600; margin-top: -4px;"></p>
         <label for="email">Seu email</label>
         <input id="email" type="email" placeholder="voce@empresa.com.br" autocomplete="email">
         <label>Pagamento seguro</label>
@@ -139,8 +140,12 @@
 
         function updatePayButton() {
             const option = document.querySelector(`.method-option[data-provider="${selectedProvider}"]`);
-            const price = selectedPlan() === 'premium_365d' ? option.dataset.price365 : option.dataset.price30;
+            const is365 = selectedPlan() === 'premium_365d';
+            const price = is365 ? option.dataset.price365 : option.dataset.price30;
             document.getElementById('payBtn').textContent = `Continuar — ${price}`;
+            document.getElementById('planVolume').textContent = is365
+                ? 'Acesso por 365 dias · 500 emails por dia (renova todo dia) — até 182.500 no ano'
+                : 'Acesso por 30 dias · 500 emails por dia (renova todo dia) — até 15.000 no mês';
         }
 
         document.getElementById('payBtn').addEventListener('click', async () => {

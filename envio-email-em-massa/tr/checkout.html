@@ -38,6 +38,7 @@
               <span>$29.00 tek seferlik · %19 tasarruf</span>
             </button>
           </div>
+          <p id="planVolume" style="font-size: 0.85rem; color: #04ae45; font-weight: 600; margin-top: 8px;"></p>
         </div>
         <div>
           <label>Ödeme işlemcisi</label>
@@ -67,6 +68,9 @@
       options.forEach((option) => option.classList.toggle('selected', option.dataset.plan === normalized));
       const option = selectedOption();
       payButton.textContent = `Devam et - ${option.dataset.price} tek seferlik`;
+      document.getElementById('planVolume').textContent = normalized === 'premium_365d'
+        ? 'Günde 500 e-posta (her gün yenilenir) — yılda 182.500’e kadar'
+        : 'Günde 500 e-posta (her gün yenilenir) — ayda 15.000’e kadar';
     }
 
     function showStatus(message, isError = false) {
