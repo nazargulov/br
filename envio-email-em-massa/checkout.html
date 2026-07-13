@@ -132,20 +132,23 @@
             el.classList.toggle('error', isError);
         }
 
+        // Plan catalog — single place on this page. Limits mirror /planos.html.
+        const PLANS = {
+            premium_30d:    { price: 'R$9,90 uma vez',   volume: 'Acesso por 30 dias · 500 emails por dia (renova todo dia) — até 15.000 no mês' },
+            premium_365d:   { price: 'R$59,00 uma vez',  volume: 'Acesso por 365 dias · 500 emails por dia (renova todo dia) — até 182.500 no ano' },
+            premium_ws_30d: { price: 'R$29,90 uma vez',  volume: 'Workspace · 30 dias · 2.000 emails por dia (renova todo dia) — só em conta com domínio próprio (não @gmail.com)' },
+            premium_ws_365d:{ price: 'R$199,00 uma vez', volume: 'Workspace · 365 dias · 2.000 emails por dia (renova todo dia) — só em conta com domínio próprio (não @gmail.com)' },
+        };
+
         function selectedPlan() {
-            return new URLSearchParams(window.location.search).get('plan') === 'premium_365d'
-                ? 'premium_365d'
-                : 'premium_30d';
+            const p = new URLSearchParams(window.location.search).get('plan');
+            return PLANS[p] ? p : 'premium_30d';
         }
 
         function updatePayButton() {
-            const option = document.querySelector(`.method-option[data-provider="${selectedProvider}"]`);
-            const is365 = selectedPlan() === 'premium_365d';
-            const price = is365 ? option.dataset.price365 : option.dataset.price30;
-            document.getElementById('payBtn').textContent = `Continuar — ${price}`;
-            document.getElementById('planVolume').textContent = is365
-                ? 'Acesso por 365 dias · 500 emails por dia (renova todo dia) — até 182.500 no ano'
-                : 'Acesso por 30 dias · 500 emails por dia (renova todo dia) — até 15.000 no mês';
+            const plan = PLANS[selectedPlan()];
+            document.getElementById('payBtn').textContent = `Continuar — ${plan.price}`;
+            document.getElementById('planVolume').textContent = plan.volume;
         }
 
         document.getElementById('payBtn').addEventListener('click', async () => {
