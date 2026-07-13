@@ -18,7 +18,7 @@ EmailMassa funciona dentro do próprio Gmail do usuário, o que garante alta ent
 - NÃO envia por servidor próprio: usa a conta Gmail do usuário e respeita os limites do Google
 
 ## Planos
-- Gratuito: 1 campanha por dia, até 100 campanhas no total, com tracking e importação do Google Sheets
+- Gratuito: 1 campanha por dia, até 30 campanhas no total, com tracking e importação do Google Sheets
 - Premium: até 500 emails por dia, campanhas ilimitadas. Pagamento único (sem assinatura recorrente), a partir de R$9,90 por 30 dias ou R$99 por ano
 
 ## Para quem é
