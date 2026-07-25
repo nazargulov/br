@@ -985,9 +985,9 @@
             if (currentStep < totalSteps) {
                 currentStep++;
                 updateView();
-                gtag('event', 'tour_step', { step_name: stepNames[currentStep], step_number: currentStep });
+                gtag('event', 'welcome_page_step', { step_name: stepNames[currentStep], step_number: currentStep });
             } else {
-                gtag('event', 'tour_complete');
+                gtag('event', 'welcome_page_complete');
                 window.location.href = 'https://mail.google.com';
             }
         });
