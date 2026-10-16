@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Google Analytics (same property as the extension: G-9ERQ0RV4GZ) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9ERQ0RV4GZ"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-9ERQ0RV4GZ');</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <title>EmailMassa</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f5f8f7 0%, #ffffff 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 16px;
+        }
+        .container {
+            background: white;
+            border-radius: 16px;
+            padding: 40px 32px;
+            max-width: 520px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        h1 { color: #1e293b; font-size: 1.5rem; margin-bottom: 10px; }
+        p { color: #64748b; font-size: 1rem; line-height: 1.6; }
+        .reasons { display: grid; gap: 10px; margin: 24px 0; }
+        .reason {
+            text-align: left;
+            padding: 13px 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            background: #fff;
+            color: #1e293b;
+            font-size: 0.98rem;
+            cursor: pointer;
+            transition: border-color 0.15s, background 0.15s;
+        }
+        .reason:hover { border-color: #04ae45; background: #f0fbf4; }
+        .reason:disabled { cursor: default; opacity: 0.55; }
+        .reason.selected { border-color: #04ae45; background: #e6f7ec; opacity: 1; }
+        .thanks { display: none; color: #038c37; font-weight: 600; margin-bottom: 16px; }
+        .thanks.show { display: block; }
+        .links { border-top: 1px solid #e2e8f0; padding-top: 18px; font-size: 0.92rem; }
+        .links a { color: #04ae45; text-decoration: none; font-weight: 600; }
+        .links p + p { margin-top: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 data-i="title"></h1>
+        <p data-i="subtitle"></p>
+        <div class="reasons" id="reasons"></div>
+        <p class="thanks" id="thanks" data-i="thanks"></p>
+        <div class="links">
+            <p><span data-i="help"></span> <a href="https://wa.me/48504337326" target="_blank" rel="noopener">WhatsApp</a> · <a href="mailto:suporte@emailmassa.com">suporte@emailmassa.com</a></p>
+            <p><a href="https://chromewebstore.google.com/detail/fpffoemdjikjbdibennhoeblaefafohg" target="_blank" rel="noopener" data-i="reinstall" id="reinstall"></a></p>
+        </div>
+    </div>
+
+    <script>
+        // Opened by chrome.runtime.setUninstallURL with a usage snapshot:
+        // d = days since install, c = campaigns sent, p = plan, v = version,
+        // l = UI language, e = 1 if the install date is estimated (pre-1.9.5 install).
+        const q = new URLSearchParams(location.search);
+        const lang = ['pt', 'en', 'tr'].includes(q.get('l')) ? q.get('l') : 'pt';
+        const num = (k) => { const n = parseInt(q.get(k), 10); return Number.isFinite(n) && n >= 0 ? n : -1; };
+        const ctx = {
+            days_since_install: num('d'),
+            campaigns_total: num('c'),
+            plan: q.get('p') === 'premium' ? 'premium' : 'free',
+            ext_version: String(q.get('v') || '').slice(0, 20),
+            install_estimated: q.get('e') === '1' ? '1' : '0',
+            ui_lang: lang
+        };
+
+        const T = {
+            pt: {
+                title: 'O EmailMassa foi removido',
+                subtitle: 'Uma pergunta rápida: por que você desinstalou? Isso nos ajuda a melhorar.',
+                thanks: 'Obrigado! Sua resposta foi registrada.',
+                help: 'Teve um problema? Fale com a gente:',
+                reinstall: 'Reinstalar o EmailMassa',
+                reasons: {
+                    error: 'Não funcionou / deu erro',
+                    hard: 'Difícil de usar',
+                    free_limit: 'O limite do plano grátis é baixo',
+                    price: 'Preço',
+                    one_time: 'Só precisava para um envio',
+                    stats: 'Estatísticas não funcionaram',
+                    other_tool: 'Encontrei outra ferramenta',
+                    other: 'Outro motivo'
+                }
+            },
+            en: {
+                title: 'EmailMassa was removed',
+                subtitle: 'One quick question: why did you uninstall? It helps us improve.',
+                thanks: 'Thank you! Your answer was recorded.',
+                help: 'Had a problem? Contact us:',
+                reinstall: 'Reinstall EmailMassa',
+                reasons: {
+                    error: "It didn't work / showed an error",
+                    hard: 'Hard to use',
+                    free_limit: 'Free plan limit is too low',
+                    price: 'Price',
+                    one_time: 'Only needed it for one send',
+                    stats: "Stats didn't work",
+                    other_tool: 'Found another tool',
+                    other: 'Other reason'
+                }
+            },
+            tr: {
+                title: 'EmailMassa kaldırıldı',
+                subtitle: 'Kısa bir soru: neden kaldırdınız? Bu, geliştirmemize yardımcı olur.',
+                thanks: 'Teşekkürler! Yanıtınız kaydedildi.',
+                help: 'Bir sorun mu yaşadınız? Bize yazın:',
+                reinstall: "EmailMassa'yı yeniden yükle",
+                reasons: {
+                    error: 'Çalışmadı / hata verdi',
+                    hard: 'Kullanması zor',
+                    free_limit: 'Ücretsiz plan limiti düşük',
+                    price: 'Fiyat',
+                    one_time: 'Sadece bir gönderim için gerekiyordu',
+                    stats: 'İstatistikler çalışmadı',
+                    other_tool: 'Başka bir araç buldum',
+                    other: 'Başka bir neden'
+                }
+            }
+        }[lang];
+
+        document.documentElement.lang = { pt: 'pt-BR', en: 'en', tr: 'tr' }[lang];
+        document.title = T.title + ' | EmailMassa';
+        document.querySelectorAll('[data-i]').forEach((el) => { el.textContent = T[el.dataset.i]; });
+
+        gtag('event', 'extension_uninstalled', ctx);
+
+        const box = document.getElementById('reasons');
+        Object.entries(T.reasons).forEach(([key, label]) => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'reason';
+            btn.textContent = label;
+            btn.addEventListener('click', () => {
+                gtag('event', 'uninstall_reason', { ...ctx, reason: key });
+                box.querySelectorAll('.reason').forEach((b) => { b.disabled = true; });
+                btn.classList.add('selected');
+                document.getElementById('thanks').classList.add('show');
+            }, { once: true });
+            box.appendChild(btn);
+        });
+
+        document.getElementById('reinstall').addEventListener('click', () => {
+            gtag('event', 'uninstall_reinstall_click', ctx);
+        });
+    </script>
+</body>
+</html>
