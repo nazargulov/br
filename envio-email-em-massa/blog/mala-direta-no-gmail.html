@@ -5,7 +5,7 @@
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-9ERQ0RV4GZ');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mala Direta no Gmail: Passo a Passo com Planilha | EmailMassa</title>
+    <title>Mala Direta no Gmail: Passo a Passo | EmailMassa</title>
     <meta name="description" content="Como fazer mala direta no Gmail com Google Sheets ou CSV: cada contato recebe um email individual com nome e empresa, sem CRM e sem cópia oculta.">
     <link rel="canonical" href="https://emailmassa.com/blog/mala-direta-no-gmail">
     <meta property="og:title" content="Mala Direta no Gmail: Passo a Passo com Planilha">
@@ -39,10 +39,10 @@
 
         <div class="dor">
             <strong>A dor</strong>
-            “Alguém recomenda algum programa para disparo automático de mensagens? A ideia é remarketing para clientes etiquetados ou envio de promoções para leads.” — e logo depois: “Qual CRM vocês implementam?”
+            “Alguém recomenda algum programa para disparo automático de mensagens? A ideia é remarketing para clientes etiquetados ou envio de promoções para leads.”<br>E logo depois: “Qual CRM vocês implementam?”
         </div>
 
-        <p>Para mandar uma promoção ou um aviso para 200 clientes você não precisa de um CRM de R$ 150 por mês. Se a lista já está numa planilha, o Gmail resolve — desde que cada pessoa receba um email <strong>individual</strong>, com o próprio nome. Isso é a mala direta.</p>
+        <p>Para mandar uma promoção ou um aviso para 200 clientes você não precisa de um CRM de R$ 150 por mês. Se a lista já está numa planilha, o Gmail resolve, desde que cada pessoa receba um email <strong>individual</strong>, com o próprio nome. Isso é a mala direta.</p>
 
         <h2>Mala direta x cópia oculta (CCO)</h2>
         <div class="table-wrap">
@@ -56,7 +56,7 @@
         </div>
 
         <h2>O Gmail tem mala direta nativa?</h2>
-        <p>Só em alguns planos pagos do Google Workspace. No Gmail gratuito (@gmail.com) não existe — por isso a maioria das pessoas recorre a uma extensão do Chrome que lê a planilha e envia um email por contato, pela sua própria conta.</p>
+        <p>Só em alguns planos pagos. Segundo a <a href="https://support.google.com/mail/answer/12921167" target="_blank" rel="noopener">ajuda do Google</a>, a mala direta nativa existe no Workspace Individual, Business Standard, Business Plus, Enterprise e Education Standard/Plus. No Gmail gratuito (@gmail.com) e no Business Starter não existe. Por isso a maioria das pessoas usa uma extensão do Chrome que lê a planilha e envia um email por contato, pela sua própria conta.</p>
 
         <h2>Passo a passo</h2>
         <h3>1. Prepare a planilha</h3>
@@ -75,7 +75,7 @@
 
 Oi {{nome}},
 
-Como cliente da {{empresa}} com a gente, você tem 10% de desconto até sexta. É só usar o cupom {{cupom}} no checkout.
+Como a {{empresa}} já compra com a gente, separamos 10% de desconto até sexta. É só usar o cupom {{cupom}} no checkout.
 
 Qualquer dúvida, responda este email.
 
@@ -88,7 +88,16 @@ Equipe</div>
         <p>Uma conta @gmail.com envia até <strong>500 emails por dia</strong>; o limite renova a cada 24 horas. Para listas maiores, divida em lotes de dias diferentes. Contas do Google Workspace com domínio próprio têm limite maior.</p>
 
         <h3>5. Inclua o link de descadastro</h3>
-        <p>Quem não quer mais receber precisa conseguir sair com um clique. Além de ser exigido pela LGPD para comunicação de marketing, isso reduz as denúncias de spam — e protege a reputação da sua conta.</p>
+        <p>Quem não quer mais receber precisa conseguir sair com um clique. A LGPD garante a qualquer pessoa o direito de revogar o consentimento, e um link de saída visível é o jeito mais simples de respeitar isso. De quebra, reduz as denúncias de spam e protege a reputação da sua conta.</p>
+
+        <h2>Erros que estragam uma mala direta</h2>
+        <ul>
+            <li><strong>Planilha suja.</strong> Email com espaço no fim, duas pessoas na mesma célula, coluna “nome” com o nome completo em maiúsculas. Um “Oi MARIA DA SILVA SANTOS” parece robô. Use só o primeiro nome, com a primeira letra maiúscula.</li>
+            <li><strong>Lista comprada.</strong> Quem nunca ouviu falar de você marca como spam, e a conta do Gmail sofre. Envie para clientes, leads que pediram contato e empresas que você pesquisou uma a uma.</li>
+            <li><strong>Assunto de panfleto.</strong> “PROMOÇÃO IMPERDÍVEL!!!” vai direto para a aba Promoções. Um assunto com o nome da pessoa ou da empresa, escrito como se fosse para um conhecido, chega na caixa principal com mais frequência.</li>
+            <li><strong>Enviar e esquecer.</strong> Muita gente só responde depois de um lembrete. Veja <a href="follow-up-de-vendas">como fazer follow-up de vendas</a> sem parecer insistente.</li>
+            <li><strong>Mandar tudo de uma vez para a lista inteira</strong> sem testar com 5 ou 10 contatos primeiro. Se algo der errado, o erro chega só para poucos.</li>
+        </ul>
 
         <div class="solucao">
             <strong>A solução</strong>
@@ -97,12 +106,11 @@ Equipe</div>
 
         <h2>Como fazer no EmailMassa</h2>
         <ol>
-            <li>Instale o EmailMassa e abra o Gmail. Clique em <strong>Escrever</strong>.</li>
             <li>No painel ao lado, clique em <strong>Importar do Google Sheets</strong> (cole o link da planilha) ou <strong>Importar arquivo CSV</strong>. Também dá para colar uma lista de emails.</li>
             <li>Escreva o email usando as variáveis das colunas e clique em enviar teste.</li>
             <li>Ative <strong>rastrear aberturas e cliques</strong> e o link de descadastro, e envie.</li>
         </ol>
-        <p>O plano grátis envia 1 campanha por dia. O <a href="../planos.html">Premium</a> libera campanhas ilimitadas até 500 emails/dia, agendamento e follow-up, a partir de R$ 9,90 por 30 dias — pagamento único.</p>
+        <p>O plano grátis envia 1 campanha por dia. O <a href="../planos.html">Premium</a> libera campanhas ilimitadas até 500 emails/dia, agendamento e follow-up, a partir de R$ 9,90 por 30 dias, pagamento único.</p>
 
         <div class="cta">
             <h2>Sua planilha já é uma mala direta</h2>
