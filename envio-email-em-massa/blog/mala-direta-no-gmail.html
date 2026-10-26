@@ -14,6 +14,9 @@
     <meta property="og:type" content="article">
     <meta property="og:locale" content="pt_BR">
     <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Literata:opsz,wght@7..72,400;7..72,600&family=Caveat:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="blog.css">
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"BlogPosting","headline":"Mala Direta no Gmail: Passo a Passo com Planilha","datePublished":"2026-10-26","dateModified":"2026-10-26","inLanguage":"pt-BR","author":{"@type":"Organization","name":"EmailMassa"},"publisher":{"@type":"Organization","name":"EmailMassa","logo":{"@type":"ImageObject","url":"https://emailmassa.com/assets/images/icon128.png"}},"mainEntityOfPage":"https://emailmassa.com/blog/mala-direta-no-gmail"}
@@ -29,17 +32,18 @@
 <body>
 <div class="container">
     <header class="site">
-        <a href="../" class="logo"><img src="../assets/images/icon48.png" alt="">EmailMassa</a>
-        <nav><a href="./">Blog</a><a href="../planos.html">Planos</a></nav>
+        <a href="../" class="logo"><b>EmailMassa</b><small>Blog</small></a>
+        <nav><a href="./">Todos os artigos</a><a href="../planos.html">Planos</a></nav>
     </header>
 
     <article>
         <h1>Mala direta no Gmail: emails personalizados para uma lista inteira, sem pagar CRM</h1>
-        <p class="meta">26 de outubro de 2026 · 5 min de leitura</p>
+        <p class="meta">26 de outubro de 2026, 5 min de leitura</p>
 
         <div class="dor">
-            <strong>A dor</strong>
-            “Alguém recomenda algum programa para disparo automático de mensagens? A ideia é remarketing para clientes etiquetados ou envio de promoções para leads.”<br>E logo depois: “Qual CRM vocês implementam?”
+            <p class="msg"><span class="quem">Membro do grupo</span>Qual CRM vocês implementam na empresa dos seus clientes?<span class="hora">19:44</span></p>
+            <p class="msg"><span class="quem">Membro do grupo</span>Alguém aqui recomenda algum programa ou Extensão pra fazer disparo automático de mensagens no WhatsApp Business ?<br><br>Idéia é remarketing pra Clientes Etiquetados ou envio de promoções pra Leads e tal<span class="hora">17:30</span></p>
+            <p class="fonte">Grupo de marketing digital no WhatsApp, outubro de 2026</p>
         </div>
 
         <p>Para mandar uma promoção ou um aviso para 200 clientes você não precisa de um CRM de R$ 150 por mês. Se a lista já está numa planilha, o Gmail resolve, desde que cada pessoa receba um email <strong>individual</strong>, com o próprio nome. Isso é a mala direta.</p>
@@ -72,9 +76,7 @@
         <p>Toda coluna vira uma variável: <code>{{nome}}</code>, <code>{{empresa}}</code>, <code>{{cupom}}</code>. Vale para Google Sheets, CSV exportado do Excel ou do seu sistema de vendas.</p>
 
         <h3>2. Escreva o email com variáveis</h3>
-        <div class="template">Assunto: {{nome}}, seu cupom de outubro chegou
-
-Oi {{nome}},
+        <div class="template"><strong class="assunto">Assunto: {{nome}}, seu cupom de outubro chegou</strong>Oi {{nome}},
 
 Como a {{empresa}} já compra com a gente, separamos 10% de desconto até sexta. É só usar o cupom {{cupom}} no checkout.
 
@@ -101,7 +103,6 @@ Equipe</div>
         </ul>
 
         <div class="solucao">
-            <strong>A solução</strong>
             Planilha com uma coluna por informação + email com variáveis + envio individual pela sua conta do Gmail + link de descadastro. Remarketing para clientes etiquetados sem CRM: filtre a planilha pela etiqueta e envie só para aquele grupo.
         </div>
 
@@ -114,9 +115,8 @@ Equipe</div>
         <p>O plano grátis envia 1 campanha por dia. O <a href="../planos.html">Premium</a> libera campanhas ilimitadas até 500 emails/dia, agendamento e follow-up, a partir de R$ 9,90 por 30 dias, pagamento único.</p>
 
         <div class="cta">
-            <h2>Sua planilha já é uma mala direta</h2>
-            <p>Emails personalizados direto do Gmail, com rastreamento de aberturas e cliques.</p>
-            <a class="btn" href="https://chromewebstore.google.com/detail/fpffoemdjikjbdibennhoeblaefafohg?utm_source=blog&amp;utm_medium=article&amp;utm_campaign=mala-direta-no-gmail" target="_blank" rel="noopener" data-cta="mala-direta-no-gmail">Instalar grátis no Chrome</a>
+            <p><span class="ps">P.S.</span>Se a sua lista já está numa planilha, o EmailMassa transforma ela em mala direta dentro do Gmail, com aberturas e cliques. O plano grátis já envia.</p>
+            <a class="btn" href="https://chromewebstore.google.com/detail/fpffoemdjikjbdibennhoeblaefafohg?utm_source=blog&amp;utm_medium=article&amp;utm_campaign=mala-direta-no-gmail" target="_blank" rel="noopener" data-cta="mala-direta-no-gmail">Instalar o EmailMassa no Chrome</a>
         </div>
     </article>
 

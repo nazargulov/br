@@ -1,50 +1,150 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    line-height: 1.75;
-    color: #1e293b;
-    background: #f5f8f7;
+/* EmailMassa blog. Idea: the blog is about letters and about real WhatsApp pains,
+   so pain quotes are WhatsApp bubbles and email templates are airmail letters.
+   Everything else stays quiet: white paper, one column, no cards. */
+:root {
+    --ink: #17233b;
+    --muted: #5b6577;
+    --rule: #dde2ea;
+    --blue: #002776;
+    --green: #04ae45;
+    --green-dark: #038c37;
+    --yellow: #ffdf00;
+    --wa-wall: #efeae2;
+    --wa-name: #1f8f6a;
+    --paper: #ffffff;
+    --measure: 40rem;
 }
-.container { max-width: 760px; margin: 0 auto; padding: 32px 16px 48px; }
-header.site { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; }
-.logo { display: inline-flex; align-items: center; gap: 8px; font-size: 1.25rem; font-weight: 700; color: #04ae45; text-decoration: none; }
-.logo img { width: 32px; height: 32px; }
-header.site nav a { color: #64748b; text-decoration: none; margin-left: 16px; font-size: 0.95rem; }
-header.site nav a:hover { color: #038c37; }
-article, .card { background: #fff; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); padding: 40px; }
-h1 { color: #002776; font-size: 2rem; line-height: 1.25; margin-bottom: 12px; }
-.meta { color: #64748b; font-size: 0.9rem; margin-bottom: 28px; }
-h2 { color: #038c37; font-size: 1.4rem; margin: 32px 0 12px; }
-h3 { color: #1e293b; font-size: 1.1rem; margin: 20px 0 8px; }
-p, ul, ol { margin-bottom: 16px; }
-ul, ol { padding-left: 24px; }
-li { margin-bottom: 6px; }
-a { color: #038c37; }
-.dor { border-left: 4px solid #ffdf00; background: #fffbe6; padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 20px 0; }
-.dor strong { display: block; color: #92400e; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
-.solucao { border-left: 4px solid #04ae45; background: #ecfdf3; padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 20px 0; }
-.solucao strong { display: block; color: #038c37; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
-.template { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px 20px; margin: 16px 0; white-space: pre-line; font-size: 0.95rem; }
-table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 0.95rem; }
-th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
-th { background: #f1f5f9; }
-.table-wrap { overflow-x: auto; }
-.cta { background: #002776; color: #fff; border-radius: 12px; padding: 28px; margin-top: 36px; text-align: center; }
-.cta p { color: #dbeafe; margin-bottom: 16px; }
-.cta h2 { color: #ffdf00; margin-top: 0; }
-.btn { display: inline-block; background: #04ae45; color: #fff; text-decoration: none; font-weight: 700; padding: 14px 28px; border-radius: 8px; }
-.btn:hover { background: #038c37; }
-.related { margin-top: 32px; }
-.related h2 { font-size: 1.1rem; }
-.posts { list-style: none; padding: 0; }
-.posts li { background: #fff; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); padding: 24px; margin-bottom: 16px; }
-.posts a { font-size: 1.2rem; font-weight: 700; color: #002776; text-decoration: none; }
-.posts a:hover { color: #038c37; }
-.posts p { color: #64748b; margin: 8px 0 0; }
-footer { text-align: center; color: #64748b; font-size: 0.85rem; margin-top: 40px; }
-footer a { color: #64748b; margin: 0 8px; }
-@media (max-width: 600px) {
-    article, .card { padding: 24px 20px; }
-    h1 { font-size: 1.6rem; }
-    header.site nav a { margin-left: 10px; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+    background: var(--paper);
+    color: var(--ink);
+    font: 400 1.0625rem/1.7 'Literata', Georgia, serif;
+    font-optical-sizing: auto;
+}
+a { color: var(--green-dark); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--blue); }
+a:focus-visible, .btn:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+code { font: 0.92em 'Archivo', sans-serif; background: #f1f4f8; padding: 0.05em 0.3em; border-radius: 3px; }
+
+.container { max-width: var(--measure); margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+
+/* Masthead: brand on the left, nothing that competes with the headline */
+header.site {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-bottom: 0.75rem; margin-bottom: 3rem; border-bottom: 1px solid var(--rule);
+    font-family: 'Archivo', sans-serif;
+}
+.logo { display: inline-flex; align-items: baseline; gap: 0.7rem; text-decoration: none; }
+.logo b { color: var(--green); font-size: 1.45rem; font-weight: 800; font-stretch: 75%; letter-spacing: -0.01em; }
+.logo small { font-family: 'Literata', serif; font-size: 0.95rem; color: var(--blue); padding-left: 0.7rem; border-left: 1px solid var(--rule); }
+header.site nav a { color: var(--muted); text-decoration: none; margin-left: 1rem; font-size: 0.95rem; }
+header.site nav a:hover { color: var(--blue); }
+
+/* Headings: condensed and heavy, so the headline reads like a subject line you can't skip */
+h1, h2, h3 { font-family: 'Archivo', sans-serif; color: var(--blue); }
+h1 {
+    font-size: clamp(2.4rem, 7.5vw, 3.9rem); line-height: 0.98;
+    font-weight: 800; font-stretch: 65%; letter-spacing: -0.015em;
+    margin-bottom: 0.75rem;
+}
+.meta { font-family: 'Archivo', sans-serif; color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.55rem; line-height: 1.15; font-weight: 750; font-stretch: 85%; margin: 2.75rem 0 0.75rem; }
+h3 { font-size: 1.1rem; font-weight: 700; margin: 1.75rem 0 0.5rem; }
+p, ul, ol { margin-bottom: 1.1rem; }
+ul, ol { padding-left: 1.25rem; }
+li { margin-bottom: 0.4rem; }
+li::marker { color: var(--green-dark); }
+
+/* Pain quote = a slice of the WhatsApp group, verbatim, with the time it was sent */
+.dor {
+    background: var(--wa-wall) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='96' fill='none' stroke='%23d9cfbf' stroke-width='1.4' stroke-linejoin='round'%3E%3Crect x='10' y='12' width='26' height='18' rx='2'/%3E%3Cpath d='M10 13l13 10 13-10'/%3E%3Cpath d='M78 58l26-10-9 24-5-9z M90 63l5 9'/%3E%3Ccircle cx='62' cy='22' r='3'/%3E%3Cpath d='M20 70c6-6 12 6 18 0'/%3E%3C/svg%3E");
+    border-radius: 12px;
+    padding: 1rem 0.9rem 0.8rem;
+    margin: 0 0 2rem;
+    font-family: 'Archivo', sans-serif;
+    font-size: 0.97rem; line-height: 1.45;
+}
+.dor .msg {
+    position: relative;
+    background: #fff; border-radius: 0 8px 8px 8px;
+    padding: 0.4rem 0.6rem 1.1rem;
+    max-width: 88%; width: fit-content; min-width: 9rem;
+    margin-bottom: 0.45rem;
+    box-shadow: 0 1px 0.5px rgba(11, 20, 26, 0.13);
+}
+.dor .msg::before {
+    content: ''; position: absolute; top: 0; left: -7px;
+    border-top: 8px solid #fff; border-left: 8px solid transparent;
+}
+.dor .msg + .msg::before { display: none; }
+.dor .msg + .msg { border-radius: 8px; }
+.dor .quem { display: block; color: var(--wa-name); font-weight: 600; font-size: 0.85rem; margin-bottom: 0.1rem; }
+.dor .hora { position: absolute; right: 0.55rem; bottom: 0.25rem; font-size: 0.7rem; color: #667781; }
+.dor .fonte { font-size: 0.8rem; color: #54656f; margin: 0.6rem 0 0; text-align: center; }
+
+/* Email templates = airmail letters, striped in the flag colors */
+.template {
+    position: relative;
+    background: #fff;
+    border: 7px solid transparent;
+    border-image: repeating-linear-gradient(-45deg, var(--green) 0 12px, #fff 12px 18px, var(--yellow) 18px 30px, #fff 30px 36px, var(--blue) 36px 48px, #fff 48px 54px) 7;
+    padding: 1rem 1.15rem 1.1rem;
+    margin: 1rem 0 1.75rem;
+    white-space: pre-line;
+    font-size: 1rem; line-height: 1.6;
+}
+.template .assunto {
+    display: block; font-family: 'Archivo', sans-serif; font-weight: 700; color: var(--blue);
+    padding-bottom: 0.5rem; margin-bottom: 0.25rem; border-bottom: 1px dashed var(--rule);
+}
+
+/* The takeaway: no box, no label, just a sentence that is bigger than the rest */
+.solucao {
+    margin: 2.25rem 0;
+    font-family: 'Archivo', sans-serif; font-size: 1.25rem; line-height: 1.4; font-weight: 600;
+    color: var(--blue);
+}
+
+.table-wrap { overflow-x: auto; margin: 0.5rem 0 1.5rem; }
+table { width: 100%; border-collapse: collapse; font-family: 'Archivo', sans-serif; font-size: 0.95rem; }
+th, td { text-align: left; padding: 0.55rem 0.75rem 0.55rem 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { color: var(--muted); font-weight: 600; border-bottom: 2px solid var(--blue); }
+
+/* Call to action written as the P.S. of a letter */
+.cta { margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid var(--rule); }
+.cta p { margin-bottom: 1rem; }
+.cta p { font-family: 'Caveat', cursive; font-size: 1.75rem; line-height: 1.25; color: var(--blue); }
+.cta .ps { margin-right: 0.4rem; }
+.btn {
+    display: inline-block; background: var(--green); color: #fff; text-decoration: none;
+    font: 700 1rem 'Archivo', sans-serif; padding: 0.8rem 1.3rem; border-radius: 6px;
+}
+.btn:hover { background: var(--green-dark); color: #fff; }
+
+.related { margin-top: 3rem; font-family: 'Archivo', sans-serif; }
+.related h2 { font-size: 1.1rem; margin-top: 0; }
+.related ul { list-style: none; padding: 0; }
+.related li { padding: 0.5rem 0; border-bottom: 1px solid var(--rule); margin: 0; }
+
+/* Blog index = an inbox: one row per post, newest on top */
+.inbox { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--rule); font-family: 'Archivo', sans-serif; }
+.inbox li { margin: 0; border-bottom: 1px solid var(--rule); }
+.inbox a {
+    display: grid; grid-template-columns: 1fr auto; gap: 0.15rem 1rem;
+    padding: 1rem 0.25rem; color: var(--ink); text-decoration: none;
+}
+.inbox a:hover { background: #f5f8fb; }
+.inbox .assunto { font-weight: 700; color: var(--blue); }
+.inbox .data { color: var(--muted); font-size: 0.85rem; white-space: nowrap; }
+.inbox .trecho { grid-column: 1 / -1; color: var(--muted); font-size: 0.95rem; }
+.intro { font-size: 1.15rem; color: var(--muted); margin-bottom: 2rem; }
+
+footer { margin-top: 4rem; font-family: 'Archivo', sans-serif; font-size: 0.85rem; color: var(--muted); }
+footer a { color: var(--muted); margin-right: 1rem; }
+
+@media (max-width: 480px) {
+    body { font-size: 1rem; }
+    .dor .msg { max-width: 95%; }
+    .inbox a { grid-template-columns: 1fr; }
 }
