@@ -44,4 +44,9 @@
   <url><loc>https://emailmassa.com/tr/privacy.html</loc><lastmod>2026-07-07</lastmod><priority>0.5</priority></url>
   <url><loc>https://emailmassa.com/tr/terms.html</loc><lastmod>2026-07-07</lastmod><priority>0.5</priority></url>
   <url><loc>https://emailmassa.com/tr/refund.html</loc><lastmod>2026-07-07</lastmod><priority>0.3</priority></url>
+  <!-- Blog (pt) -->
+  <url><loc>https://emailmassa.com/blog/</loc><lastmod>2026-10-26</lastmod><priority>0.6</priority></url>
+  <url><loc>https://emailmassa.com/blog/follow-up-de-vendas</loc><lastmod>2026-10-26</lastmod><priority>0.6</priority></url>
+  <url><loc>https://emailmassa.com/blog/modelo-de-email-de-prospeccao</loc><lastmod>2026-10-26</lastmod><priority>0.6</priority></url>
+  <url><loc>https://emailmassa.com/blog/mala-direta-no-gmail</loc><lastmod>2026-10-26</lastmod><priority>0.6</priority></url>
 </urlset>
