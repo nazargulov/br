@@ -62,7 +62,8 @@
           purchase: {
             amount: purchase.amount,
             currency: purchase.currency,
-            plan: purchase.plan_label || 'premium'
+            plan: purchase.plan_label || 'premium',
+            transactionId: purchase.transactionId
           }
         }, (response) => {
           if (chrome.runtime.lastError) {
@@ -97,7 +98,7 @@
             continue;
           }
           if (result.status !== 'paid') throw new Error('Ödeme henüz onaylanmadı');
-          await activateExtension(extId, result);
+          await activateExtension(extId, { ...result, transactionId: sessionId });
           return;
         } catch (error) {
           if (attempt === 6) {
