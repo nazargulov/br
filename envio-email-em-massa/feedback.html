@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <script>
+    if(new URLSearchParams(location.search).get('from')!=='dev'){
+        var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-9ERQ0RV4GZ';document.head.appendChild(s);
+        window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());var cid=new URLSearchParams(location.search).get('cid');gtag('config','G-9ERQ0RV4GZ',cid?{client_id:cid}:{});
+    }else{window.gtag=function(){};}
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>EmailMassa: feedback</title>
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+    <style>
+* { box-sizing:border-box; }
+body { margin:0; background:#fff; color:#17233b; font:400 1rem/1.6 'Archivo', Arial, sans-serif; }
+.wrap { max-width:34rem; margin:0 auto; padding:2rem 1rem 4rem; }
+b.logo { color:#04ae45; font-size:1.45rem; font-weight:800; font-stretch:75%; }
+h1 { color:#002776; font-size:2rem; line-height:1.1; font-stretch:75%; font-weight:800; margin:1.5rem 0 .5rem; }
+p.lead { color:#5b6577; margin:0 0 1.25rem; }
+form { display:flex; flex-direction:column; gap:.7rem; }
+textarea, input { font:inherit; padding:.7rem .8rem; border:1px solid #dde2ea; border-radius:8px; }
+textarea:focus, input:focus, button:focus-visible { outline:3px solid #ffdf00; outline-offset:1px; }
+button { align-self:flex-start; font:700 1rem 'Archivo', sans-serif; padding:.7rem 1.4rem; border:0; border-radius:8px; background:#04ae45; color:#fff; cursor:pointer; }
+button:disabled { opacity:.6; }
+.hp { position:absolute; left:-9999px; width:1px; height:1px; }
+.msg { color:#038c37; min-height:1.5em; margin:0; }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <b class="logo">EmailMassa</b>
+    <h1 data-t="h1"></h1>
+    <p class="lead" data-t="lead"></p>
+    <form id="fb" novalidate>
+        <textarea name="text" rows="6" maxlength="2000" required data-ph="ph" aria-label="feedback"></textarea>
+        <input name="email" type="email" maxlength="200" autocomplete="email" data-ph="email">
+        <input name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+        <button type="submit" data-t="send"></button>
+        <p class="msg" role="status" aria-live="polite"></p>
+    </form>
+</div>
+<script>
+const T = {
+    pt: { h1: 'Conta pra gente', lead: 'Ideia, problema ou algo que faltou. Quem lê é uma pessoa e responde se você deixar o email.', ph: 'Escreva aqui', email: 'Seu email (opcional)', send: 'Enviar', ok: 'Recebido, obrigado.', err: 'Não deu para enviar. Tente de novo.' },
+    en: { h1: 'Tell us', lead: 'An idea, a problem or something missing. A person reads this and replies if you leave your email.', ph: 'Write here', email: 'Your email (optional)', send: 'Send', ok: 'Got it, thank you.', err: 'Could not send. Please try again.' },
+    tr: { h1: 'Bize yazın', lead: 'Bir fikir, bir sorun ya da eksik bir şey. Bunu bir kişi okur, e-posta bırakırsanız cevap verir.', ph: 'Buraya yazın', email: 'E-postanız (isteğe bağlı)', send: 'Gönder', ok: 'Aldık, teşekkürler.', err: 'Gönderilemedi. Tekrar deneyin.' },
+};
+const q = new URLSearchParams(location.search);
+const lang = T[q.get('l')] ? q.get('l') : 'pt';
+const t = T[lang];
+document.documentElement.lang = { pt: 'pt-BR', en: 'en', tr: 'tr' }[lang];
+document.querySelectorAll('[data-t]').forEach((el) => { el.textContent = t[el.dataset.t]; });
+document.querySelectorAll('[data-ph]').forEach((el) => { el.placeholder = t[el.dataset.ph]; });
+document.getElementById('fb').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const f = e.target, msg = f.querySelector('.msg'), btn = f.querySelector('button');
+    const text = f.text.value.trim();
+    if (text.length < 2) { f.text.focus(); return; }
+    btn.disabled = true;
+    try {
+        const r = await fetch('https://api.emailmassa.com/api/feedback', {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text, email: f.email.value, website: f.website.value, source: q.get('src') || 'page',
+                lang, version: q.get('v') || '', clientId: q.get('cid') || '' })
+        });
+        if (!r.ok) throw new Error(String(r.status));
+        msg.textContent = t.ok; f.text.value = ''; f.text.disabled = true;
+        gtag('event', 'feedback_sent', { source: q.get('src') || 'page' });
+    } catch (_) { msg.textContent = t.err; btn.disabled = false; }
+});
+</script>
+</body>
+</html>

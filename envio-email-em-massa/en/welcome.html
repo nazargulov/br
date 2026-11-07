@@ -5,7 +5,7 @@
     <script>
     if(new URLSearchParams(location.search).get('from')!=='dev'){
         var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-9ERQ0RV4GZ';document.head.appendChild(s);
-        window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-9ERQ0RV4GZ');
+        window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());var cid=new URLSearchParams(location.search).get('cid');gtag('config','G-9ERQ0RV4GZ',cid?{client_id:cid}:{});
     }else{window.gtag=function(){};}
     </script>
     <meta charset="UTF-8">
@@ -42,12 +42,12 @@ p { margin-bottom:.9rem; }
 .mock-popup { display:inline-block; background:#f8fafd; border:1px solid var(--rule); border-radius:10px; margin:.25rem 0 1rem; font-family:'Archivo', sans-serif; overflow:hidden; cursor:default; user-select:none; }
 .mock-popup .bar { display:flex; align-items:center; gap:.4rem; padding:.35rem .7rem; font-size:.8rem; font-weight:700; color:var(--blue); border-bottom:1px solid var(--rule); background:#fff; }
 .mock-popup .bar i { width:.55rem; height:.55rem; border-radius:50%; background:var(--green); }
-.mock-login { display:inline-flex; align-items:center; gap:.5rem; background:#04ae45; color:#fff; font-weight:700; padding:.6rem 1.1rem; border-radius:8px; margin:.8rem 1.4rem; outline:3px solid var(--yellow); outline-offset:2px; }
+.mock-login { display:inline-flex; align-items:center; gap:.6rem; background:#fff; color:#1f1f1f; font:500 1rem Roboto, Arial, sans-serif; padding:.55rem 1.2rem; border:1px solid #747775; border-radius:20px; margin:.8rem 1.4rem; outline:3px solid var(--yellow); outline-offset:2px; }
 .mock-login .g { font-weight:800; font-size:1.1rem; }
 .mock-compose { display:inline-flex; align-items:center; gap:.6rem; background:#f8fafd; border:1px solid var(--rule); border-radius:10px; padding:.6rem .8rem; margin:.25rem 0 1rem; font-family:'Archivo', sans-serif; }
 .mock-compose .send { background:#0b57d0; color:#fff; font-weight:600; padding:.45rem 1.3rem; border-radius:18px; }
 .mock-compose .massa { display:inline-flex; background:var(--green); color:#fff; font-weight:700; border-radius:18px; overflow:hidden; outline:3px solid var(--yellow); outline-offset:2px; }
-.mock-compose .massa span { padding:.45rem .8rem; }
+.mock-compose .massa span { padding:.45rem .8rem; display:inline-flex; align-items:center; gap:.35rem; }
 .mock-compose .massa i { font-style:normal; padding:.45rem .55rem; border-left:1px solid rgba(255,255,255,.35); }
 .template { background:#fff; border:7px solid transparent; border-image:repeating-linear-gradient(-45deg, var(--green) 0 12px, #fff 12px 18px, var(--yellow) 18px 30px, #fff 30px 36px, var(--blue) 36px 48px, #fff 48px 54px) 7; padding:.9rem 1.1rem 1rem; margin:.25rem 0 1rem; white-space:pre-line; font-size:1rem; line-height:1.6; }
 .template .assunto { display:block; font-family:'Archivo', sans-serif; font-weight:700; color:var(--blue); padding-bottom:.5rem; margin-bottom:.25rem; border-bottom:1px dashed var(--rule); }
@@ -55,6 +55,20 @@ p { margin-bottom:.9rem; }
 .btn { display:inline-block; background:var(--green); color:#fff; text-decoration:none; font:700 1.1rem 'Archivo', sans-serif; padding:.9rem 1.6rem; border-radius:6px; }
 .btn:hover { background:var(--green-dark); color:#fff; }
 .free { font-size:.95rem; color:var(--muted); margin-top:.9rem; }
+.go-top { margin:0 0 3rem; }
+.fb { margin-top:2.75rem; padding:1.1rem 1.2rem; background:#f8fafd; border:1px solid var(--rule); border-radius:12px; display:flex; flex-direction:column; gap:.6rem; font-family:'Archivo', sans-serif; }
+.fb label { font-weight:600; color:var(--blue); }
+.fb textarea, .fb input { font:inherit; font-size:1rem; padding:.6rem .75rem; border:1px solid var(--rule); border-radius:8px; background:#fff; color:var(--ink); }
+.fb button { align-self:flex-start; font:700 1rem 'Archivo', sans-serif; padding:.6rem 1.2rem; border:0; border-radius:8px; background:var(--blue); color:#fff; cursor:pointer; }
+.fb button:disabled { opacity:.6; cursor:default; }
+.fb .hp { position:absolute; left:-9999px; width:1px; height:1px; }
+.fb-msg { margin:0; font-size:.95rem; color:var(--green-dark); }
+.btn-big { font-size:1.35rem; padding:1.15rem 2.2rem; border-radius:12px; box-shadow:0 8px 22px rgba(4,174,69,.28); }
+/* A soft ring that breathes out of the button; the button itself never blinks. */
+.pulse { animation:em-pulse 2.4s ease-out infinite; }
+@keyframes em-pulse { 0% { box-shadow:0 8px 22px rgba(4,174,69,.28), 0 0 0 0 rgba(4,174,69,.45); } 70% { box-shadow:0 8px 22px rgba(4,174,69,.28), 0 0 0 16px rgba(4,174,69,0); } 100% { box-shadow:0 8px 22px rgba(4,174,69,.28), 0 0 0 0 rgba(4,174,69,0); } }
+@media (prefers-reduced-motion: reduce) { .pulse { animation:none; } }
+@media (max-width:480px) { .btn-big { display:block; text-align:center; } }
 .ps { margin-top:2.75rem; padding-top:1.25rem; border-top:1px solid var(--rule); font-family:'Caveat', cursive; font-size:1.75rem; line-height:1.25; color:var(--blue); }
 .ps b { margin-right:.4rem; }
 details { margin-top:1.5rem; font-family:'Archivo', sans-serif; }
@@ -71,20 +85,24 @@ footer a { color:var(--muted); margin-right:1rem; }
     <header class="site"><b>EmailMassa</b><small>Welcome</small></header>
 
     <h1>Your first campaign in 3 steps</h1>
-    <p class="intro">Thanks for installing. It takes about 2 minutes, keep this tab open while you do it.</p>
+    <p class="intro">Thanks for installing. The button opens a new email in Gmail, where a short guide shows each step. It takes about 2 minutes.</p>
+    <div class="go-top">
+        <a class="btn btn-big pulse open-gmail" data-pos="top" href="https://mail.google.com/mail/u/0/#inbox?compose=new">Open Gmail and start</a>
+        <p class="free">Free plan: 1 campaign per day, 30 in total. Inside Gmail a short guide walks you through each step.</p>
+    </div>
 
     <ol class="steps">
-        <li data-step="connect">
-            <h2>Connect your Gmail</h2>
-            <p>Click the puzzle icon <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="#5f6368" d="M20.5 11H19V7c0-1.1-.9-2-2-2h-4V3.5a2.5 2.5 0 0 0-5 0V5H4c-1.1 0-2 .9-2 2v3.8h1.5a2.5 2.5 0 0 1 0 5H2V20c0 1.1.9 2 2 2h3.8v-1.5a2.5 2.5 0 0 1 5 0V22H17c1.1 0 2-.9 2-2v-4h1.5a2.5 2.5 0 0 0 0-5z"/></svg> at the top right of Chrome, pin EmailMassa with the pin <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="#5f6368" d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z"/></svg> and click its icon. Then press this button:</p>
-            <div class="mock-popup" aria-hidden="true"><div class="bar"><i></i>EmailMassa</div><div class="mock-login"><span class="g">G</span>Continue with Google</div></div>
-            <p class="note">Google will ask for two permissions: send email (your campaigns) and Google Sheets (only the sheets you pick). Allow both. We never read your inbox. <a href="permissions.html">Why we ask</a>.</p>
-        </li>
         <li data-step="compose">
-            <h2>Open a new email in Gmail</h2>
-            <p>Click <strong>Compose</strong>. Next to the Send button you will see the green <strong>Massa</strong> button:</p>
-            <div class="mock-compose" aria-hidden="true"><span class="send">Send</span><span class="massa"><span>✉ Massa</span><i>▾</i></span></div>
+            <h2>Add your recipients</h2>
+            <p>In the new email, next to the Send button, there is the green <strong>Massa</strong> button:</p>
+            <div class="mock-compose" aria-hidden="true"><span class="send">Send</span><span class="massa"><span><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="#fff" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>Massa</span><i>▾</i></span></div>
             <p>Click the small arrow ▾ on Massa to add recipients: paste emails, upload a CSV or pick a Google Sheet.</p>
+        </li>
+        <li data-step="connect">
+            <h2>Sign in with Google</h2>
+            <p>The Massa panel shows this button. Without it the extension cannot send anything, so this is the step that matters most:</p>
+            <div class="mock-popup" aria-hidden="true"><div class="bar"><i></i>EmailMassa</div><div class="mock-login"><svg viewBox="0 0 48 48" width="18" height="18"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>Continue with Google</div></div>
+            <p class="note">Google will ask for two permissions: send email (your campaigns) and Google Sheets (only the sheets you pick). Allow both. We never read your inbox. <a href="permissions.html">Why we ask</a>.</p>
         </li>
         <li data-step="test">
             <h2>Send yourself a test</h2>
@@ -97,9 +115,17 @@ I saw the {{company}} website and had an idea...</div>
     </ol>
 
     <div class="go">
-        <a class="btn" id="openGmail" href="https://mail.google.com/">Open Gmail</a>
-        <p class="free">Free plan: 1 campaign per day, 30 in total. Inside Gmail a short guide walks you through each step.</p>
+        <a class="btn btn-big pulse open-gmail" data-pos="bottom" href="https://mail.google.com/mail/u/0/#inbox?compose=new">Open Gmail and start</a>
     </div>
+
+    <form class="fb" id="fb" novalidate>
+        <label for="fb-text">Something did not work, or not what you were looking for? Tell us.</label>
+        <textarea id="fb-text" name="text" rows="3" maxlength="2000" placeholder="What happened?" required></textarea>
+        <input id="fb-email" name="email" type="email" maxlength="200" placeholder="Your email (optional, so we can reply)" aria-label="Your email (optional, so we can reply)" autocomplete="email">
+        <input name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+        <button type="submit">Send</button>
+        <p class="fb-msg" role="status" aria-live="polite" data-ok="Got it, thank you. If you left an email, we will reply." data-err="Could not send. Try again or message us on WhatsApp."></p>
+    </form>
 
     <p class="ps"><b>P.S.</b>Stuck on a step? Message us on <a href="https://api.whatsapp.com/send/?phone=48504337326&text=Hi!%20I%20installed%20EmailMassa%20and%20got%20stuck%20on%20a%20step&type=phone_number&app_absent=0" target="_blank" rel="noopener">WhatsApp</a>, a real person answers.</p>
 
@@ -118,7 +144,26 @@ I saw the {{company}} website and had an idea...</div>
         });
     }, { threshold: 0.6 });
     document.querySelectorAll('[data-step]').forEach((el) => io.observe(el));
-    document.getElementById('openGmail').addEventListener('click', () => gtag('event', 'welcome_page_complete'));
+    document.querySelectorAll('.open-gmail').forEach((a) => a.addEventListener('click', () => gtag('event', 'welcome_page_complete', { source: a.dataset.pos })));
+
+    // Own feedback form (replaces the Google Form): answers land in the billing worker's KV.
+    document.getElementById('fb').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const f = e.target, msg = f.querySelector('.fb-msg'), btn = f.querySelector('button');
+        const text = f.text.value.trim();
+        if (text.length < 2) { f.text.focus(); return; }
+        btn.disabled = true;
+        try {
+            const r = await fetch('https://api.emailmassa.com/api/feedback', {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ text, email: f.email.value, website: f.website.value, source: 'welcome',
+                    lang: document.documentElement.lang, clientId: new URLSearchParams(location.search).get('cid') || '' })
+            });
+            if (!r.ok) throw new Error(String(r.status));
+            msg.textContent = msg.dataset.ok; f.text.value = ''; f.text.disabled = true;
+            gtag('event', 'feedback_sent', { source: 'welcome' });
+        } catch (_) { msg.textContent = msg.dataset.err; btn.disabled = false; }
+    });
 
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('connected') === 'true') window.location.href = 'connected.html';
