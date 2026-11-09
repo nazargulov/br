@@ -31,19 +31,19 @@
   </url>
 
   <!-- Legal pages (pt-BR) -->
-  <url><loc>https://emailmassa.com/privacidade.html</loc><lastmod>2026-07-07</lastmod><priority>0.5</priority></url>
-  <url><loc>https://emailmassa.com/termos.html</loc><lastmod>2026-07-07</lastmod><priority>0.5</priority></url>
-  <url><loc>https://emailmassa.com/reembolso.html</loc><lastmod>2026-07-07</lastmod><priority>0.3</priority></url>
+  <url><loc>https://emailmassa.com/privacidade</loc><lastmod>2026-07-07</lastmod><priority>0.5</priority></url>
+  <url><loc>https://emailmassa.com/termos</loc><lastmod>2026-07-07</lastmod><priority>0.5</priority></url>
+  <url><loc>https://emailmassa.com/reembolso</loc><lastmod>2026-07-07</lastmod><priority>0.3</priority></url>
 
   <!-- Legal pages (en) -->
-  <url><loc>https://emailmassa.com/en/privacy.html</loc><lastmod>2026-07-07</lastmod><priority>0.5</priority></url>
-  <url><loc>https://emailmassa.com/en/terms.html</loc><lastmod>2026-07-07</lastmod><priority>0.5</priority></url>
-  <url><loc>https://emailmassa.com/en/refund.html</loc><lastmod>2026-07-07</lastmod><priority>0.3</priority></url>
+  <url><loc>https://emailmassa.com/en/privacy</loc><lastmod>2026-07-07</lastmod><priority>0.5</priority></url>
+  <url><loc>https://emailmassa.com/en/terms</loc><lastmod>2026-07-07</lastmod><priority>0.5</priority></url>
+  <url><loc>https://emailmassa.com/en/refund</loc><lastmod>2026-07-07</lastmod><priority>0.3</priority></url>
 
   <!-- Legal pages (tr) -->
-  <url><loc>https://emailmassa.com/tr/privacy.html</loc><lastmod>2026-07-07</lastmod><priority>0.5</priority></url>
-  <url><loc>https://emailmassa.com/tr/terms.html</loc><lastmod>2026-07-07</lastmod><priority>0.5</priority></url>
-  <url><loc>https://emailmassa.com/tr/refund.html</loc><lastmod>2026-07-07</lastmod><priority>0.3</priority></url>
+  <url><loc>https://emailmassa.com/tr/privacy</loc><lastmod>2026-07-07</lastmod><priority>0.5</priority></url>
+  <url><loc>https://emailmassa.com/tr/terms</loc><lastmod>2026-07-07</lastmod><priority>0.5</priority></url>
+  <url><loc>https://emailmassa.com/tr/refund</loc><lastmod>2026-07-07</lastmod><priority>0.3</priority></url>
   <!-- Blog (pt) -->
   <url><loc>https://emailmassa.com/blog/</loc><lastmod>2026-11-05</lastmod><priority>0.6</priority></url>
   <url><loc>https://emailmassa.com/blog/follow-up-de-vendas</loc><lastmod>2026-10-26</lastmod><priority>0.6</priority></url>
